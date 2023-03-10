@@ -17,7 +17,7 @@ class SplashScreen : AppCompatActivity() {
         val motivationText: TextView  =findViewById<TextView>(R.id.motivationText)
         val texts = listOf("Motivation", "phrases", "into")
         val rnd = Random(System.currentTimeMillis())
-        motivationText.setText( texts.get(rnd.nextInt( 3)) ) // not see because activity
+        motivationText.setText( texts[rnd.nextInt( 3)] ) // not see because activity
                                                                   // started before loading rnd
 //        Thread.sleep(3000) //TODO: delete if main will long-loaded
         val rndList = arrayListOf(arrayListOf("1", "2"), arrayListOf("3", "4"))

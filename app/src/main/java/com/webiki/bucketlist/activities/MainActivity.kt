@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         goalsLayout = findViewById(R.id.goalsLayout)
-        //
+        // TODO: extract to method
         val goalsList = intent.getStringArrayListExtra("goals")
         fillGoalsLayoutFromList<String>(goalsLayout, goalsList!!)
         //
