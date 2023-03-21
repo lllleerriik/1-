@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun <T> fillGoalsLayoutFromList(layout: LinearLayout, items: ArrayList<String>) {
+    private fun <T> fillGoalsLayoutFromList(layout: LinearLayout, items: ArrayList<T>) {
         val inflater = layoutInflater
         layout.removeAllViews()
 
