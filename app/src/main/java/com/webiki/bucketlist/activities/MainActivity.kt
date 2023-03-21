@@ -1,24 +1,23 @@
 package com.webiki.bucketlist.activities
 
-import android.content.Intent
+import android.icu.util.TimeUnit
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.navigation.NavigationView
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
-import java.util.ArrayList
+import java.lang.Integer.parseInt
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         for (item in items) {
             val view = inflater.inflate(R.layout.simple_goal_view, layout, false)
-            val viewText = view.findViewById<TextView>(R.id.goalTextView)
             val viewCheckBox = view.findViewById<CheckBox>(R.id.goalCheckBox)
             val layoutParameters = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -78,12 +76,9 @@ class MainActivity : AppCompatActivity() {
 
             layoutParameters.setMargins(0, 0, 0, 12)
             view.layoutParams = layoutParameters
-            viewText.text = item.toString()
+            viewCheckBox.text = item.toString()
 
-            viewText.setOnClickListener { view ->
-                viewCheckBox.performClick()
-            }
-            viewCheckBox.setOnClickListener { view ->
+            viewCheckBox.setOnClickListener {
                 Toast.makeText(this, "You clicked text $item", Toast.LENGTH_SHORT).show()
             }
 
