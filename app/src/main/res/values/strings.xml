@@ -1,4 +1,5 @@
 <resources>
+    <!-- region ANOTHER -->
     <string name="app_name">Bucket List</string>
     <string name="name_surname">Имя Фамилия</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -7,8 +8,18 @@
     <string name="nav_email">example@mail.ru</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <!-- endregion -->
 
+    <!-- region FRAGMENTS AND ACTIVITIES UI -->
     <string name="menu_home">Цели</string>
     <string name="menu_motivation">Мотивация</string>
     <string name="menu_settings">Настройки</string>
+    <string name="save_results">Сохранить результат</string>
+    <!-- endregion -->
+
+    <!-- region LOGIC CODE -->
+    <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
+    <string name="sharedPreferencesName">BucketList-Webiki</string>
+    <string name="pageNumberMoreThanContentSize">Номер страницы больше либо равен количества контента:</string>
+    <!-- endregion    -->
 </resources>

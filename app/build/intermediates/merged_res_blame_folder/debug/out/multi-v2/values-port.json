@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-48:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\800b6b5f4a117c466e52b521ae498ed5\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}
