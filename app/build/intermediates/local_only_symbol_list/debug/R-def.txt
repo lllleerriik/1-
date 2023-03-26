@@ -1,12 +1,12 @@
 R_DEF: Internal format may change without notice
 local
-color black
-color purple_200
-color purple_500
-color purple_700
-color teal_200
-color teal_700
-color white
+color black_dark
+color pink
+color pink_dark
+color pink_light
+color purple_dark
+color purple_light
+color white_light
 dimen activity_horizontal_margin
 dimen activity_vertical_margin
 dimen fab_margin
@@ -40,15 +40,13 @@ id nav_host_fragment_content_main
 id nav_motivation
 id nav_settings
 id nav_view
+id progressBar
 id textView
 id text_gallery
 id text_slideshow
 id toolbar
 id welcomeFormAnswers
-id welcomeFormDescription
-id welcomeFormImage
 id welcomeFormTitle
-id welomeFormResultButton
 layout activity_introductory_form
 layout activity_main
 layout activity_splash_screen

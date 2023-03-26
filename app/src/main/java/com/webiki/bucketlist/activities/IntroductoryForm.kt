@@ -4,15 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup.LayoutParams
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.drawable.toDrawable
-import androidx.core.view.isVisible
 import com.webiki.bucketlist.R
 import org.json.JSONArray
 import java.util.Scanner
@@ -22,39 +20,26 @@ import java.util.Scanner
  */
 class IntroductoryForm : AppCompatActivity() {
     private lateinit var welcomeFormTitle: TextView
-    private lateinit var welcomeFormImage: ImageView
-    private lateinit var welcomeFormDescription: TextView
     private lateinit var welcomeFormAnswers: LinearLayout
-    private lateinit var welcomeFormLayout: ConstraintLayout
-    private lateinit var welcomeFormResultButton: Button
+    private lateinit var welcomeFormLayout: LinearLayout
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var sPrefEditor: SharedPreferences.Editor
 
-    private lateinit var titles: MutableList<String>
-    private lateinit var descriptions: MutableList<String>
-    private lateinit var answers: MutableList<MutableList<String>>
+    private var titles: MutableList<String> = mutableListOf()
+    private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_introductory_form)
 
         welcomeFormTitle = findViewById(R.id.welcomeFormTitle)
-        welcomeFormImage = findViewById(R.id.welcomeFormImage)
-        welcomeFormDescription = findViewById(R.id.welcomeFormDescription)
         welcomeFormAnswers = findViewById(R.id.welcomeFormAnswers)
         welcomeFormLayout = findViewById(R.id.mainWelcomeLayout)
-        welcomeFormResultButton= findViewById(R.id.welomeFormResultButton)
         sharedPreferences = getSharedPreferences(R.string.sharedPreferencesName.toString(), Context.MODE_PRIVATE)
         sPrefEditor = sharedPreferences.edit()
+        initQuestionData(titles, answerVariants)
 
-        initQuestionData(titles, descriptions, answers)
-
-        moveOnPage(0, titles, descriptions, answers)
-
-        welcomeFormResultButton.setOnClickListener {
-            sPrefEditor.putBoolean(R.string.isUserPassedInitialQuestionnaire.toString(), true)
-            sPrefEditor.commit()
-        }
+        moveOnPage(0, titles, answerVariants)
     }
 
     /**
@@ -62,9 +47,12 @@ class IntroductoryForm : AppCompatActivity() {
      *
      * @param titles Список заголовков
      * @param descriptions Список описаний
-     * @param answers Список вариантов ответа
+     * @param answerVariants Список вариантов ответа
      */
-    private fun <T> initQuestionData(titles: MutableList<T>, descriptions: MutableList<T>, answers: MutableList<MutableList<T>>) {
+    private fun <T> initQuestionData(
+        titles: MutableList<T>,
+        answerVariants: MutableList<MutableList<T>>
+    ) {
         val scan = Scanner(assets.open("doc.json"))
         val jsonLine = StringBuilder()
 
@@ -73,12 +61,12 @@ class IntroductoryForm : AppCompatActivity() {
         val questions = JSONArray(jsonLine.toString())
 
         for (i in 0 until JSONArray(jsonLine.toString()).length()) {
-            val question = questions.getJSONObject(i)
-            titles.add(question.getString("1") as T) // TODO: extract strings to file
-            descriptions.add(question.getString("2") as T)
-            for (j in 0 until question.getJSONArray("3").length())
-                answers[i].add(question.getJSONArray("3").get(j) as T)
+            val slideInformation = questions.getJSONObject(i)
 
+            titles.add(slideInformation.getString("title") as T) // TODO: extract strings to file
+
+            for (j in 0 until slideInformation.getJSONArray("answers").length())
+                answerVariants[i].add(j, slideInformation.getJSONArray("answers").get(j) as T)
         }
     }
 
@@ -92,38 +80,31 @@ class IntroductoryForm : AppCompatActivity() {
     private fun <T> moveOnPage(
         pageNumber: Int,
         titles: List<T>,
-        descriptions: List<T>,
         answers: List<List<T>>
     ) {
-        val isLastPage = pageNumber + 1 == titles.size
+        val isLastPage = pageNumber + 1 == titles.size //plug
 
-        if (titles.size != descriptions.size
-            || descriptions.size != answers.size
-            || titles.size <= pageNumber)
-            throw ArrayIndexOutOfBoundsException(R.string.pageNumberMoreThanContentSize.toString() + " $pageNumber")
+        Log.d("DEB", titles.size.toString())
+        Log.d("DEB", answers.size.toString())
+
+        if (titles.size != answers.size || titles.size <= pageNumber)
+            throw ArrayIndexOutOfBoundsException(getString(R.string.pageNumberMoreThanContentSize) + " $pageNumber")
 
         welcomeFormAnswers.removeAllViews()
-        welcomeFormTitle.text = titles[pageNumber].toString()
-        welcomeFormDescription.text = descriptions[pageNumber].toString()
+        welcomeFormTitle.text = titles.get(pageNumber)?.toString()
 
         for (i in 0 until answers[pageNumber].size) {
             val answerButton = Button(this)
             val layoutParams = MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-            val p = pageNumber + if (isLastPage) 0 else 1
+            val p = pageNumber + if (isLastPage) 0 else 1 //plug
 
             layoutParams.setMargins(5, 0, 5, 15)
             answerButton.text = answers[pageNumber][i].toString()
             answerButton.layoutParams = layoutParams
-            answerButton.background = R.color.purple_700.toDrawable()
-            answerButton.setOnClickListener { moveOnPage(p, titles,
-                this.descriptions, answers) }
+            answerButton.background = R.color.purple_dark.toDrawable() //TODO reverse to theme color
+            answerButton.setOnClickListener { moveOnPage(p, titles, answers) }
 
             welcomeFormAnswers.addView(answerButton)
-        }
-
-        if (isLastPage) {
-            welcomeFormResultButton.isVisible = true
-            welcomeFormResultButton.setOnClickListener { finishActivity(0) }
         }
     }
 }

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-48:/values-night-v8/values-night-v8.xml",
+            "outputFile": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-48:\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\800b6b5f4a117c466e52b521ae498ed5\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
@@ -54,6 +54,60 @@
                         "endLines": "22,62",
                         "endColumns": "12,12",
                         "endOffsets": "1305,5554"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-48:/values-night-v8/values-night-v8.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\800b6b5f4a117c466e52b521ae498ed5\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,48",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,125,209,293,389,491,593,4085",
+                        "endColumns": "69,83,83,95,101,101,93,88",
+                        "endOffsets": "120,204,288,384,486,588,682,4169"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\997d4dada24935933abb5b958b413a4b\\transformed\\material-1.8.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,49,50,51,52,53,54,55,56",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1324,1399,1510,1599,1700,1807,1914,2013,2120,2223,2311,2435,2537,2639,2755,2857,2971,3099,3215,3337,3473,3593,3727,3847,3959,4174,4291,4415,4545,4667,4805,4939,5055",
+                        "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
+                        "endOffsets": "1394,1505,1594,1695,1802,1909,2008,2115,2218,2306,2430,2532,2634,2750,2852,2966,3094,3210,3332,3468,3588,3722,3842,3954,4080,4286,4410,4540,4662,4800,4934,5050,5170"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\79823\\AndroidStudioProjects\\1-\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
+                        "startLines": "2,18",
+                        "startColumns": "4,4",
+                        "startOffsets": "102,878",
+                        "endLines": "15,23",
+                        "endColumns": "12,12",
+                        "endOffsets": "868,1281"
+                    },
+                    "to": {
+                        "startLines": "9,57",
+                        "startColumns": "4,4",
+                        "startOffsets": "687,5175",
+                        "endLines": "22,62",
+                        "endColumns": "12,12",
+                        "endOffsets": "1319,5573"
                     }
                 }
             ]
