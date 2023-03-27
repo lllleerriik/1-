@@ -19,27 +19,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e937fc6-bb47-4c27-b4c7-4c7b52df5205" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TestCompose/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TestCompose/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TestCompose/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TestCompose/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$" beforeDir="false" afterPath="$PROJECT_DIR$" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/doc.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/doc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/webiki/bucketlist/MainActivityFunctions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/webiki/bucketlist/MainActivityFunctions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/webiki/bucketlist/activities/IntroductoryForm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/webiki/bucketlist/activities/IntroductoryForm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/splash_screen_gradient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/splash_screen_gradient.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_introductory_form.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_introductory_form.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/webiki/bucketlist/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/webiki/bucketlist/ExampleUnitTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[adb-10AC9408F0001FJ-WF0FbH._adb-tls-connect._tcp]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\79823\.android\avd\New_Device_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -275,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679588224949</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add questionnaire markup and project colors to color.xml">
+      <created>1679847203328</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679847203328</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,6 +310,7 @@
     <MESSAGE value="add important files to repo" />
     <MESSAGE value="add saving questionaire" />
     <MESSAGE value="fixup! added saving questionaire progress to shared preferences and parsing questions from json" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixup! added saving questionaire progress to shared preferences and parsing questions from json" />
+    <MESSAGE value="add questionnaire markup and project colors to color.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add questionnaire markup and project colors to color.xml" />
   </component>
 </project>

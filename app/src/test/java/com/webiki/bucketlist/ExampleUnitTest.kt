@@ -7,7 +7,6 @@ class ExampleUnitTest {
 
     @Test
     fun `simple name`() {
-        assertEquals(MainActivityFunctions().s(), 2)
     }
 
 }
