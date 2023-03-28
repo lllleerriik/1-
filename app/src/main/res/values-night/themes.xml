@@ -13,13 +13,19 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/white_light</item>
     </style>
-
 
     <style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:statusBarColor">?attr/colorSecondaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorSecondaryVariant</item>
         <item name="colorPrimaryDark">@color/black_dark</item>
+    </style>
+
+    <style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="background">@drawable/basic_button</item>
+        <item name="android:textColor">@color/white_light</item>
     </style>
 </resources>

@@ -15,7 +15,8 @@
             android:theme="@style/Theme.BucketList"
             tools:targetApi="31">
         <activity
-                android:name=".activities.IntroductoryForm"
+                android:name=".activities.WelcomeForm"
+                android:theme="@style/Theme.BucketList.NoActionBar"
                 android:exported="false" />
         <activity
                 android:name=".activities.MainActivity"
@@ -30,6 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -31,8 +31,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.BucketList" >
         <activity
-            android:name="com.webiki.bucketlist.activities.IntroductoryForm"
-            android:exported="false" />
+            android:name="com.webiki.bucketlist.activities.WelcomeForm"
+            android:exported="false"
+            android:theme="@style/Theme.BucketList.NoActionBar" />
         <activity
             android:name="com.webiki.bucketlist.activities.MainActivity"
             android:theme="@style/Theme.BucketList.NoActionBar" />
@@ -46,6 +47,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

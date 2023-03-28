@@ -82,6 +82,10 @@ animator nav_default_enter_anim
 animator nav_default_exit_anim
 animator nav_default_pop_enter_anim
 animator nav_default_pop_exit_anim
+array com_google_android_gms_fonts_certs
+array com_google_android_gms_fonts_certs_dev
+array com_google_android_gms_fonts_certs_prod
+array preloaded_fonts
 attr SharedValue
 attr SharedValueId
 attr action
@@ -2754,6 +2758,7 @@ drawable abc_vector_test
 drawable add_icon
 drawable avd_hide_password
 drawable avd_show_password
+drawable basic_button
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2762,6 +2767,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable custom_progressbar
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -2865,6 +2871,7 @@ drawable splash_screen_image
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+font alata
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -2932,6 +2939,8 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_nav_home_to_nav_motivation
+id action_nav_home_to_nav_settings
 id action_settings
 id action_text
 id actions
@@ -3221,7 +3230,6 @@ id pin
 id position
 id postLayout
 id pressed
-id progressBar
 id progress_circular
 id progress_horizontal
 id radio
@@ -3377,6 +3385,7 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id welcomeFormAnswers
+id welcomeFormProgressBar
 id welcomeFormTitle
 id west
 id withText
@@ -3494,9 +3503,9 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_introductory_form
 layout activity_main
 layout activity_splash_screen
+layout activity_welcome_form
 layout app_bar_main
 layout content_main
 layout custom_dialog
@@ -3628,6 +3637,7 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
+string emptySequence
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
@@ -3758,6 +3768,7 @@ string sharedPreferencesName
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string tooSmallDelay
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -4857,6 +4868,7 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style questionnaire_button_style
 style splash_screen
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity

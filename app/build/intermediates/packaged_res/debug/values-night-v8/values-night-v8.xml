@@ -13,6 +13,12 @@
         
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         
+        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/white_light</item>
+    </style>
+    <style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="background">@drawable/basic_button</item>
+        <item name="android:textColor">@color/white_light</item>
     </style>
     <style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>

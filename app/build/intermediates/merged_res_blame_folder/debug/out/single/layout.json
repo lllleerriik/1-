@@ -4,20 +4,16 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\content_main.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\fragment_home.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_splash_screen.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_splash_screen.xml"
     },
     {
-        "merged": "com.webiki.bucketlist.app-mergeDebugResources-49:/layout/activity_introductory_form.xml",
-        "source": "com.webiki.bucketlist.app-main-52:/layout/activity_introductory_form.xml"
-    },
-    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\app_bar_main.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\app_bar_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\fragment_motivation.xml",
@@ -32,12 +28,24 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\nav_header_main.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\custom_progressbar.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\custom_progressbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_welcome_form.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_welcome_form.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_introductory_form.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_introductory_form.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\fragment_settings.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "com.webiki.bucketlist.app-mergeDebugResources-49:/layout/activity_welcome_form.xml",
+        "source": "com.webiki.bucketlist.app-main-52:/layout/activity_welcome_form.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\simple_goal_view.xml",

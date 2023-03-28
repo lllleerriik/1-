@@ -21,5 +21,7 @@
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
     <string name="sharedPreferencesName">BucketList-Webiki</string>
     <string name="pageNumberMoreThanContentSize">Номер страницы больше либо равен количества контента:</string>
+    <string name="emptySequence">В коллекции нет элементов</string>
+    <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
     <!-- endregion    -->
 </resources>

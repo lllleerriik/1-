@@ -8,7 +8,7 @@
 
     <color name="purple_dark">#A276FF</color>
     <color name="pink_dark">@color/pink</color>
-    <color name="black_dark">#000000</color>
+    <color name="black_dark">#303030</color>
 
 <!--    <color name="purple_200">#FFBB86FC</color>-->
 <!--    <color name="purple_500">#FF6200EE</color>-->

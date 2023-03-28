@@ -3,9 +3,7 @@ package com.webiki.bucketlist.activities
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.loader.AssetsProvider
 import android.os.Bundle
-import android.util.JsonReader
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -21,9 +19,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
-import org.json.JSONArray
-import java.io.File
-import java.io.Reader
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -60,15 +55,18 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         goalsLayout = findViewById(R.id.goalsLayout)
-        sharedPreferences = getSharedPreferences(R.string.sharedPreferencesName.toString(), Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(R.string.sharedPreferencesName.toString(), MODE_PRIVATE)
         sPrefEditor = sharedPreferences.edit()
 
-//        if (!sharedPreferences.getBoolean(R.string.isUserPassedInitialQuestionnaire.toString(), false)) // TODO: decomment when will complete
-        startActivity(Intent(this, IntroductoryForm::class.java))
+//        sPrefEditor.putBoolean(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
+//        sPrefEditor.commit()
+
+        if (!sharedPreferences.getBoolean(getString(R.string.isUserPassedInitialQuestionnaire), false))
+            startActivity(Intent(this, WelcomeForm::class.java))
 
         // TODO: extract to method
-        val goalsList = intent.getStringArrayListExtra("goals") // plug
-        fillGoalsLayoutFromList<String>(goalsLayout, goalsList!!)
+        val goalsList = arrayListOf("goal 1")
+        fillGoalsLayoutFromList(goalsLayout, goalsList)
         //
     }
 
@@ -91,10 +89,6 @@ class MainActivity : AppCompatActivity() {
             layoutParameters.setMargins(0, 0, 0, 12)
             view.layoutParams = layoutParameters
             viewCheckBox.text = item.toString()
-
-            viewCheckBox.setOnClickListener {
-                Toast.makeText(this, "You clicked text $item", Toast.LENGTH_SHORT).show() // plug
-            }
 
             layout.addView(view)
         }
