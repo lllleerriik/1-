@@ -3,19 +3,25 @@
     <style name="Theme.BucketList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="windowNoTitle">true</item>
         
-        <item name="colorPrimary">@color/black_dark</item>
-        <item name="colorPrimaryVariant">@color/pink_dark</item>
-        <item name="colorOnPrimary">@color/purple_dark</item>
+        <item name="colorPrimary">@color/purple_dark</item>
+        <item name="colorPrimaryVariant">@color/black_dark</item>
+        <item name="colorOnPrimary">@color/pink_dark</item>
         
-        <item name="colorSecondary">@color/black_dark</item>
+        <item name="colorSecondary">@color/purple_dark</item>
         <item name="colorSecondaryVariant">@color/pink_dark</item>
-        <item name="colorOnSecondary">@color/purple_dark</item>
+        <item name="colorOnSecondary">@color/white_light</item>
         
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
         
-        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
         <item name="android:textColor">@color/white_light</item>
     </style>
+    <style name="Theme.BucketList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.BucketList.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.BucketList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     <style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="background">@drawable/basic_button</item>
         <item name="android:textColor">@color/white_light</item>

@@ -18,6 +18,7 @@ dimen nav_header_height
 dimen nav_header_vertical_spacing
 drawable add_icon
 drawable basic_button
+drawable custom_actionbar
 drawable custom_progressbar
 drawable home_icon
 drawable ic_launcher_background
@@ -88,6 +89,7 @@ string pageNumberMoreThanContentSize
 string save_results
 string sharedPreferencesName
 string tooSmallDelay
+style MyActionBar
 style Theme.BucketList
 style Theme.BucketList.AppBarOverlay
 style Theme.BucketList.NoActionBar

@@ -2766,6 +2766,7 @@ int drawable btn_radio_off_mtrl 0x7f08007f
 int drawable btn_radio_off_to_on_mtrl_animation 0x7f080080
 int drawable btn_radio_on_mtrl 0x7f080081
 int drawable btn_radio_on_to_off_mtrl_animation 0x7f080082
+int drawable custom_actionbar 0x7f0800f1
 int drawable custom_progressbar 0x7f0800f0
 int drawable design_fab_background 0x7f080083
 int drawable design_ic_visibility 0x7f080084
@@ -4072,6 +4073,7 @@ int style MaterialAlertDialog_MaterialComponents_Title_Panel 0x7f14012c
 int style MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked 0x7f14012d
 int style MaterialAlertDialog_MaterialComponents_Title_Text 0x7f14012e
 int style MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked 0x7f14012f
+int style MyActionBar 0x7f140450
 int style Platform_AppCompat 0x7f140130
 int style Platform_AppCompat_Light 0x7f140131
 int style Platform_MaterialComponents 0x7f140132

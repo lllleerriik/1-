@@ -36,16 +36,16 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_welcome_form.xml"
     },
     {
+        "merged": "com.webiki.bucketlist.app-mergeDebugResources-49:/layout/nav_header_main.xml",
+        "source": "com.webiki.bucketlist.app-main-52:/layout/nav_header_main.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_introductory_form.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_introductory_form.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\fragment_settings.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\fragment_settings.xml"
-    },
-    {
-        "merged": "com.webiki.bucketlist.app-mergeDebugResources-49:/layout/activity_welcome_form.xml",
-        "source": "com.webiki.bucketlist.app-main-52:/layout/activity_welcome_form.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\simple_goal_view.xml",

@@ -11209,19 +11209,21 @@
         <item>@font/</item>
         <item>@font/alata</item>
     </array></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values\strings.xml" qualifiers=""><string name="app_name">Bucket List</string><string name="name_surname">Имя Фамилия</string><string name="navigation_drawer_open">Open navigation drawer</string><string name="navigation_drawer_close">Close navigation drawer</string><string name="nav_header_title">Android Studio</string><string name="nav_email">example@mail.ru</string><string name="nav_header_desc">Navigation header</string><string name="action_settings">Settings</string><string name="menu_home">Цели</string><string name="menu_motivation">Мотивация</string><string name="menu_settings">Настройки</string><string name="save_results">Сохранить результат</string><string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string><string name="sharedPreferencesName">BucketList-Webiki</string><string name="pageNumberMoreThanContentSize">Номер страницы больше либо равен количества контента:</string><string name="emptySequence">В коллекции нет элементов</string><string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values\themes.xml" qualifiers=""><style name="Theme.BucketList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="windowNoTitle">true</item>
         
-        <item name="colorPrimary">@color/pink_light</item>
-        <item name="colorPrimaryVariant">@color/purple_light</item>
-        <item name="colorOnPrimary">@color/white_light</item>
+        <item name="colorPrimary">@color/white_light</item>
+        <item name="colorPrimaryVariant">@color/pink_light</item>
+        <item name="colorOnPrimary">@color/purple_light</item>
         
-        <item name="colorSecondary">@color/pink_light</item>
+        <item name="colorSecondary">@color/purple_light</item>
         <item name="colorSecondaryVariant">@color/purple_light</item>
         <item name="colorOnSecondary">@color/white_light</item>
         
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
         
-        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
         <item name="android:textColor">@color/white_light</item>
+        <item name="android:actionBarTheme">@style/MyActionBar</item>
     </style><style name="Theme.BucketList.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -11233,20 +11235,22 @@
     </style><style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:textColor">@color/purple_dark</item>
         <item name="android:textSize">18sp</item>
+    </style><style name="MyActionBar" parent="Theme.BucketList">
+        <item name="android:background">?attr/colorSecondary</item>
     </style></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values-land\dimens.xml" qualifiers="land"><dimen name="fab_margin">48dp</dimen></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values-night\themes.xml" qualifiers="night-v8"><style name="Theme.BucketList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="windowNoTitle">true</item>
         
-        <item name="colorPrimary">@color/black_dark</item>
-        <item name="colorPrimaryVariant">@color/pink_dark</item>
-        <item name="colorOnPrimary">@color/purple_dark</item>
+        <item name="colorPrimary">@color/purple_dark</item>
+        <item name="colorPrimaryVariant">@color/black_dark</item>
+        <item name="colorOnPrimary">@color/pink_dark</item>
         
-        <item name="colorSecondary">@color/black_dark</item>
+        <item name="colorSecondary">@color/purple_dark</item>
         <item name="colorSecondaryVariant">@color/pink_dark</item>
-        <item name="colorOnSecondary">@color/purple_dark</item>
+        <item name="colorOnSecondary">@color/white_light</item>
         
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
         
-        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
         <item name="android:textColor">@color/white_light</item>
     </style><style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
@@ -11256,7 +11260,10 @@
     </style><style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="background">@drawable/basic_button</item>
         <item name="android:textColor">@color/white_light</item>
-    </style></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values-w1240dp\dimens.xml" qualifiers="w1240dp-v13"><dimen name="fab_margin">200dp</dimen></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values-w600dp\dimens.xml" qualifiers="w600dp-v13"><dimen name="fab_margin">48dp</dimen></file><file name="backup_rules" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\xml\backup_rules.xml" qualifiers="" type="xml"/><file name="data_extraction_rules" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\xml\data_extraction_rules.xml" qualifiers="" type="xml"/><file name="basic_button" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable\basic_button.xml" qualifiers="" type="drawable"/><file name="basic_button" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable-night\basic_button.xml" qualifiers="night-v8" type="drawable"/><file name="activity_welcome_form" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\layout\activity_welcome_form.xml" qualifiers="" type="layout"/><file name="custom_progressbar" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable\custom_progressbar.xml" qualifiers="" type="drawable"/><file name="custom_progressbar" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable-night\custom_progressbar.xml" qualifiers="night-v8" type="drawable"/></source><source path="C:\Users\79823\AndroidStudioProjects\1-\app\build\generated\res\rs\debug"/><source path="C:\Users\79823\AndroidStudioProjects\1-\app\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\79823\AndroidStudioProjects\1-\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\79823\AndroidStudioProjects\1-\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><mergedItems><configuration qualifiers=""><declare-styleable name="AlertDialog">
+    </style><style name="Theme.BucketList.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style><style name="Theme.BucketList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/><style name="Theme.BucketList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values-w1240dp\dimens.xml" qualifiers="w1240dp-v13"><dimen name="fab_margin">200dp</dimen></file><file path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\values-w600dp\dimens.xml" qualifiers="w600dp-v13"><dimen name="fab_margin">48dp</dimen></file><file name="backup_rules" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\xml\backup_rules.xml" qualifiers="" type="xml"/><file name="data_extraction_rules" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\xml\data_extraction_rules.xml" qualifiers="" type="xml"/><file name="basic_button" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable\basic_button.xml" qualifiers="" type="drawable"/><file name="basic_button" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable-night\basic_button.xml" qualifiers="night-v8" type="drawable"/><file name="activity_welcome_form" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\layout\activity_welcome_form.xml" qualifiers="" type="layout"/><file name="custom_progressbar" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable\custom_progressbar.xml" qualifiers="" type="drawable"/><file name="custom_progressbar" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable-night\custom_progressbar.xml" qualifiers="night-v8" type="drawable"/><file name="custom_actionbar" path="C:\Users\79823\AndroidStudioProjects\1-\app\src\main\res\drawable\custom_actionbar.xml" qualifiers="" type="drawable"/></source><source path="C:\Users\79823\AndroidStudioProjects\1-\app\build\generated\res\rs\debug"/><source path="C:\Users\79823\AndroidStudioProjects\1-\app\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\79823\AndroidStudioProjects\1-\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\79823\AndroidStudioProjects\1-\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><mergedItems><configuration qualifiers=""><declare-styleable name="AlertDialog">
         <attr name="android:layout"/>
         <attr format="reference" name="buttonPanelSideLayout"/>
         <attr format="reference" name="listLayout"/>

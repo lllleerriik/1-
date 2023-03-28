@@ -2767,6 +2767,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable custom_actionbar
 drawable custom_progressbar
 drawable design_fab_background
 drawable design_ic_visibility
@@ -4073,6 +4074,7 @@ style MaterialAlertDialog_MaterialComponents_Title_Panel
 style MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked
 style MaterialAlertDialog_MaterialComponents_Title_Text
 style MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked
+style MyActionBar
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_MaterialComponents

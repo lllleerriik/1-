@@ -48,12 +48,16 @@ class WelcomeForm : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(R.string.sharedPreferencesName.toString(), Context.MODE_PRIVATE)
         sPrefEditor = sharedPreferences.edit()
+    } //TODO handle exit ability from app (at now every back pressed move to start page)
+
+
+    override fun onStart() {
+        super.onStart()
 
         initQuestionData(titles, answerVariants)
 
         moveOnPage(0, titles, answerVariants)
-    } //TODO handle exit ability from app (at now every back pressed move to start page)
-
+    }
 
     /**
      * Инициализирует поля вопросов анкеты: заголовок, ответы и т.д.
