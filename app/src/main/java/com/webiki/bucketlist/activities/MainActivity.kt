@@ -1,8 +1,6 @@
 package com.webiki.bucketlist.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -13,6 +11,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
 
@@ -20,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var sPrefEditor: SharedPreferences.Editor
+
+    private lateinit var storageHelper: ProjectSharedPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,18 +45,15 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        sharedPreferences = getSharedPreferences(R.string.sharedPreferencesName.toString(), MODE_PRIVATE)
-        sPrefEditor = sharedPreferences.edit()
-
+        storageHelper = ProjectSharedPreferencesHelper(this)
     }
 
     override fun onStart() {
         super.onStart()
 
-//        sPrefEditor.putBoolean(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
-//        sPrefEditor.commit()
+//        storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
 
-        if (!sharedPreferences.getBoolean(getString(R.string.isUserPassedInitialQuestionnaire), false))
+        if (!storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
             startActivity(Intent(this, WelcomeForm::class.java))
     }
 

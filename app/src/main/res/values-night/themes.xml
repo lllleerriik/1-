@@ -33,8 +33,8 @@
         <item name="colorPrimaryDark">@color/black_dark</item>
     </style>
 
-    <style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="background">@drawable/basic_button</item>
-        <item name="android:textColor">@color/white_light</item>
+    <style name="base_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textColor">@color/black_dark</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

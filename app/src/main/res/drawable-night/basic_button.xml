@@ -13,8 +13,4 @@
             android:startColor="@color/purple_dark"
             android:endColor="@color/purple_dark">
     </gradient>
-    <size
-        android:height="160px"
-        android:width="840px">
-    </size>
 </shape>

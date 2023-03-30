@@ -22,9 +22,9 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="Theme.BucketList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-    <style name="questionnaire_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="background">@drawable/basic_button</item>
-        <item name="android:textColor">@color/white_light</item>
+    <style name="base_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textColor">@color/black_dark</item>
+        <item name="android:textSize">18sp</item>
     </style>
     <style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>

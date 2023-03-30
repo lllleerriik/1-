@@ -20,9 +20,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer"
             android:background="?attr/colorPrimaryVariant">
+<!--            app:headerLayout="@layout/nav_header_main" TODO decomment when make account-->
 
     </com.google.android.material.navigation.NavigationView>
 

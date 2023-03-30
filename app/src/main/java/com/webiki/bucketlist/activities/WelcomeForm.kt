@@ -1,12 +1,8 @@
 package com.webiki.bucketlist.activities
 
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
@@ -17,21 +13,21 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
-import com.google.android.material.snackbar.Snackbar
+import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import org.json.JSONArray
 import java.util.*
 import kotlin.math.ceil
 
 
+@Suppress("UNCHECKED_CAST")
 class WelcomeForm : AppCompatActivity() {
     private lateinit var title: TextView
     private lateinit var answersLayout: LinearLayout
     private lateinit var mainLayout: LinearLayout
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var sPrefEditor: SharedPreferences.Editor
+    private lateinit var storageHelper: ProjectSharedPreferencesHelper
 
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
@@ -46,8 +42,7 @@ class WelcomeForm : AppCompatActivity() {
         answersLayout = findViewById(R.id.welcomeFormAnswers)
         progressBar = findViewById(R.id.welcomeFormProgressBar)
 
-        sharedPreferences = getSharedPreferences(R.string.sharedPreferencesName.toString(), Context.MODE_PRIVATE)
-        sPrefEditor = sharedPreferences.edit()
+        storageHelper = ProjectSharedPreferencesHelper(this)
     } //TODO handle exit ability from app (at now every back pressed move to start page)
 
 
@@ -55,7 +50,6 @@ class WelcomeForm : AppCompatActivity() {
         super.onStart()
 
         initQuestionData(titles, answerVariants)
-
         moveOnPage(0, titles, answerVariants)
     }
 
@@ -70,7 +64,7 @@ class WelcomeForm : AppCompatActivity() {
         titles: MutableList<T>,
         answerVariants: MutableList<MutableList<T>>
     ) {
-        val scan = Scanner(assets.open("doc.json"))
+        val scan = Scanner(assets.open(getString(R.string.questionsFileName)))
         val jsonLine = StringBuilder()
 
         while (scan.hasNext()) jsonLine.append(scan.nextLine())
@@ -80,11 +74,11 @@ class WelcomeForm : AppCompatActivity() {
         for (i in 0 until JSONArray(jsonLine.toString()).length()) {
             val slideInformation = questions.getJSONObject(i)
 
-            titles.add(slideInformation.getString("title") as T) // TODO: extract strings to file
+            titles.add(slideInformation.getString(getString(R.string.questionsTitleKey)) as T)
             if (answerVariants.size == i) answerVariants.add(mutableListOf())
 
-            for (j in 0 until slideInformation.getJSONArray("answers").length())
-                answerVariants[i].add(j, slideInformation.getJSONArray("answers").get(j) as T)
+            for (j in 0 until slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).length())
+                answerVariants[i].add(j, slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).get(j) as T)
         }
     }
 
@@ -104,11 +98,13 @@ class WelcomeForm : AppCompatActivity() {
         if (titles.size != answers.size || titles.size <= pageNumber)
             throw ArrayIndexOutOfBoundsException(getString(R.string.pageNumberMoreThanContentSize) + " $pageNumber")
 
+        progressBar.progress = ceil(100F * pageNumber / answers.size).toInt()
+
         this.answersLayout.removeAllViews()
         title.text = titles[pageNumber].toString()
 
         for (i in 0 until answers[pageNumber].size) {
-            val ctw = ContextThemeWrapper(this, R.style.questionnaire_button_style)
+            val ctw = ContextThemeWrapper(this, R.style.base_button_style)
             val answerButton = AppCompatButton(ctw)
             val layoutParams =
                 LinearLayout.LayoutParams(840, 160).apply { gravity = Gravity.CENTER }
@@ -116,7 +112,6 @@ class WelcomeForm : AppCompatActivity() {
             layoutParams.setMargins(5, 0, 5, 15)
             answerButton.text = answers[pageNumber][i].toString()
             answerButton.layoutParams = layoutParams
-            answerButton.gravity = Gravity.CENTER
             answerButton.backgroundTintMode = PorterDuff.Mode.ADD
             answerButton.background = AppCompatResources.getDrawable(this, R.drawable.basic_button)
 
@@ -134,23 +129,23 @@ class WelcomeForm : AppCompatActivity() {
      * @param pageNumber Номер страницы, на которую надо переместиться
      * @param questions Список вопросов
      * @param answers Список ответов
-     * @param questionsCount Количество вопросов
+     * @throws IllegalStateException Если не получилось сохранить результат
      */
     private fun <T> onAnswerToQuestion(
         pageNumber: Int,
         questions: MutableList<T>,
         answers: MutableList<MutableList<T>>
     ) {
-        progressBar.progress += ceil(100F / questions.size).toInt()
         if (pageNumber != questions.size){
-            setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout) // TODO make fade-in-out transition
+            setOpacityToViews(false, TRANSITION_DELAY, title, answersLayout) // TODO make fade-in-out transition
             moveOnPage(pageNumber, questions, answers)
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else {
-            sPrefEditor.putBoolean(getString(R.string.isUserPassedInitialQuestionnaire), true)
-            sPrefEditor.commit()
-            if (sharedPreferences.getBoolean(getString(R.string.isUserPassedInitialQuestionnaire), false))
+            storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)
+            if (storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
                 startActivity(Intent(this, MainActivity::class.java))
+            else
+                throw IllegalStateException(getString(R.string.stateWasNotSave))
         }
     }
 
@@ -174,9 +169,6 @@ class WelcomeForm : AppCompatActivity() {
         views.forEach {
             val fadeOut: Animation = if (isVisible) AlphaAnimation(0f, 1f)
                                             else AlphaAnimation(1f, 0f)
-            
-            if (!isVisible) Log.d("DEB", "")
-            
             fadeOut.interpolator = AccelerateInterpolator()
             fadeOut.duration = transitionDelay
             

@@ -15,13 +15,23 @@
     <string name="menu_motivation">Мотивация</string>
     <string name="menu_settings">Настройки</string>
     <string name="save_results">Сохранить результат</string>
+    <string name="hasNotGoals">Вы не поставили ни одной цели</string>
+    <string name="stateWasNotSave">Результаты не были сохранены</string>
     <!-- endregion -->
 
     <!-- region LOGIC CODE -->
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
+    <string name="userGoalsSet">userGoalsSet</string>
+    <string name="newGoalKey">newGoalKey</string>
+    <string name="goalPartsSeparator">$%$</string>
+
     <string name="sharedPreferencesName">BucketList-Webiki</string>
     <string name="pageNumberMoreThanContentSize">Номер страницы больше либо равен количества контента:</string>
+    <string name="unexpectedResultCode">Неожиданный код ответа</string>
     <string name="emptySequence">В коллекции нет элементов</string>
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
+    <string name="questionsTitleKey">title</string>
+    <string name="questionsAnswersKey">answers</string>
+    <string name="questionsFileName">doc.json</string>
     <!-- endregion    -->
 </resources>

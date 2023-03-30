@@ -31,6 +31,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.BucketList" >
         <activity
+            android:name="com.webiki.bucketlist.activities.GoalWizard"
+            android:exported="false" />
+        <activity
             android:name="com.webiki.bucketlist.activities.WelcomeForm"
             android:exported="false"
             android:theme="@style/Theme.BucketList.NoActionBar" />

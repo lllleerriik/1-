@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
 MERGED from [androidx.databinding:viewbinding:7.4.2] C:\Users\79823\.gradle\caches\transforms-3\8d5f88ef74c6321c55c90b7c41835f54\transformed\viewbinding-7.4.2\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-ui-ktx:2.5.3] C:\Users\79823\.gradle\caches\transforms-3\5f9283324b0a1862509e8a55399891f4\transformed\navigation-ui-ktx-2.5.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-ui:2.5.3] C:\Users\79823\.gradle\caches\transforms-3\d4ac3a705d95d393783bc3edffa8862a\transformed\navigation-ui-2.5.3\AndroidManifest.xml:17:1-24:12
@@ -69,35 +69,35 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.print:print:1.0.0] C:\Users\79823\.gradle\caches\transforms-3\0401c152d6b58ae321197cc0d4246274\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.test:annotation:1.0.1] C:\Users\79823\.gradle\caches\transforms-3\7fbf82a0f3395bc7ec04f7d87ac9ba81\transformed\annotation-1.0.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\79823\.gradle\caches\transforms-3\74c55630290dabbd7530f6b9a800571a\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
+INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
 	package
 		INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
 		INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
 		INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:3:9-55
 	android:versionCode
 		INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-40:12
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:1-43:12
 		INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:5:5-78
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:5:5-79
 	android:name
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:5:22-76
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:6:5-66
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:6:5-67
 	android:name
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:8:5-38:19
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:8:5-41:19
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\79823\.gradle\caches\transforms-3\997d4dada24935933abb5b958b413a4b\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\79823\.gradle\caches\transforms-3\997d4dada24935933abb5b958b413a4b\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\79823\.gradle\caches\transforms-3\8c9b5d054d62348f4b866add098929ba\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -136,44 +136,50 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\79823\.gradle\cach
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:15:13-52
 	android:dataExtractionRules
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:10:13-69
-activity#com.webiki.bucketlist.activities.WelcomeForm
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:17:9-20:44
+activity#com.webiki.bucketlist.activities.GoalWizard
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:17:9-19:44
 	android:exported
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:20:17-41
-	android:theme
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:19:17-68
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:19:17-41
 	android:name
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:18:17-55
-activity#com.webiki.bucketlist.activities.MainActivity
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:21:9-23:71
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:18:17-54
+activity#com.webiki.bucketlist.activities.WelcomeForm
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:20:9-23:71
+	android:exported
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:22:17-41
 	android:theme
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:23:17-68
 	android:name
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:22:17-56
-activity#com.webiki.bucketlist.activities.SplashScreen
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:24:9-33:20
-	android:exported
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:26:17-40
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:21:17-55
+activity#com.webiki.bucketlist.activities.MainActivity
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:24:9-26:71
 	android:theme
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:27:17-53
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:26:17-68
 	android:name
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:25:17-56
+activity#com.webiki.bucketlist.activities.SplashScreen
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:27:9-36:20
+	android:exported
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:29:17-40
+	android:theme
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:30:17-53
+	android:name
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:28:17-56
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:28:13-32:29
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:31:13-35:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:29:17-69
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:29:25-66
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:32:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:31:17-77
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:34:17-77
 	android:name
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:31:27-74
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:34:27-74
 meta-data#preloaded_fonts
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:35:9-37:61
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:38:9-40:61
 	android:resource
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:37:17-58
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:40:17-58
 	android:name
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:36:17-47
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:39:17-47
 uses-sdk
 INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml
