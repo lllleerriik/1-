@@ -75,6 +75,7 @@
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.4/f955fc8b2ad196e2f4429598440e15f7492eeb2b/kotlinx-coroutines-android-1.6.4.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.20-RC/197f7e69ed55ece1859a5feb8c1b2540571858c1/kotlin-stdlib-jdk8-1.8.20-RC.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a8d9223479040cf359a136d7a9687ff4/transformed/constraintlayout-2.1.4-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/5a704d192a897a89e1eb273f68ca8075/transformed/sugar-1.5-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ca7f688daba7bb8c189ba4f38e246fd6/transformed/runner-1.5.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar</arg>
@@ -232,6 +233,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-ui-ktx:2.5.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-ui:2.5.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.ext:junit-ktx:1.1.5@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.satyan:sugar:1.5@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="Bucket_List.app.main" />
 </module>

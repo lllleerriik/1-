@@ -3,6 +3,7 @@ package com.webiki.bucketlist.activities
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
@@ -19,7 +20,6 @@ import org.json.JSONArray
 import java.util.*
 import kotlin.math.ceil
 
-
 @Suppress("UNCHECKED_CAST")
 class WelcomeForm : AppCompatActivity() {
     private lateinit var title: TextView
@@ -31,6 +31,8 @@ class WelcomeForm : AppCompatActivity() {
 
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
+    private var proposedGoals: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
+    private var currentPage = 0
     private val TRANSITION_DELAY = 200L
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,14 +45,18 @@ class WelcomeForm : AppCompatActivity() {
         progressBar = findViewById(R.id.welcomeFormProgressBar)
 
         storageHelper = ProjectSharedPreferencesHelper(this)
-    } //TODO handle exit ability from app (at now every back pressed move to start page)
 
+        parseFromJsonQuestionData(titles, answerVariants, proposedGoals)
+    }
+
+    override fun onBackPressed() {
+        if (currentPage != 0) moveOnPage(--currentPage, titles, answerVariants)
+    }
 
     override fun onStart() {
         super.onStart()
 
-        initQuestionData(titles, answerVariants)
-        moveOnPage(0, titles, answerVariants)
+        moveOnPage(currentPage, titles, answerVariants)
     }
 
     /**
@@ -60,25 +66,39 @@ class WelcomeForm : AppCompatActivity() {
      * @param descriptions Список описаний
      * @param answerVariants Список вариантов ответа
      */
-    private fun <T> initQuestionData(
+    private fun <T> parseFromJsonQuestionData(
         titles: MutableList<T>,
-        answerVariants: MutableList<MutableList<T>>
+        answerVariants: MutableList<MutableList<T>>,
+        proposedGoals: MutableList<MutableList<T>>
     ) {
         val scan = Scanner(assets.open(getString(R.string.questionsFileName)))
         val jsonLine = StringBuilder()
 
         while (scan.hasNext()) jsonLine.append(scan.nextLine())
+        scan.close()
 
         val questions = JSONArray(jsonLine.toString())
 
         for (i in 0 until JSONArray(jsonLine.toString()).length()) {
             val slideInformation = questions.getJSONObject(i)
+            val title   = slideInformation.getString(getString(R.string.questionsTitleKey)) as T
+            val answers = slideInformation.getJSONArray(getString(R.string.questionsAnswersKey))
+            val goals   = slideInformation.getJSONObject(getString(R.string.questionsGoalsKey))
 
-            titles.add(slideInformation.getString(getString(R.string.questionsTitleKey)) as T)
+            titles.add(title)
+
             if (answerVariants.size == i) answerVariants.add(mutableListOf())
 
-            for (j in 0 until slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).length())
-                answerVariants[i].add(j, slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).get(j) as T)
+            for (j in 0 until slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).length()) {
+                answerVariants[i].add(j, answers[j] as T)
+                val goalsOnAnswer = goals.getJSONArray(j.toString())
+
+                if (proposedGoals.size == j) proposedGoals.add(mutableListOf())
+
+                for (k in 0 until goalsOnAnswer.length()) {
+                    proposedGoals[j].add(k, goalsOnAnswer[k] as T)
+                }
+            }
         }
     }
 
@@ -90,15 +110,14 @@ class WelcomeForm : AppCompatActivity() {
      * @param transitionSpeed Скорость перехода на новую страницу
      * @exception ArrayIndexOutOfBoundsException Если номер страницы меньше либо равен длине переданной коллекции
      */
-    private fun <T> moveOnPage(
+    private fun <T> switchQuestionData(
         pageNumber: Int,
         titles: MutableList<T>,
         answers: MutableList<MutableList<T>>
     ) {
+        currentPage = pageNumber
         if (titles.size != answers.size || titles.size <= pageNumber)
             throw ArrayIndexOutOfBoundsException(getString(R.string.pageNumberMoreThanContentSize) + " $pageNumber")
-
-        progressBar.progress = ceil(100F * pageNumber / answers.size).toInt()
 
         this.answersLayout.removeAllViews()
         title.text = titles[pageNumber].toString()
@@ -116,9 +135,10 @@ class WelcomeForm : AppCompatActivity() {
             answerButton.background = AppCompatResources.getDrawable(this, R.drawable.basic_button)
 
             answerButton.setOnClickListener {
-                    onAnswerToQuestion(pageNumber + 1, titles, answers)
+                moveOnPage(pageNumber + 1, titles, answers)
             }
 
+            progressBar.progress = ceil(100F * pageNumber / answers.size).toInt()
             this.answersLayout.addView(answerButton)
         }
     }
@@ -131,14 +151,14 @@ class WelcomeForm : AppCompatActivity() {
      * @param answers Список ответов
      * @throws IllegalStateException Если не получилось сохранить результат
      */
-    private fun <T> onAnswerToQuestion(
+    private fun <T> moveOnPage(
         pageNumber: Int,
         questions: MutableList<T>,
         answers: MutableList<MutableList<T>>
     ) {
         if (pageNumber != questions.size){
-            setOpacityToViews(false, TRANSITION_DELAY, title, answersLayout) // TODO make fade-in-out transition
-            moveOnPage(pageNumber, questions, answers)
+            switchQuestionData(pageNumber, questions, answers)
+            Log.d("DEB", currentPage.toString()) // here there is current (correct) page number
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else {
             storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)

@@ -3649,6 +3649,7 @@ int string error_icon_content_description 0x7f13002b
 int string exposed_dropdown_menu_content_description 0x7f13002c
 int string fab_transformation_scrim_behavior 0x7f13002d
 int string fab_transformation_sheet_behavior 0x7f13002e
+int string goalPartsSeparator 0x7f1300b2
 int string hasNotGoals 0x7f13002f
 int string hide_bottom_view_on_scroll_behavior 0x7f130030
 int string icon_content_description 0x7f130031
@@ -3760,6 +3761,7 @@ int string nav_header_desc 0x7f13009a
 int string nav_header_title 0x7f13009b
 int string navigation_drawer_close 0x7f13009c
 int string navigation_drawer_open 0x7f13009d
+int string newGoalKey 0x7f1300b4
 int string pageNumberMoreThanContentSize 0x7f13009e
 int string password_toggle_content_description 0x7f13009f
 int string path_password_eye 0x7f1300a0
@@ -3768,6 +3770,7 @@ int string path_password_eye_mask_visible 0x7f1300a2
 int string path_password_strike_through 0x7f1300a3
 int string questionsAnswersKey 0x7f1300a4
 int string questionsFileName 0x7f1300a5
+int string questionsGoalsKey 0x7f1300b7
 int string questionsTitleKey 0x7f1300a6
 int string save_results 0x7f1300a7
 int string search_menu_title 0x7f1300a8
@@ -3780,6 +3783,8 @@ int string side_sheet_behavior 0x7f1300ae
 int string stateWasNotSave 0x7f1300af
 int string status_bar_notification_info_overflow 0x7f1300b0
 int string tooSmallDelay 0x7f1300b1
+int string unexpectedResultCode 0x7f1300b5
+int string userGoalsSet 0x7f1300b6
 int style AlertDialog_AppCompat 0x7f140000
 int style AlertDialog_AppCompat_Light 0x7f140001
 int style Animation_AppCompat_Dialog 0x7f140002

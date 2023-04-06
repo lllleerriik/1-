@@ -33,6 +33,7 @@
     <string name="action_settings">Settings</string>
     <string name="app_name">Bucket List</string>
     <string name="emptySequence">В коллекции нет элементов</string>
+    <string name="goalPartsSeparator">$%$</string>
     <string name="hasNotGoals">Вы не поставили ни одной цели</string>
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
     <string name="menu_home">Цели</string>
@@ -44,14 +45,18 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="newGoalKey">newGoalKey</string>
     <string name="pageNumberMoreThanContentSize">Номер страницы больше либо равен количества контента:</string>
     <string name="questionsAnswersKey">answers</string>
     <string name="questionsFileName">doc.json</string>
+    <string name="questionsGoalsKey">goals</string>
     <string name="questionsTitleKey">title</string>
     <string name="save_results">Сохранить результат</string>
     <string name="sharedPreferencesName">BucketList-Webiki</string>
     <string name="stateWasNotSave">Результаты не были сохранены</string>
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
+    <string name="unexpectedResultCode">Неожиданный код ответа</string>
+    <string name="userGoalsSet">userGoalsSet</string>
     <style name="MyActionBar" parent="Theme.BucketList">
         <item name="android:background">?attr/colorSecondary</item>
     </style>

@@ -3650,6 +3650,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string goalPartsSeparator
 string hasNotGoals
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
@@ -3761,6 +3762,7 @@ string nav_header_desc
 string nav_header_title
 string navigation_drawer_close
 string navigation_drawer_open
+string newGoalKey
 string pageNumberMoreThanContentSize
 string password_toggle_content_description
 string path_password_eye
@@ -3769,6 +3771,7 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string questionsAnswersKey
 string questionsFileName
+string questionsGoalsKey
 string questionsTitleKey
 string save_results
 string search_menu_title
@@ -3781,6 +3784,8 @@ string side_sheet_behavior
 string stateWasNotSave
 string status_bar_notification_info_overflow
 string tooSmallDelay
+string unexpectedResultCode
+string userGoalsSet
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

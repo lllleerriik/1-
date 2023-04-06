@@ -81,6 +81,7 @@ navigation mobile_navigation
 string action_settings
 string app_name
 string emptySequence
+string goalPartsSeparator
 string hasNotGoals
 string isUserPassedInitialQuestionnaire
 string menu_home
@@ -92,14 +93,18 @@ string nav_header_desc
 string nav_header_title
 string navigation_drawer_close
 string navigation_drawer_open
+string newGoalKey
 string pageNumberMoreThanContentSize
 string questionsAnswersKey
 string questionsFileName
+string questionsGoalsKey
 string questionsTitleKey
 string save_results
 string sharedPreferencesName
 string stateWasNotSave
 string tooSmallDelay
+string unexpectedResultCode
+string userGoalsSet
 style MyActionBar
 style Theme.BucketList
 style Theme.BucketList.AppBarOverlay

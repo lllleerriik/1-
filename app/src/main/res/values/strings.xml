@@ -32,6 +32,7 @@
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
     <string name="questionsTitleKey">title</string>
     <string name="questionsAnswersKey">answers</string>
+    <string name="questionsGoalsKey">goals</string>
     <string name="questionsFileName">doc.json</string>
     <!-- endregion    -->
 </resources>

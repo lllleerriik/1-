@@ -3,6 +3,7 @@ package com.webiki.bucketlist.fragments.home
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,13 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
-import com.webiki.bucketlist.activities.GoalWizard
 import com.webiki.bucketlist.R
+import com.webiki.bucketlist.activities.GoalWizard
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
-import java.util.InvalidPropertiesFormatException
+import java.time.LocalDate
+
 
 class HomeFragment : Fragment() {
 
@@ -24,7 +27,8 @@ class HomeFragment : Fragment() {
 
     private var goalsList: MutableSet<String> = mutableSetOf()
     private val CREATE_GOAL_REQUEST_CODE = 1
-    private val GOALS_SET_KEY = getString(R.string.userGoalsSet)
+    private val SEE_GOAL_REQUEST_CODE = 2
+    private var goalSetKey = ""
 
     private lateinit var goalsLayout: LinearLayout
 
@@ -36,8 +40,10 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        goalSetKey = getString(R.string.userGoalsSet)
+        storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsLayout
-        goalsList = storageHelper.getStringSetFromStorage(GOALS_SET_KEY)
+        goalsList = storageHelper.getStringSetFromStorage(goalSetKey)
 
         binding.fab.setOnClickListener { handleFabClick(it) }
         return root
@@ -74,19 +80,24 @@ class HomeFragment : Fragment() {
      * @param data Данные, отданные GoalWizard Activity
      */
     private fun handleGoalActivityReturn(resultCode: Int, data: Intent?) {
+//        val action: (MutableSet<String>, String) -> Boolean =
+//            when (resultCode) {
+//                Activity.RESULT_OK -> { set, value -> set.add(value) }
+//                Activity.RESULT_CANCELED -> { set, value -> set.remove(value) }
+//                else -> throw InvalidPropertiesFormatException(getString(R.string.unexpectedResultCode))
+//            }
+//
+//        storageHelper.refreshStringSetFromStorage(
+//            goalSetKey,
+//            data?.getStringExtra(getString(R.string.newGoalKey)),
+//            action
+//        )
 
-        val action: (MutableSet<String>, String) -> Boolean =
-            when (resultCode) {
-                Activity.RESULT_OK -> { set, value -> set.add(value) }
-                Activity.RESULT_CANCELED -> { set, value -> set.remove(value) }
-                else -> throw InvalidPropertiesFormatException(getString(R.string.unexpectedResultCode))
-            }
-
-        storageHelper.refreshStringSetFromStorage(
-            GOALS_SET_KEY,
-            data?.getStringExtra(getString(R.string.newGoalKey)),
-            action
-        )
+        if (resultCode == Activity.RESULT_OK) {
+            val goalInfo = data?.getStringArrayExtra(getString(R.string.newGoalKey))!!
+            Goal(goalInfo[0], goalInfo[1], LocalDate.parse(goalInfo[2], Goal.DateFormat)).save()
+            // TODO add posibility get goal object from db
+        }
     }
 
     /**

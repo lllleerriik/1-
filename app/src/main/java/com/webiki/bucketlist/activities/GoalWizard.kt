@@ -9,7 +9,9 @@ import android.text.SpannableStringBuilder
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.R
+import java.time.LocalDate
 
 
 class GoalWizard : AppCompatActivity() {
@@ -55,11 +57,12 @@ class GoalWizard : AppCompatActivity() {
      */
     private fun finishActivityWithData(view: Button) {
         val returnIntent = Intent()
-        val sep = getString(R.string.goalPartsSeparator)
 
         returnIntent.putExtra(
             getString(R.string.newGoalKey),
-            "${label.text}$sep${description.text}$sep${date.text}"
+            arrayOf(label.toString(),
+                description.toString(),
+                LocalDate.parse(date.toString(), Goal.DateFormat))
         )
 
         when (view.id) {
