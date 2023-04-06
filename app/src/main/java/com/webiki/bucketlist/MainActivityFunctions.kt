@@ -1,5 +1,8 @@
 package com.webiki.bucketlist
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+
 class MainActivityFunctions {
 
     /**
@@ -10,13 +13,14 @@ class MainActivityFunctions {
      * @return Лист с массивами слов строки
      * @exception IllegalArgumentException если передана пустая строка
      */
-    fun convertLinesToArrays(text: String, separator: Char): List<Array<String>>
+
+    fun convertLinesToArrays(text: String, separator: Char): List<List<String>>
     {
         if (text.isEmpty()) throw IllegalArgumentException("Передана пустая строка")
         val lines = text.split('\n')
-        val res = mutableListOf<Array<String>>()
+        val res = mutableListOf<List<String>>()
         for (line in lines)
-            res.add(line.split(separator) as Array<String>)
+            res.add(line.split(separator))
         return res
     }
 
