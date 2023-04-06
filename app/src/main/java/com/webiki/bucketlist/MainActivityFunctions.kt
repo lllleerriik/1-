@@ -16,7 +16,7 @@ class MainActivityFunctions {
 
     fun convertLinesToArrays(text: String, separator: Char): List<List<String>>
     {
-        if (text.isEmpty()) throw IllegalArgumentException("Передана пустая строка")
+        if (text.isEmpty()) throw IllegalArgumentException("Передана пустая  строка")
         val lines = text.split('\n')
         val res = mutableListOf<List<String>>()
         for (line in lines)
