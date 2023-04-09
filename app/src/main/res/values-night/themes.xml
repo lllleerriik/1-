@@ -15,6 +15,7 @@
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
         <item name="android:textColor">@color/white_light</item>
+        <item name="android:navigationBarColor">?attr/colorSecondary</item>
     </style>
 
     <style name="Theme.BucketList.NoActionBar">
@@ -28,9 +29,12 @@
 
     <style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="android:statusBarColor">?attr/colorSecondaryVariant</item>
-        <item name="android:navigationBarColor">?attr/colorSecondaryVariant</item>
-        <item name="colorPrimaryDark">@color/black_dark</item>
+        <item name="android:statusBarColor">@color/violet_dark</item>
+        <item name="android:navigationBarColor">@color/violet_dark</item>
+    </style>
+
+    <style name="app_background" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background">@color/black_dark</item>
     </style>
 
     <style name="base_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">

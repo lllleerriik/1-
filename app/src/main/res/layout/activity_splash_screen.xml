@@ -2,20 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/splash_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.SplashScreen">
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:id="@+id/motivationText"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            tools:text="Motivation text"
+            android:gravity="left"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            android:layout_marginBottom="200dp"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            tools:text="Motivation text" />
+            android:fontFamily="@font/ubuntu_light"
+            app:layout_constraintVertical_bias="0.476" />
 </androidx.constraintlayout.widget.ConstraintLayout>

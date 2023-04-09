@@ -18,11 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:id="@+id/welcomeFormProgressBar" />
-<!--            layout="@layout/custom_progressbar"-->
 
     <TextView
             android:layout_width="wrap_content"
-            android:layout_height="350dp"
+            android:layout_height="270dp"
             android:id="@+id/welcomeFormTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,19 +29,16 @@
             android:layout_marginTop="50dp"
             app:layout_constraintHorizontal_bias="0.498"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper enim id tellus molestie ornare. Cras quis semper nisl, interdum."
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:layout_marginBottom="50dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/alata"
+            android:fontFamily="@font/roboto"
             android:layout_gravity="center"
             android:gravity="center" />
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="wrap_content"
             android:id="@+id/welcomeFormAnswers"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="410dp">

@@ -5,11 +5,13 @@
             android:radius="1000px">
     </corners>
     <padding
-            android:bottom="10dp"
-            android:top="10dp"
-            android:right="20dp"
-            android:left="20dp">
+            android:bottom="5dp"
+            android:top="5dp">
     </padding>
+    <size
+            android:width="840px"
+            android:height="160px">
+    </size>
     <gradient
             android:angle="90"
             android:startColor="@color/white_light"

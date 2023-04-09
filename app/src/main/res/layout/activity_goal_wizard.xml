@@ -9,31 +9,14 @@
 
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:layout_height="50dp"
+            android:inputType="textMultiLine"
+            android:gravity="start|top"
             android:ems="10"
             android:id="@+id/goalWizardLabel"
             tools:layout_editor_absoluteY="89dp"
             android:hint="Назовите цель"
             android:text="Name" />
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/goalWizardDescription"
-            android:hint="Опишите цель"
-            android:text="Description" />
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/goalWizardDate"
-            android:hint="Выберите время"
-            android:text="11.01.2014" />
 
     <LinearLayout
             android:orientation="horizontal"
@@ -42,19 +25,21 @@
 
         <Button
                 android:text="Удолить"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
                 android:id="@+id/goalWizardDeleteButton"
                 android:background="@drawable/basic_button"
-                style="@style/base_button_style" />
+                style="@style/base_button_style"
+                android:layout_weight="1" />
 
         <Button
                 android:text="Сохранить"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
                 android:id="@+id/goalWizardSaveButton"
                 android:background="@drawable/basic_button"
-                style="@style/base_button_style" />
+                style="@style/base_button_style"
+                android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -17,8 +18,6 @@ import java.time.LocalDate
 class GoalWizard : AppCompatActivity() {
 
     private lateinit var label: EditText
-    private lateinit var description: EditText
-    private lateinit var date: EditText
     private lateinit var deleteButton: Button
     private lateinit var saveButton: Button
 
@@ -27,17 +26,12 @@ class GoalWizard : AppCompatActivity() {
         setContentView(R.layout.activity_goal_wizard)
 
         label = findViewById(R.id.goalWizardLabel)
-        description = findViewById(R.id.goalWizardDescription)
-        date = findViewById(R.id.goalWizardDate)
         deleteButton = findViewById(R.id.goalWizardDeleteButton)
         saveButton = findViewById(R.id.goalWizardSaveButton)
     }
 
     override fun onStart() {
         super.onStart()
-
-        date.setOnFocusChangeListener{it, hasFocus -> if (hasFocus) handleDateClick(it as EditText) }
-        date.setOnClickListener{ handleDateClick(it as EditText) }
 
         saveButton.setOnClickListener { handleButtonClick(it as Button) }
         deleteButton.setOnClickListener { handleButtonClick(it as Button) }
@@ -58,12 +52,8 @@ class GoalWizard : AppCompatActivity() {
     private fun finishActivityWithData(view: Button) {
         val returnIntent = Intent()
 
-        returnIntent.putExtra(
-            getString(R.string.newGoalKey),
-            arrayOf(label.toString(),
-                description.toString(),
-                LocalDate.parse(date.toString(), Goal.DateFormat))
-        )
+        Log.d("DEB", label.text.toString())
+        returnIntent.putExtra(getString(R.string.newGoalKey), label.text.toString())
 
         when (view.id) {
             R.id.goalWizardSaveButton -> setResult(RESULT_OK, returnIntent)

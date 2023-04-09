@@ -15,8 +15,9 @@
     <string name="menu_motivation">Мотивация</string>
     <string name="menu_settings">Настройки</string>
     <string name="save_results">Сохранить результат</string>
-    <string name="hasNotGoals">Вы не поставили ни одной цели</string>
-    <string name="stateWasNotSave">Результаты не были сохранены</string>
+    <string name="hasNotGoals">Вы не поставили ни одной цели!</string>
+    <string name="stateWasNotSave">Результаты не были сохранены!</string>
+    <string name="existingTarget">Такая цель уже существует!</string>
     <!-- endregion -->
 
     <!-- region LOGIC CODE -->
@@ -33,6 +34,10 @@
     <string name="questionsTitleKey">title</string>
     <string name="questionsAnswersKey">answers</string>
     <string name="questionsGoalsKey">goals</string>
-    <string name="questionsFileName">doc.json</string>
+    <string name="questionsFileName">Questionnaire.json</string>
+    <string name="motivationPhrasesFileName">MotivationPhrases.json</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <!-- endregion    -->
 </resources>

@@ -2,11 +2,13 @@ package com.webiki.bucketlist.activities
 
 import android.content.Intent
 import android.graphics.PorterDuff
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -14,9 +16,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.marginBottom
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import org.json.JSONArray
+import java.lang.reflect.Type
 import java.util.*
 import kotlin.math.ceil
 
@@ -32,6 +36,8 @@ class WelcomeForm : AppCompatActivity() {
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
     private var proposedGoals: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
+    private var chosenGoals: MutableList<String> = mutableListOf() // TODO change to Goal class
+
     private var currentPage = 0
     private val TRANSITION_DELAY = 200L
 
@@ -123,16 +129,9 @@ class WelcomeForm : AppCompatActivity() {
         title.text = titles[pageNumber].toString()
 
         for (i in 0 until answers[pageNumber].size) {
-            val ctw = ContextThemeWrapper(this, R.style.base_button_style)
-            val answerButton = AppCompatButton(ctw)
-            val layoutParams =
-                LinearLayout.LayoutParams(840, 160).apply { gravity = Gravity.CENTER }
+            val answerButton = layoutInflater.inflate(R.layout.basic_button, answersLayout, false)
 
-            layoutParams.setMargins(5, 0, 5, 15)
-            answerButton.text = answers[pageNumber][i].toString()
-            answerButton.layoutParams = layoutParams
-            answerButton.backgroundTintMode = PorterDuff.Mode.ADD
-            answerButton.background = AppCompatResources.getDrawable(this, R.drawable.basic_button)
+            answerButton.let { (it as AppCompatButton).text = answers[pageNumber][i].toString() }
 
             answerButton.setOnClickListener {
                 moveOnPage(pageNumber + 1, titles, answers)
@@ -162,6 +161,9 @@ class WelcomeForm : AppCompatActivity() {
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else {
             storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)
+
+
+
             if (storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
                 startActivity(Intent(this, MainActivity::class.java))
             else
