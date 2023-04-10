@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="pink">#CAAAF3</color>
+    <color name="gray">#777575</color>
+    <color name="violet">#38004C</color>
+    <color name="beige">#F3EFE9</color>
 
     <color name="purple_light">#745E96</color>
     <color name="pink_light">@color/pink</color>
@@ -10,8 +13,6 @@
     <color name="pink_dark">@color/pink</color>
     <color name="black_dark">#303030</color>
 
-    <color name="violet_dark">#38004C</color>
-    <color name="beige_light">#F3EFE9</color>
 
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:state_checked="true"
+            android:drawable="@drawable/checked_checkbox"
+            android:textColor="@color/black_dark" />
+
+    <item android:state_pressed="true"
+            android:drawable="@drawable/pressed_checkbox" />
+
+    <item android:state_checked="false"
+            android:drawable="@drawable/unchecked_checkbox"
+            android:textColor="@color/gray" />
+</selector>

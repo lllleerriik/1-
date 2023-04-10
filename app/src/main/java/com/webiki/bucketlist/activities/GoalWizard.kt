@@ -18,7 +18,6 @@ import java.time.LocalDate
 class GoalWizard : AppCompatActivity() {
 
     private lateinit var label: EditText
-    private lateinit var deleteButton: Button
     private lateinit var saveButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +25,6 @@ class GoalWizard : AppCompatActivity() {
         setContentView(R.layout.activity_goal_wizard)
 
         label = findViewById(R.id.goalWizardLabel)
-        deleteButton = findViewById(R.id.goalWizardDeleteButton)
         saveButton = findViewById(R.id.goalWizardSaveButton)
     }
 
@@ -34,7 +32,6 @@ class GoalWizard : AppCompatActivity() {
         super.onStart()
 
         saveButton.setOnClickListener { handleButtonClick(it as Button) }
-        deleteButton.setOnClickListener { handleButtonClick(it as Button) }
     }
 
     private fun handleDateClick(view: EditText) {
@@ -57,7 +54,6 @@ class GoalWizard : AppCompatActivity() {
 
         when (view.id) {
             R.id.goalWizardSaveButton -> setResult(RESULT_OK, returnIntent)
-            R.id.goalWizardDeleteButton -> setResult(RESULT_CANCELED, returnIntent)
         }
 
         finish()

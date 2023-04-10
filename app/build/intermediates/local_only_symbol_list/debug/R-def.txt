@@ -6,9 +6,10 @@ array com_google_android_gms_fonts_certs_prod
 array preloaded_fonts
 attr? fullscreenBackgroundColor
 attr? fullscreenTextColor
-color beige_light
+color beige
 color black_dark
 color black_overlay
+color gray
 color light_blue_600
 color light_blue_900
 color light_blue_A200
@@ -18,7 +19,7 @@ color pink_dark
 color pink_light
 color purple_dark
 color purple_light
-color violet_dark
+color violet
 color white_light
 dimen activity_horizontal_margin
 dimen activity_vertical_margin
@@ -27,7 +28,9 @@ dimen nav_header_height
 dimen nav_header_vertical_spacing
 drawable add_icon
 drawable basic_button
+drawable checked_checkbox
 drawable custom_actionbar
+drawable custom_checkbox
 drawable custom_progressbar
 drawable fab_background
 drawable fab_button
@@ -42,6 +45,7 @@ drawable ic_menu_slideshow
 drawable logo
 drawable logo_round
 drawable motivation_icon
+drawable pressed_checkbox
 drawable settings_icon
 drawable side_nav_bar
 drawable splash_image
@@ -49,9 +53,11 @@ drawable splash_image_light
 drawable splash_screen
 drawable splash_screen_gradient
 drawable splash_screen_image
+drawable unchecked_checkbox
 font aladin
 font alata
 font roboto
+font roboto_medium
 font ubuntu_light
 id action_nav_home_to_nav_motivation
 id action_nav_home_to_nav_settings
@@ -59,7 +65,6 @@ id action_settings
 id app_bar_main
 id drawer_layout
 id goalCheckBox
-id goalWizardDeleteButton
 id goalWizardLabel
 id goalWizardSaveButton
 id goalsLayout
@@ -138,8 +143,8 @@ style Theme.BucketList.NoActionBar
 style Theme.BucketList.PopupOverlay
 style Widget.Theme.BucketList.ActionBar.Fullscreen
 style Widget.Theme.BucketList.ButtonBar.Fullscreen
-style app_background
 style base_button_style
+style custom_checkbox_text
 style splash_screen
 styleable FullscreenAttrs fullscreenBackgroundColor fullscreenTextColor
 xml backup_rules

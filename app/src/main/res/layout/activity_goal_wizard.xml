@@ -24,15 +24,6 @@
             android:layout_height="match_parent">
 
         <Button
-                android:text="Удолить"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:id="@+id/goalWizardDeleteButton"
-                android:background="@drawable/basic_button"
-                style="@style/base_button_style"
-                android:layout_weight="1" />
-
-        <Button
                 android:text="Сохранить"
                 android:layout_width="200dp"
                 android:layout_height="50dp"

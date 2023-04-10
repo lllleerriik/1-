@@ -36,20 +36,20 @@
                 {
                     "source": "C:\\Users\\79823\\AndroidStudioProjects\\1-\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
-                        "startLines": "2,-1,-1,-1,-1,-1",
-                        "startColumns": "4,-1,-1,-1,-1,-1",
-                        "startOffsets": "100,-1,-1,-1,-1,-1",
-                        "endLines": "18,-1,-1,-1,-1,-1",
-                        "endColumns": "12,-1,-1,-1,-1,-1",
-                        "endOffsets": "1075,-1,-1,-1,-1,-1"
+                        "startLines": "2,-1,-1,-1,-1,35,-1",
+                        "startColumns": "4,-1,-1,-1,-1,4,-1",
+                        "startOffsets": "100,-1,-1,-1,-1,1743,-1",
+                        "endLines": "18,-1,-1,-1,-1,37,-1",
+                        "endColumns": "12,-1,-1,-1,-1,12,-1",
+                        "endOffsets": "1075,-1,-1,-1,-1,1915,-1"
                     },
                     "to": {
-                        "startLines": "9,26,27,31,66,70",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "687,1546,1644,1802,5741,5962",
-                        "endLines": "25,26,30,31,69,74",
-                        "endColumns": "12,97,12,87,12,12",
-                        "endOffsets": "1541,1639,1797,1885,5957,6279"
+                        "startLines": "9,26,27,31,66,70,73",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "687,1546,1644,1802,5741,5962,6139",
+                        "endLines": "25,26,30,31,69,72,77",
+                        "endColumns": "12,97,12,87,12,12,12",
+                        "endOffsets": "1541,1639,1797,1885,5957,6134,6446"
                     }
                 }
             ]
@@ -90,20 +90,20 @@
                 {
                     "source": "C:\\Users\\79823\\AndroidStudioProjects\\1-\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
-                        "startLines": "2,-1,-1,-1,35,-1,-1",
-                        "startColumns": "4,-1,-1,-1,4,-1,-1",
-                        "startOffsets": "100,-1,-1,-1,1753,-1,-1",
-                        "endLines": "18,-1,-1,-1,37,-1,-1",
-                        "endColumns": "12,-1,-1,-1,12,-1,-1",
-                        "endOffsets": "1075,-1,-1,-1,1917,-1,-1"
+                        "startLines": "2,-1,-1,-1,-1,35,-1",
+                        "startColumns": "4,-1,-1,-1,-1,4,-1",
+                        "startOffsets": "100,-1,-1,-1,-1,1743,-1",
+                        "endLines": "18,-1,-1,-1,-1,37,-1",
+                        "endColumns": "12,-1,-1,-1,-1,12,-1",
+                        "endOffsets": "1075,-1,-1,-1,-1,1911,-1"
                     },
                     "to": {
-                        "startLines": "9,26,27,31,66,69,73",
+                        "startLines": "9,26,27,31,66,70,73",
                         "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "687,1546,1644,1802,5741,5910,6131",
-                        "endLines": "25,26,30,31,68,72,77",
+                        "startOffsets": "687,1546,1644,1802,5741,5962,6135",
+                        "endLines": "25,26,30,31,69,72,77",
                         "endColumns": "12,97,12,87,12,12,12",
-                        "endOffsets": "1541,1639,1797,1885,5905,6126,6448"
+                        "endOffsets": "1541,1639,1797,1885,5957,6130,6442"
                     }
                 }
             ]

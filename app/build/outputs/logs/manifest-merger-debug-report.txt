@@ -202,11 +202,11 @@ ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.
 	android:name
 		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:27-74
 meta-data#preloaded_fonts
-ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:52:9-54:57
+ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:52:9-54:61
 	android:resource
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:54:13-54
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:54:17-58
 	android:name
-		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:53:13-43
+		ADDED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:53:17-47
 uses-sdk
 INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml

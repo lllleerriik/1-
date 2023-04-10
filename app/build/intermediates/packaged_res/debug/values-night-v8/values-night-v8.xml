@@ -23,16 +23,16 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="Theme.BucketList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-    <style name="app_background" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:background">@color/black_dark</item>
-    </style>
     <style name="base_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:textColor">@color/black_dark</item>
         <item name="android:textSize">18sp</item>
     </style>
+    <style name="custom_checkbox_text" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textColor">@color/white_light</item>
+    </style>
     <style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="android:statusBarColor">@color/violet_dark</item>
-        <item name="android:navigationBarColor">@color/violet_dark</item>
+        <item name="android:statusBarColor">@color/violet</item>
+        <item name="android:navigationBarColor">@color/violet</item>
     </style>
 </resources>

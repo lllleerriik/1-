@@ -11,6 +11,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/goalCheckBox"
             tools:text="Test text"
-            android:paddingStart="14dp" />
+            android:paddingStart="14dp"
+            android:button="@drawable/custom_checkbox"
+            android:fontFamily="@font/roboto_medium" />
 
 </LinearLayout>

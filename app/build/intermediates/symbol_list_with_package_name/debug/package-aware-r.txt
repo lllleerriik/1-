@@ -1355,7 +1355,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
-color beige_light
+color beige
 color black_dark
 color black_overlay
 color bright_foreground_disabled_material_dark
@@ -1416,6 +1416,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color gray
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color light_blue_600
@@ -1971,7 +1972,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
-color violet_dark
+color violet
 color white_light
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
@@ -2776,7 +2777,9 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable checked_checkbox
 drawable custom_actionbar
+drawable custom_checkbox
 drawable custom_progressbar
 drawable design_fab_background
 drawable design_ic_visibility
@@ -2879,6 +2882,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable pressed_checkbox
 drawable settings_icon
 drawable side_nav_bar
 drawable splash_image
@@ -2889,9 +2893,11 @@ drawable splash_screen_image
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable unchecked_checkbox
 font aladin
 font alata
 font roboto
+font roboto_medium
 font ubuntu_light
 id ALT
 id BOTTOM_END
@@ -3099,7 +3105,6 @@ id fullscreen_header
 id ghost_view
 id ghost_view_holder
 id goalCheckBox
-id goalWizardDeleteButton
 id goalWizardLabel
 id goalWizardSaveButton
 id goalsLayout
@@ -4914,8 +4919,8 @@ style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
 style Widget_Theme_BucketList_ActionBar_Fullscreen
 style Widget_Theme_BucketList_ButtonBar_Fullscreen
-style app_background
 style base_button_style
+style custom_checkbox_text
 style splash_screen
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity

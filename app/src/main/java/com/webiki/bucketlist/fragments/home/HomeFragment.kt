@@ -2,6 +2,7 @@ package com.webiki.bucketlist.fragments.home
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +12,6 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.orm.SugarRecord
@@ -20,7 +20,8 @@ import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.activities.GoalWizard
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
-
+import java.util.Collections
+import kotlin.math.log
 
 class HomeFragment : Fragment() {
 
@@ -29,7 +30,7 @@ class HomeFragment : Fragment() {
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var fab: AppCompatButton
 
-    private var goalsList: HashSet<Goal> = hashSetOf()
+    private var goalsSet: MutableList<Goal> = mutableListOf()
     private val CREATE_GOAL_REQUEST_CODE = 1
     private val SEE_GOAL_REQUEST_CODE = 2
     private var goalSetKey = ""
@@ -44,19 +45,22 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         fab = root.findViewById(R.id.homeFabButton)
+        fab.setOnClickListener { handleFabClick(it) }
         goalSetKey = getString(R.string.userGoalsSet)
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsLayout
-        for (goal in SugarRecord.findAll(Goal::class.java)) goalsList.add(goal)
 
-        fab.setOnClickListener { handleFabClick(it) }
+        for (item in SugarRecord.findAll(Goal::class.java)) goalsSet.add(item)
+        goalsSet.sort()
+
         return root
     }
 
     override fun onStart() {
         super.onStart()
-        initializeGoalLayout(goalsLayout, goalsList)
-        if (goalsList.isEmpty()) Snackbar.make(
+        initializeGoalLayout(goalsLayout, goalsSet)
+
+        if (goalsSet.isEmpty()) Snackbar.make(
             goalsLayout,
             getString(R.string.hasNotGoals),
             Snackbar.LENGTH_LONG
@@ -75,21 +79,18 @@ class HomeFragment : Fragment() {
         )
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        SugarRecord.deleteAll(Goal::class.java)
+        goalsSet.forEach { SugarRecord.save(it) }
+    }
+
     @Deprecated("Deprecated in Java (everywhere)")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == CREATE_GOAL_REQUEST_CODE) handleGoalActivityReturn(resultCode, data)
-    }
-
-    /**
-     * Добавляет или удаляет цель в список целей
-     * TODO add possibility change the goal
-     * @param resultCode Результат работы GoalWizard Activity
-     * @param data Данные, отданные GoalWizard Activity
-     */
-    private fun handleGoalActivityReturn(resultCode: Int, data: Intent?) {
-        //region add/remove code
+        if (requestCode == CREATE_GOAL_REQUEST_CODE) {
+            //region add/remove code
 //        val action: (MutableSet<String>, String) -> Boolean =
 //            when (resultCode) {
 //                Activity.RESULT_OK -> { set, value -> set.add(value) }
@@ -102,18 +103,11 @@ class HomeFragment : Fragment() {
 //            data?.getStringExtra(getString(R.string.newGoalKey)),
 //            action
 //        )
-        //endregion
-        if (resultCode == Activity.RESULT_OK) {
-            val goalInfo = data?.getStringExtra(getString(R.string.newGoalKey))!!
-            Goal(goalInfo).save()
-
-            val newGoal = SugarRecord.last(Goal::class.java)
-
-            if (!goalsList.contains(newGoal)) {
-                goalsList.add(newGoal)
-                addGoalsToLayout(goalsLayout, newGoal)
-            } else Toast.makeText(context, getString(R.string.existingTarget), Toast.LENGTH_SHORT).show()
-
+            //endregion
+            if (resultCode == Activity.RESULT_OK) {
+                val goalInfo = data?.getStringExtra(getString(R.string.newGoalKey))!!
+                addGoalToStorage(goalInfo)
+            }
         }
     }
 
@@ -123,9 +117,9 @@ class HomeFragment : Fragment() {
      * @param layout Макет для списка целей
      * @param goals Список целей
      */
-    private fun <T> initializeGoalLayout(
+    private fun initializeGoalLayout(
         layout: LinearLayout,
-        goals: HashSet<T>
+        goals: MutableList<Goal>
     ) {
         layout.removeAllViews()
         addGoalsToLayout(layout, goals)
@@ -137,23 +131,11 @@ class HomeFragment : Fragment() {
      * @param layout Макет для списка целей
      * @param goals Список целей
      */
-    private fun <T> addGoalsToLayout(
+    private fun addGoalsToLayout(
         layout: LinearLayout,
-        goals: MutableSet<T>
+        goals: MutableList<Goal>
     ) {
-        for (goal in goals) {
-            val view = layoutInflater.inflate(R.layout.simple_goal_view, layout, false)
-            val viewCheckBox = view.findViewById<CheckBox>(R.id.goalCheckBox)
-            val layoutParameters = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply { bottomMargin = 6; topMargin = 6 }
-
-            view.layoutParams = layoutParameters
-            viewCheckBox.text = goal.toString()
-
-            layout.addView(view)
-        }
+        for (goal in goals) addGoalToLayout(layout, goal)
     }
 
     /**
@@ -162,10 +144,23 @@ class HomeFragment : Fragment() {
      * @param layout Макет для списка целей
      * @param goal Цель
      */
-    private fun <T> addGoalsToLayout(
+    private fun addGoalToLayout(
         layout: LinearLayout,
-        goal: T
+        goal: Goal
     ) {
+        val isCurrentThemeDay = requireContext().resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO
+
+        fun customCheckboxHandleClick(checkbox: CheckBox) {
+            checkbox.setTextColor(
+                requireContext().getColor(
+                    if (checkbox.isChecked) R.color.gray
+                    else if (isCurrentThemeDay) R.color.black_dark
+                    else R.color.white_light
+                )
+            )
+        }
+
         val view = layoutInflater.inflate(R.layout.simple_goal_view, layout, false)
         val viewCheckBox = view.findViewById<CheckBox>(R.id.goalCheckBox)
         val layoutParameters = LinearLayout.LayoutParams(
@@ -173,9 +168,37 @@ class HomeFragment : Fragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT
         ).apply { bottomMargin = 6; topMargin = 6 }
 
-        view.layoutParams = layoutParameters
-        viewCheckBox.text = goal.toString()
+        viewCheckBox.let {
+            it.layoutParams = layoutParameters
+            it.text = goal.getLabel()
+            it.isChecked = goal.getCompleted()
+
+        }
+
+        viewCheckBox.setOnClickListener {
+            customCheckboxHandleClick(viewCheckBox)
+            goalsSet
+                .find { goal -> goal.getLabel() == viewCheckBox.text.toString() }!!
+                .setCompleted(viewCheckBox.isChecked)
+        }
+
+        customCheckboxHandleClick(viewCheckBox)
 
         layout.addView(view)
+    }
+
+    private fun addGoalToStorage(name: String) {
+        val newGoalVariation = mutableListOf(Goal(name, false), Goal(name, true))
+
+        if (newGoalVariation.all { !goalsSet.contains(it) }) {
+            goalsSet.add(newGoalVariation.first())
+            addGoalToLayout(goalsLayout, newGoalVariation.first())
+
+        } else
+            Toast.makeText(
+                context,
+                getString(R.string.existingTarget),
+                Toast.LENGTH_SHORT
+            ).show()
     }
 }

@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.webiki.bucketlist"
-4    android:versionCode="1"
-5    android:versionName="0.1" >
+4    android:versionCode="2"
+5    android:versionName="0.1.1" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
@@ -120,11 +120,11 @@
 66        </activity>
 67
 68        <meta-data
-68-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:52:9-54:57
+68-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:52:9-54:61
 69            android:name="preloaded_fonts"
-69-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:53:13-43
+69-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:53:17-47
 70            android:resource="@array/preloaded_fonts" />
-70-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:54:13-54
+70-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:54:17-58
 71
 72        <provider
 72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\79823\.gradle\caches\transforms-3\2a0277eb7a3068db8d3acdc1b02e96d3\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
