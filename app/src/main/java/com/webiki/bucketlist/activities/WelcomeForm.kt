@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.marginBottom
+import com.orm.SugarRecord
+import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import org.json.JSONArray
@@ -35,8 +37,8 @@ class WelcomeForm : AppCompatActivity() {
 
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
-    private var proposedGoals: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
-    private var chosenGoals: MutableList<String> = mutableListOf() // TODO change to Goal class
+    private var proposedGoals: MutableList<MutableList<MutableList<String>>> = mutableListOf(mutableListOf())
+    private var chosenGoals: MutableList<MutableList<String>> = mutableListOf() // TODO change to Goal class
 
     private var currentPage = 0
     private val TRANSITION_DELAY = 200L
@@ -56,7 +58,10 @@ class WelcomeForm : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (currentPage != 0) moveOnPage(--currentPage, titles, answerVariants)
+        if (currentPage != 0) {
+            chosenGoals.remove(chosenGoals.last())
+            moveOnPage(--currentPage, titles, answerVariants)
+        }
     }
 
     override fun onStart() {
@@ -75,7 +80,7 @@ class WelcomeForm : AppCompatActivity() {
     private fun <T> parseFromJsonQuestionData(
         titles: MutableList<T>,
         answerVariants: MutableList<MutableList<T>>,
-        proposedGoals: MutableList<MutableList<T>>
+        proposedGoals: MutableList<MutableList<MutableList<T>>>
     ) {
         val scan = Scanner(assets.open(getString(R.string.questionsFileName)))
         val jsonLine = StringBuilder()
@@ -94,15 +99,16 @@ class WelcomeForm : AppCompatActivity() {
             titles.add(title)
 
             if (answerVariants.size == i) answerVariants.add(mutableListOf())
+            if (proposedGoals.size == i) proposedGoals.add(mutableListOf(mutableListOf()))
 
             for (j in 0 until slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).length()) {
                 answerVariants[i].add(j, answers[j] as T)
                 val goalsOnAnswer = goals.getJSONArray(j.toString())
 
-                if (proposedGoals.size == j) proposedGoals.add(mutableListOf())
+                if (proposedGoals[i].size == j) proposedGoals[i].add(mutableListOf())
 
                 for (k in 0 until goalsOnAnswer.length()) {
-                    proposedGoals[j].add(k, goalsOnAnswer[k] as T)
+                    proposedGoals[i][j].add(k, goalsOnAnswer[k] as T)
                 }
             }
         }
@@ -134,6 +140,7 @@ class WelcomeForm : AppCompatActivity() {
             answerButton.let { (it as AppCompatButton).text = answers[pageNumber][i].toString() }
 
             answerButton.setOnClickListener {
+                chosenGoals.add(proposedGoals[pageNumber][i])
                 moveOnPage(pageNumber + 1, titles, answers)
             }
 
@@ -157,12 +164,13 @@ class WelcomeForm : AppCompatActivity() {
     ) {
         if (pageNumber != questions.size){
             switchQuestionData(pageNumber, questions, answers)
-            Log.d("DEB", currentPage.toString()) // here there is current (correct) page number
+            // here there is current (correct) page number
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else {
+            SugarRecord.deleteAll(Goal::class.java)
+            chosenGoals.flatten().forEach { SugarRecord.save(it) }
+
             storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)
-
-
 
             if (storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
                 startActivity(Intent(this, MainActivity::class.java))
@@ -187,13 +195,13 @@ class WelcomeForm : AppCompatActivity() {
     ) {
         if (views.isEmpty()) throw IllegalArgumentException(getString(R.string.emptySequence))
         if (transitionDelay < 100) throw IllegalArgumentException(getString(R.string.tooSmallDelay))
-        
+
         views.forEach {
             val fadeOut: Animation = if (isVisible) AlphaAnimation(0f, 1f)
-                                            else AlphaAnimation(1f, 0f)
+            else AlphaAnimation(1f, 0f)
             fadeOut.interpolator = AccelerateInterpolator()
             fadeOut.duration = transitionDelay
-            
+
             it.startAnimation(fadeOut)
         }
     }
