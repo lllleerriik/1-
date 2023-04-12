@@ -32,99 +32,99 @@
 19-->[androidx.core:core:1.9.0] C:\Users\79823\.gradle\caches\transforms-3\f0d59c6661f36b78e8b4fa77aff2ef1c\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 20
 21    <application
-21-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:8:5-55:19
+21-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:8:5-56:19
 22        android:name="com.orm.SugarApp"
-22-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:9:9-40
+22-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:9:13-44
 23        android:allowBackup="true"
-23-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:10:9-35
+23-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:10:13-39
 24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 24-->[androidx.core:core:1.9.0] C:\Users\79823\.gradle\caches\transforms-3\f0d59c6661f36b78e8b4fa77aff2ef1c\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 25        android:dataExtractionRules="@xml/data_extraction_rules"
-25-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:11:9-65
+25-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:11:13-69
 26        android:debuggable="true"
 27        android:extractNativeLibs="false"
 28        android:fullBackupContent="@xml/backup_rules"
-28-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:12:9-54
+28-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:12:13-58
 29        android:icon="@mipmap/ic_logo"
-29-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:13:9-39
+29-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:13:13-43
 30        android:label="@string/app_name"
-30-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:14:9-41
+30-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:14:13-45
 31        android:supportsRtl="true"
-31-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:15:9-35
+31-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:15:13-39
 32        android:testOnly="true"
 33        android:theme="@style/Theme.BucketList" >
-33-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:16:9-48
+33-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:16:13-52
 34        <meta-data
-34-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:18:9-20:46
+34-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:19:9-21:50
 35            android:name="DATABASE"
-35-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:19:13-36
+35-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:20:17-40
 36            android:value="bucket_list.db" />
-36-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:20:13-43
+36-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:21:17-47
 37        <meta-data
-37-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:21:9-23:33
+37-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:22:9-24:37
 38            android:name="VERSION"
-38-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:22:13-35
+38-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:23:17-39
 39            android:value="1" />
-39-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:23:13-30
+39-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:24:17-34
 40        <meta-data
-40-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:24:9-26:37
+40-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:25:9-27:41
 41            android:name="QUERY_LOG"
-41-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:25:13-37
+41-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:26:17-41
 42            android:value="false" />
-42-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:26:13-34
+42-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:27:17-38
 43        <meta-data
-43-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:27:9-29:53
+43-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:28:9-30:57
 44            android:name="DOMAIN_PACKAGE_NAME"
-44-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:28:13-47
+44-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:29:17-51
 45            android:value="com.webiki.bucketlist" />
-45-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:29:13-50
+45-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:30:17-54
 46
 47        <activity
-47-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:31:9-33:40
+47-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:32:9-34:44
 48            android:name="com.webiki.bucketlist.activities.GoalWizard"
-48-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:32:13-50
+48-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:33:17-54
 49            android:exported="false" />
-49-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:33:13-37
+49-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:34:17-41
 50        <activity
-50-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:34:9-37:67
+50-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:35:9-38:71
 51            android:name="com.webiki.bucketlist.activities.WelcomeForm"
-51-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:35:13-51
+51-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:36:17-55
 52            android:exported="false"
-52-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:36:13-37
+52-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:37:17-41
 53            android:theme="@style/Theme.BucketList.NoActionBar" />
-53-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:37:13-64
+53-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:38:17-68
 54        <activity
-54-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:38:9-40:67
+54-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:39:9-41:71
 55            android:name="com.webiki.bucketlist.activities.MainActivity"
-55-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:39:13-52
+55-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:40:17-56
 56            android:theme="@style/Theme.BucketList.NoActionBar" />
-56-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:40:13-64
+56-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:41:17-68
 57        <activity
-57-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:41:9-50:20
+57-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:42:9-51:20
 58            android:name="com.webiki.bucketlist.activities.SplashScreen"
-58-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:42:13-52
+58-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:43:17-56
 59            android:exported="true"
-59-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:43:13-36
+59-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:44:17-40
 60            android:theme="@style/splash_screen" >
-60-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:44:13-49
+60-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:45:17-53
 61            <intent-filter>
-61-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:45:13-49:29
+61-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:46:13-50:29
 62                <action android:name="android.intent.action.MAIN" />
-62-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:46:17-69
-62-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:46:25-66
+62-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:47:17-69
+62-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:47:25-66
 63
 64                <category android:name="android.intent.category.LAUNCHER" />
-64-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:17-77
-64-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:27-74
+64-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:17-77
+64-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:27-74
 65            </intent-filter>
 66        </activity>
 67
 68        <meta-data
-68-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:52:9-54:61
+68-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:53:9-55:61
 69            android:name="preloaded_fonts"
-69-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:53:17-47
+69-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:54:17-47
 70            android:resource="@array/preloaded_fonts" />
-70-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:54:17-58
+70-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:55:17-58
 71
 72        <provider
 72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\79823\.gradle\caches\transforms-3\2a0277eb7a3068db8d3acdc1b02e96d3\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
@@ -166,8 +166,8 @@
 91-->[androidx.test:core:1.5.0] C:\Users\79823\.gradle\caches\transforms-3\00ac0ed43bfe84a0d9b07f0462f650a3\transformed\core-1.5.0\AndroidManifest.xml:31:13-33:29
 91-->[androidx.test:core:1.5.0] C:\Users\79823\.gradle\caches\transforms-3\00ac0ed43bfe84a0d9b07f0462f650a3\transformed\core-1.5.0\AndroidManifest.xml:31:28-51
 92                <category android:name="android.intent.category.LAUNCHER" />
-92-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:17-77
-92-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:27-74
+92-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:17-77
+92-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:27-74
 93            </intent-filter>
 94        </activity>
 95        <activity
@@ -182,8 +182,8 @@
 99-->[androidx.test:core:1.5.0] C:\Users\79823\.gradle\caches\transforms-3\00ac0ed43bfe84a0d9b07f0462f650a3\transformed\core-1.5.0\AndroidManifest.xml:31:13-33:29
 99-->[androidx.test:core:1.5.0] C:\Users\79823\.gradle\caches\transforms-3\00ac0ed43bfe84a0d9b07f0462f650a3\transformed\core-1.5.0\AndroidManifest.xml:31:28-51
 100                <category android:name="android.intent.category.LAUNCHER" />
-100-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:17-77
-100-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:27-74
+100-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:17-77
+100-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:27-74
 101            </intent-filter>
 102        </activity>
 103        <activity
@@ -198,8 +198,8 @@
 107-->[androidx.test:core:1.5.0] C:\Users\79823\.gradle\caches\transforms-3\00ac0ed43bfe84a0d9b07f0462f650a3\transformed\core-1.5.0\AndroidManifest.xml:31:13-33:29
 107-->[androidx.test:core:1.5.0] C:\Users\79823\.gradle\caches\transforms-3\00ac0ed43bfe84a0d9b07f0462f650a3\transformed\core-1.5.0\AndroidManifest.xml:31:28-51
 108                <category android:name="android.intent.category.LAUNCHER" />
-108-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:17-77
-108-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:48:27-74
+108-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:17-77
+108-->C:\Users\79823\AndroidStudioProjects\1-\app\src\main\AndroidManifest.xml:49:27-74
 109            </intent-filter>
 110        </activity>
 111
