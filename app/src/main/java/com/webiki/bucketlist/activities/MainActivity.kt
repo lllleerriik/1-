@@ -2,6 +2,7 @@ package com.webiki.bucketlist.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.drawerlayout.widget.DrawerLayout
@@ -18,7 +19,6 @@ import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 

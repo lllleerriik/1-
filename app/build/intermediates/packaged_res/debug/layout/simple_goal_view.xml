@@ -8,11 +8,12 @@
 
     <CheckBox
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/goalCheckBox"
             tools:text="Test text"
             android:paddingStart="14dp"
             android:button="@drawable/custom_checkbox"
-            android:fontFamily="@font/roboto_medium" />
+            android:fontFamily="@font/roboto_medium"
+            android:paddingEnd="14dp" />
 
 </LinearLayout>

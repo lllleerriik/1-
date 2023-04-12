@@ -44,14 +44,14 @@ class ProjectSharedPreferencesHelper(ctx: Context) {
      * @param action Сценарий изменения набора строк
      * @exception NullPointerException Если переданное значение - null
      */
-    fun refreshStringSetFromStorage(
+    private fun refreshStringSetFromStorage(
         key: String,
         value: String?,
         action: (MutableSet<String>, String) -> Boolean
-    ) {
+    ): Boolean {
         val set = sharedPreferences.getStringSet(key, null) ?: mutableSetOf<String>()
         action(set, value!!)
         editor.putStringSet(key, set)
-        editor.commit()
+        return editor.commit()
     }
 }

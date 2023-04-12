@@ -52,6 +52,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\drawable-night\\splash_screen_gradient.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\drawable_popup_item.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\drawable\\popup_item.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\drawable_ic_menu_camera.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\drawable\\ic_menu_camera.xml"
     },
@@ -360,6 +364,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_splash_screen.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\layout_popup_window_view.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\popup_window_view.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\layout_app_bar_main.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\app_bar_main.xml"
     },
@@ -386,6 +394,10 @@
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\drawable-night_popup_item.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\drawable-night\\popup_item.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-merged_res-50:\\drawable_splash_screen.xml.flat",

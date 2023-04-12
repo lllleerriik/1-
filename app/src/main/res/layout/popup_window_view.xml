@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_optimizationLevel="graph_wrap">
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/popupText"
+            android:background="@drawable/popup_item"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="24dp"
+            android:textSize="24sp"
+            style="@style/popup_item"
+            android:gravity="center" />
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:text="Button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/popupButtonSubmit"
+                android:background="@drawable/popup_item"
+                android:backgroundTintMode="add"
+                android:foregroundTintMode="add"
+                android:drawableTintMode="add"
+                android:textSize="16sp"
+                style="@style/popup_item"
+                android:layout_gravity="center" />
+
+        <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:text="Button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/popupButtonCancel"
+                android:background="@drawable/popup_item"
+                android:backgroundTintMode="add"
+                android:textSize="16sp"
+                style="@style/popup_item"
+                android:layout_gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

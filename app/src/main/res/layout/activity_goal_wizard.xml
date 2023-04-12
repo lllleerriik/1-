@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.GoalWizard"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
     <EditText
             android:layout_width="match_parent"
@@ -14,9 +15,9 @@
             android:gravity="start|top"
             android:ems="10"
             android:id="@+id/goalWizardLabel"
-            tools:layout_editor_absoluteY="89dp"
-            android:hint="Назовите цель"
-            android:text="Name" />
+            android:hint="Какое название у Вашей цели?"
+            android:layout_marginTop="50dp" />
+    <!--    TODO extract to strings resources-->
 
     <LinearLayout
             android:orientation="horizontal"
@@ -30,7 +31,8 @@
                 android:id="@+id/goalWizardSaveButton"
                 android:background="@drawable/basic_button"
                 style="@style/base_button_style"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_marginTop="8dp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -10,7 +10,8 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="50dp"
-        android:paddingBottom="70dp">
+        android:paddingBottom="70dp"
+        style="@style/welcome_form">
 
     <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"

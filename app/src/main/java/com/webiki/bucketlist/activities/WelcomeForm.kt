@@ -1,28 +1,20 @@
 package com.webiki.bucketlist.activities
 
 import android.content.Intent
-import android.graphics.PorterDuff
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextThemeWrapper
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.marginBottom
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import org.json.JSONArray
-import java.lang.reflect.Type
 import java.util.*
 import kotlin.math.ceil
 
@@ -38,7 +30,7 @@ class WelcomeForm : AppCompatActivity() {
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
     private var proposedGoals: MutableList<MutableList<MutableList<String>>> = mutableListOf(mutableListOf())
-    private var chosenGoals: MutableList<MutableList<String>> = mutableListOf() // TODO change to Goal class
+    private var chosenGoals: MutableList<MutableList<Goal>> = mutableListOf()
 
     private var currentPage = 0
     private val TRANSITION_DELAY = 200L
@@ -140,7 +132,7 @@ class WelcomeForm : AppCompatActivity() {
             answerButton.let { (it as AppCompatButton).text = answers[pageNumber][i].toString() }
 
             answerButton.setOnClickListener {
-                chosenGoals.add(proposedGoals[pageNumber][i])
+                chosenGoals.add(proposedGoals[pageNumber][i].map { goalName -> Goal(goalName, false) }.toMutableList())
                 moveOnPage(pageNumber + 1, titles, answers)
             }
 
@@ -168,11 +160,10 @@ class WelcomeForm : AppCompatActivity() {
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else {
             SugarRecord.deleteAll(Goal::class.java)
+            Log.d("DEB", chosenGoals.joinToString("\n"))
             chosenGoals.flatten().forEach { SugarRecord.save(it) }
 
-            storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)
-
-            if (storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
+            if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true))
                 startActivity(Intent(this, MainActivity::class.java))
             else
                 throw IllegalStateException(getString(R.string.stateWasNotSave))

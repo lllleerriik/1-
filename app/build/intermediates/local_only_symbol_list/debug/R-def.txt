@@ -45,6 +45,7 @@ drawable ic_menu_slideshow
 drawable logo
 drawable logo_round
 drawable motivation_icon
+drawable popup_item
 drawable pressed_checkbox
 drawable settings_icon
 drawable side_nav_bar
@@ -78,6 +79,9 @@ id nav_host_fragment_content_main
 id nav_motivation
 id nav_settings
 id nav_view
+id popupButtonCancel
+id popupButtonSubmit
+id popupText
 id textView
 id text_gallery
 id text_slideshow
@@ -96,6 +100,7 @@ layout fragment_home
 layout fragment_motivation
 layout fragment_settings
 layout nav_header_main
+layout popup_window_view
 layout simple_goal_view
 menu activity_main_drawer
 menu main
@@ -106,6 +111,8 @@ mipmap ic_logo_round
 navigation mobile_navigation
 string action_settings
 string app_name
+string cancelDeleteGoal
+string doYouWantDeleteGoal
 string dummy_button
 string dummy_content
 string emptySequence
@@ -132,6 +139,7 @@ string questionsTitleKey
 string save_results
 string sharedPreferencesName
 string stateWasNotSave
+string submitDeleteGoal
 string title_activity_fullscreen
 string tooSmallDelay
 string unexpectedResultCode
@@ -145,7 +153,10 @@ style Widget.Theme.BucketList.ActionBar.Fullscreen
 style Widget.Theme.BucketList.ButtonBar.Fullscreen
 style base_button_style
 style custom_checkbox_text
+style popup_item
+style popup_window
 style splash_screen
+style welcome_form
 styleable FullscreenAttrs fullscreenBackgroundColor fullscreenTextColor
 xml backup_rules
 xml data_extraction_rules

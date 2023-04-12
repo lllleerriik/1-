@@ -1,17 +1,26 @@
 package com.webiki.bucketlist.fragments.home
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.orm.SugarRecord
@@ -20,8 +29,7 @@ import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.activities.GoalWizard
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
-import java.util.Collections
-import kotlin.math.log
+
 
 class HomeFragment : Fragment() {
 
@@ -30,10 +38,11 @@ class HomeFragment : Fragment() {
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var fab: AppCompatButton
 
-    private var goalsSet: MutableList<Goal> = mutableListOf()
+    private var goalsList: MutableList<Goal> = mutableListOf()
     private val CREATE_GOAL_REQUEST_CODE = 1
     private val SEE_GOAL_REQUEST_CODE = 2
     private var goalSetKey = ""
+    private var isNeedToLoadGoals = true
 
     private lateinit var goalsLayout: LinearLayout
 
@@ -50,65 +59,31 @@ class HomeFragment : Fragment() {
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsLayout
 
-        for (item in SugarRecord.findAll(Goal::class.java)) goalsSet.add(item)
-        goalsSet.sort()
+        goalsList = SugarRecord.listAll(Goal::class.java)
+        goalsList.sort()
 
         return root
     }
 
-    override fun onStart() {
-        super.onStart()
-        initializeGoalLayout(goalsLayout, goalsSet)
+    override fun onResume() {
+        super.onResume()
 
-        if (goalsSet.isEmpty()) Snackbar.make(
-            goalsLayout,
-            getString(R.string.hasNotGoals),
-            Snackbar.LENGTH_LONG
-        ).show()
+//        if (isNeedToLoadGoals) {
+            initializeGoalLayout(goalsLayout, goalsList)
+
+            if (goalsList.isEmpty()) Snackbar.make(
+                goalsLayout,
+                getString(R.string.hasNotGoals),
+                Snackbar.LENGTH_LONG
+            ).show()
+//        }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    override fun onPause() {
+        super.onPause()
 
-    private fun handleFabClick(view: View) {
-        startActivityForResult(
-            Intent(view.context, GoalWizard::class.java),
-            CREATE_GOAL_REQUEST_CODE
-        )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
         SugarRecord.deleteAll(Goal::class.java)
-        goalsSet.forEach { SugarRecord.save(it) }
-    }
-
-    @Deprecated("Deprecated in Java (everywhere)")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == CREATE_GOAL_REQUEST_CODE) {
-            //region add/remove code
-//        val action: (MutableSet<String>, String) -> Boolean =
-//            when (resultCode) {
-//                Activity.RESULT_OK -> { set, value -> set.add(value) }
-//                Activity.RESULT_CANCELED -> { set, value -> set.remove(value) }
-//                else -> throw InvalidPropertiesFormatException(getString(R.string.unexpectedResultCode))
-//            }
-//
-//        storageHelper.refreshStringSetFromStorage(
-//            goalSetKey,
-//            data?.getStringExtra(getString(R.string.newGoalKey)),
-//            action
-//        )
-            //endregion
-            if (resultCode == Activity.RESULT_OK) {
-                val goalInfo = data?.getStringExtra(getString(R.string.newGoalKey))!!
-                addGoalToStorage(goalInfo)
-            }
-        }
+        goalsList.forEach { it.save() }
     }
 
     /**
@@ -171,34 +146,106 @@ class HomeFragment : Fragment() {
         viewCheckBox.let {
             it.layoutParams = layoutParameters
             it.text = goal.getLabel()
+            it.tag = goal.getLabel()
             it.isChecked = goal.getCompleted()
 
         }
 
         viewCheckBox.setOnClickListener {
             customCheckboxHandleClick(viewCheckBox)
-            goalsSet
+            goalsList
                 .find { goal -> goal.getLabel() == viewCheckBox.text.toString() }!!
                 .setCompleted(viewCheckBox.isChecked)
         }
 
+        viewCheckBox.setOnLongClickListener {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.popup_window_view)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            val dialogText = dialog.window?.findViewById<TextView>(R.id.popupText)!!
+            val dialogSubmitButton = dialog.window?.findViewById<AppCompatButton>(R.id.popupButtonSubmit)!!
+            val dialogCancelButton = dialog.window?.findViewById<AppCompatButton>(R.id.popupButtonCancel)!!
+
+            dialogText.text = "${getString(R.string.doYouWantDeleteGoal)}\n\n(${viewCheckBox.text})"
+            dialogSubmitButton.text = getString(R.string.submitDeleteGoal)
+            dialogCancelButton.text = getString(R.string.cancelDeleteGoal)
+
+            dialogSubmitButton.setOnClickListener { btn ->
+                btn as AppCompatButton
+                val index = goalsList.indexOf(Goal(viewCheckBox.text.toString(), viewCheckBox.isChecked))
+
+                SugarRecord.delete(goalsList[index])
+                goalsList.removeAt(index)
+                initializeGoalLayout(goalsLayout, goalsList)
+                dialog.dismiss()
+            }
+
+            dialogCancelButton.setOnClickListener { btn ->
+                btn as AppCompatButton
+                dialog.dismiss()
+            }
+
+            dialog.create()
+            dialog.show()
+
+            return@setOnLongClickListener true
+        }
+
         customCheckboxHandleClick(viewCheckBox)
 
-        layout.addView(view)
+        layout.addView(view, if (viewCheckBox.isChecked) layout.childCount else 0)
     }
 
     private fun addGoalToStorage(name: String) {
         val newGoalVariation = mutableListOf(Goal(name, false), Goal(name, true))
 
-        if (newGoalVariation.all { !goalsSet.contains(it) }) {
-            goalsSet.add(newGoalVariation.first())
+        if (newGoalVariation.all { !goalsList.contains(it) }) {
+            goalsList.add(newGoalVariation.first())
             addGoalToLayout(goalsLayout, newGoalVariation.first())
-
         } else
             Toast.makeText(
                 context,
                 getString(R.string.existingTarget),
                 Toast.LENGTH_SHORT
             ).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun handleFabClick(view: View) {
+        startActivityForResult(
+            Intent(view.context, GoalWizard::class.java),
+            CREATE_GOAL_REQUEST_CODE
+        )
+    }
+
+    @Deprecated("Deprecated in Java (everywhere)")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == CREATE_GOAL_REQUEST_CODE) {
+            //region add/remove code
+//        val action: (MutableSet<String>, String) -> Boolean =
+//            when (resultCode) {
+//                Activity.RESULT_OK -> { set, value -> set.add(value) }
+//                Activity.RESULT_CANCELED -> { set, value -> set.remove(value) }
+//                else -> throw InvalidPropertiesFormatException(getString(R.string.unexpectedResultCode))
+//            }
+//
+//        storageHelper.refreshStringSetFromStorage(
+//            goalSetKey,
+//            data?.getStringExtra(getString(R.string.newGoalKey)),
+//            action
+//        )
+            //endregion
+            if (resultCode == Activity.RESULT_OK) {
+                val goalInfo = data?.getStringExtra(getString(R.string.newGoalKey))!!
+                addGoalToStorage(goalInfo)
+            }
+        }
     }
 }

@@ -41,6 +41,8 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <string name="action_settings">Settings</string>
     <string name="app_name">Bucket List</string>
+    <string name="cancelDeleteGoal">Отмена</string>
+    <string name="doYouWantDeleteGoal">Вы хотите удалить данную цель?</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="emptySequence">В коллекции нет элементов</string>
@@ -67,6 +69,7 @@
     <string name="save_results">Сохранить результат</string>
     <string name="sharedPreferencesName">BucketList-Webiki</string>
     <string name="stateWasNotSave">Результаты не были сохранены!</string>
+    <string name="submitDeleteGoal">Удалить</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
     <string name="unexpectedResultCode">Неожиданный код ответа</string>
@@ -88,7 +91,7 @@
         <item name="android:statusBarColor">?attr/colorSecondary</item>
         
         <item name="android:colorBackground">@color/beige</item>
-        <item name="android:textColor">@color/white_light</item>
+        <item name="android:textColor">@color/black_dark</item>
         <item name="android:actionBarTheme">@style/MyActionBar</item>
         <item name="android:navigationBarColor">?attr/colorSecondary</item>
     </style>
@@ -106,16 +109,25 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
     <style name="base_button_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:textColor">@color/purple_dark</item>
+        <item name="android:textColor">@color/black_dark</item>
         <item name="android:textSize">18sp</item>
     </style>
     <style name="custom_checkbox_text" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:textColor">@color/black_dark</item>
     </style>
+    <style name="popup_item" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textColor">@color/black_dark</item>
+    </style>
+    <style name="popup_window" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:windowIsFloating">true</item>
+    </style>
     <style name="splash_screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/pink_light</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:navigationBarColor">@color/pink_light</item>
+    </style>
+    <style name="welcome_form" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background">@color/pink_light</item>
     </style>
     <declare-styleable name="FullscreenAttrs">
         <attr format="color" name="fullscreenBackgroundColor"/>

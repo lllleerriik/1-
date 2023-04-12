@@ -2882,6 +2882,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable popup_item
 drawable pressed_checkbox
 drawable settings_icon
 drawable side_nav_bar
@@ -3256,6 +3257,9 @@ id pathRelative
 id peekHeight
 id percent
 id pin
+id popupButtonCancel
+id popupButtonSubmit
+id popupText
 id position
 id postLayout
 id pressed
@@ -3616,6 +3620,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout popup_window_view
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -3666,10 +3671,12 @@ string bottomsheet_action_expand
 string bottomsheet_action_expand_halfway
 string bottomsheet_drag_handle_clicked
 string bottomsheet_drag_handle_content_description
+string cancelDeleteGoal
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
+string doYouWantDeleteGoal
 string dummy_button
 string dummy_content
 string emptySequence
@@ -3813,6 +3820,7 @@ string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string stateWasNotSave
 string status_bar_notification_info_overflow
+string submitDeleteGoal
 string title_activity_fullscreen
 string tooSmallDelay
 string unexpectedResultCode
@@ -4921,7 +4929,10 @@ style Widget_Theme_BucketList_ActionBar_Fullscreen
 style Widget_Theme_BucketList_ButtonBar_Fullscreen
 style base_button_style
 style custom_checkbox_text
+style popup_item
+style popup_window
 style splash_screen
+style welcome_form
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth

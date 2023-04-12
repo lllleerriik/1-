@@ -52,6 +52,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_welcome_form.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\popup_window_view.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\popup_window_view.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_introductory_form.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_introductory_form.xml"
     },
