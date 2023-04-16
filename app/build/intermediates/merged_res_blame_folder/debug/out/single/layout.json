@@ -12,6 +12,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\basic_button.xml"
     },
     {
+        "merged": "com.webiki.bucketlist.app-mergeDebugResources-49:/layout/basic_button.xml",
+        "source": "com.webiki.bucketlist.app-main-52:/layout/basic_button.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_splash_screen.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\activity_splash_screen.xml"
     },
@@ -26,10 +30,6 @@
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\fragment_motivation.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-main-52:\\layout\\fragment_motivation.xml"
-    },
-    {
-        "merged": "com.webiki.bucketlist.app-mergeDebugResources-49:/layout/activity_goal_wizard.xml",
-        "source": "com.webiki.bucketlist.app-main-52:/layout/activity_goal_wizard.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\7.5\\com.webiki.bucketlist.app-mergeDebugResources-49:\\layout\\activity_main.xml",
