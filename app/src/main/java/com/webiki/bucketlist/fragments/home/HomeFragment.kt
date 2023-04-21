@@ -2,32 +2,33 @@ package com.webiki.bucketlist.fragments.home
 
 import android.app.Activity
 import android.app.Dialog
+import android.app.GameManager
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Spannable
-import android.text.style.ForegroundColorSpan
-import android.text.style.TypefaceSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import com.webiki.bucketlist.activities.MainActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.children
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textview.MaterialTextView
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
+import com.webiki.bucketlist.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
-import com.webiki.bucketlist.activities.GoalWizard
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
 
 
@@ -38,11 +39,10 @@ class HomeFragment : Fragment() {
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var fab: AppCompatButton
 
-    private var goalsList: MutableList<Goal> = mutableListOf()
     private val CREATE_GOAL_REQUEST_CODE = 1
-    private val SEE_GOAL_REQUEST_CODE = 2
-    private var goalSetKey = ""
-    private var isNeedToLoadGoals = true
+    private var goalsList: MutableList<Goal> = mutableListOf()
+    private lateinit var topIndexesByPriority: MutableList<Int>
+    private lateinit var goalSetKey: String
 
     private lateinit var goalsLayout: LinearLayout
 
@@ -59,24 +59,30 @@ class HomeFragment : Fragment() {
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsLayout
 
-        goalsList = SugarRecord.listAll(Goal::class.java)
-        goalsList.sort()
+        goalsList = SugarRecord
+            .listAll(Goal::class.java)
 
+        goalsList.sortDescending()
+        
+        val priorityGroups = goalsList
+            .groupBy { g -> g.getPriority() }
+            .toSortedMap(compareByDescending { it.value })
+
+        goalsList = priorityGroups.flatMap { pair -> pair.value }.toMutableList()
+        
         return root
     }
 
     override fun onResume() {
         super.onResume()
 
-//        if (isNeedToLoadGoals) {
-            initializeGoalLayout(goalsLayout, goalsList)
+        initializeGoalLayout(goalsLayout, goalsList)
 
-            if (goalsList.isEmpty()) Snackbar.make(
-                goalsLayout,
-                getString(R.string.hasNotGoals),
-                Snackbar.LENGTH_LONG
-            ).show()
-//        }
+        if (goalsList.isEmpty()) Snackbar.make(
+            goalsLayout,
+            getString(R.string.hasNotGoals),
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     override fun onPause() {
@@ -96,8 +102,12 @@ class HomeFragment : Fragment() {
         layout: LinearLayout,
         goals: MutableList<Goal>
     ) {
+        topIndexesByPriority = mutableListOf(0, 0, 0)
         layout.removeAllViews()
         addGoalsToLayout(layout, goals)
+        for (i in goalsList.size - 1 downTo 0)
+            topIndexesByPriority[goalsList[i].getPriority().value] = i
+        // reversing list index and decrement 1 for get previous position
     }
 
     /**
@@ -121,7 +131,8 @@ class HomeFragment : Fragment() {
      */
     private fun addGoalToLayout(
         layout: LinearLayout,
-        goal: Goal
+        goal: Goal,
+        index: Int? = null
     ) {
         val isCurrentThemeDay = requireContext().resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO
@@ -157,52 +168,39 @@ class HomeFragment : Fragment() {
                 .find { goal -> goal.getLabel() == viewCheckBox.text.toString() }!!
                 .setCompleted(viewCheckBox.isChecked)
         }
-
         viewCheckBox.setOnLongClickListener {
-            val dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.popup_window_view)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            (activity as MainActivity).createModalWindow(
+                requireContext(),
+                "${getString(R.string.doYouWantToDeleteGoal)}\n\n(${viewCheckBox.text})",
+                getString(R.string.submitDeleteGoal),
+                getString(R.string.cancelButtonText),
+                { val index = goalsList.indexOf(
+                        Goal(
+                            viewCheckBox.text.toString(),
+                            viewCheckBox.isChecked
+                        )
+                    )
 
-            val dialogText = dialog.window?.findViewById<TextView>(R.id.popupText)!!
-            val dialogSubmitButton = dialog.window?.findViewById<AppCompatButton>(R.id.popupButtonSubmit)!!
-            val dialogCancelButton = dialog.window?.findViewById<AppCompatButton>(R.id.popupButtonCancel)!!
-
-            dialogText.text = "${getString(R.string.doYouWantDeleteGoal)}\n\n(${viewCheckBox.text})"
-            dialogSubmitButton.text = getString(R.string.submitDeleteGoal)
-            dialogCancelButton.text = getString(R.string.cancelDeleteGoal)
-
-            dialogSubmitButton.setOnClickListener { btn ->
-                btn as AppCompatButton
-                val index = goalsList.indexOf(Goal(viewCheckBox.text.toString(), viewCheckBox.isChecked))
-
-                SugarRecord.delete(goalsList[index])
-                goalsList.removeAt(index)
-                initializeGoalLayout(goalsLayout, goalsList)
-                dialog.dismiss()
-            }
-
-            dialogCancelButton.setOnClickListener { btn ->
-                btn as AppCompatButton
-                dialog.dismiss()
-            }
-
-            dialog.create()
-            dialog.show()
+                    SugarRecord.delete(goalsList[index])
+                    goalsList.removeAt(index)
+                    initializeGoalLayout(goalsLayout, goalsList)
+                })
 
             return@setOnLongClickListener true
         }
 
         customCheckboxHandleClick(viewCheckBox)
 
-        layout.addView(view, if (viewCheckBox.isChecked) layout.childCount else 0)
+        layout.addView(view, index ?: layout.childCount)
     }
 
-    private fun addGoalToStorage(name: String) {
-        val newGoalVariation = mutableListOf(Goal(name, false), Goal(name, true))
+    private fun addGoalToStorage(name: String, priority: GoalPriority) {
+        val newGoalVariation = mutableListOf(Goal(name, false, priority), Goal(name, true, priority))
 
         if (newGoalVariation.all { !goalsList.contains(it) }) {
-            goalsList.add(newGoalVariation.first())
-            addGoalToLayout(goalsLayout, newGoalVariation.first())
+            goalsList.add(topIndexesByPriority[priority.value], newGoalVariation.first())
+            addGoalToLayout(goalsLayout, newGoalVariation.first(),
+                topIndexesByPriority[newGoalVariation.first().getPriority().value])
         } else
             Toast.makeText(
                 context,
@@ -217,35 +215,34 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleFabClick(view: View) {
-        startActivityForResult(
-            Intent(view.context, GoalWizard::class.java),
-            CREATE_GOAL_REQUEST_CODE
-        )
-    }
 
-    @Deprecated("Deprecated in Java (everywhere)")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+        val dialog = Dialog(view.context)
 
-        if (requestCode == CREATE_GOAL_REQUEST_CODE) {
-            //region add/remove code
-//        val action: (MutableSet<String>, String) -> Boolean =
-//            when (resultCode) {
-//                Activity.RESULT_OK -> { set, value -> set.add(value) }
-//                Activity.RESULT_CANCELED -> { set, value -> set.remove(value) }
-//                else -> throw InvalidPropertiesFormatException(getString(R.string.unexpectedResultCode))
-//            }
-//
-//        storageHelper.refreshStringSetFromStorage(
-//            goalSetKey,
-//            data?.getStringExtra(getString(R.string.newGoalKey)),
-//            action
-//        )
-            //endregion
-            if (resultCode == Activity.RESULT_OK) {
-                val goalInfo = data?.getStringExtra(getString(R.string.newGoalKey))!!
-                addGoalToStorage(goalInfo)
-            }
+        dialog.setContentView(R.layout.popup_goal_wizard_view)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogNameInput = dialog.window?.findViewById<EditText>(R.id.goalWizardName)!!
+        val dialogButton = dialog.window?.findViewById<AppCompatButton>(R.id.goalWizardConfirmButton)!!
+        val dialogPriorityList = dialog.window?.findViewById<Spinner>(R.id.goalWizardPriorityList)!!
+
+        dialogButton.setOnClickListener { _ ->
+            if (dialogNameInput.text.trim().isNotEmpty()
+                && (dialogPriorityList.selectedView as MaterialTextView).text.toString() != getString(R.string.goalPriorityHint)) {
+
+                val priority = when ((dialogPriorityList.selectedView as MaterialTextView).text.toString()){
+                    view.context.resources.getStringArray(R.array.goalPriorities)[1] -> GoalPriority.Low
+                    view.context.resources.getStringArray(R.array.goalPriorities)[2] -> GoalPriority.Middle
+                    else -> GoalPriority.High
+                }
+
+                addGoalToStorage(dialogNameInput.text.toString(), priority)
+                dialog.dismiss()
+                initializeGoalLayout(goalsLayout, goalsList)
+            } else
+                Toast.makeText(requireContext(), getString(R.string.incorrectGoal), Toast.LENGTH_LONG).show()
         }
+
+        dialog.create()
+        dialog.show()
     }
 }
