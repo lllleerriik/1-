@@ -9,12 +9,17 @@ import java.util.Date
 class Goal(
     private var label: String,
     private var isCompleted: Boolean,
-    private var createDate: Long
+    private var createDate: Long,
+    private var priority: GoalPriority
     ) : SugarRecord(), Comparable<Any> {
-    public constructor() : this("", false, 0)
-    public constructor(newGoal: Goal) : this(newGoal.label, newGoal.isCompleted, newGoal.createDate)
-
-    public constructor(label: String, isCompleted: Boolean) : this(label, isCompleted, System.currentTimeMillis())
+    public constructor()
+            : this("", false, 0, GoalPriority.Middle)
+    public constructor(newGoal: Goal)
+            : this(newGoal.label, newGoal.isCompleted, newGoal.createDate, newGoal.priority)
+    public constructor(label: String, isCompleted: Boolean)
+            : this(label, isCompleted, System.currentTimeMillis(), GoalPriority.Middle)
+    public constructor(label: String, isCompleted: Boolean, priority: GoalPriority)
+            : this(label, isCompleted, System.currentTimeMillis(), priority)
 
     fun getCompleted(): Boolean { return this.isCompleted }
 
@@ -24,12 +29,14 @@ class Goal(
 
     fun getCreateDate(): Long { return this.createDate }
 
+    fun getPriority(): GoalPriority { return this.priority }
+
     override fun toString(): String {
         return label
     }
 
     public fun getDescription(): String {
-        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена; время создания (мс): $createDate"
+        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена; время создания (мс): $createDate; приоритет: $priority"
     }
 
     override fun compareTo(other: Any): Int {

@@ -39,11 +39,12 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/welcomeFormAnswers"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="410dp"
             android:layout_weight="1">
+
 
     </LinearLayout>
 </LinearLayout>

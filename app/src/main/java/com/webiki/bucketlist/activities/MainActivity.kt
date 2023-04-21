@@ -1,10 +1,15 @@
 package com.webiki.bucketlist.activities
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.AppCompatButton
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,8 +17,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.orm.SugarRecord
-import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
@@ -58,6 +61,53 @@ class MainActivity : AppCompatActivity() {
 
         if (!storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
             startActivity(Intent(this, WelcomeForm::class.java))
+    }
+
+    override fun onBackPressed() {
+        createModalWindow(
+            this,
+            getString(R.string.doYouWantToCloseApp),
+            getString(R.string.submitCloseApp),
+            getString(R.string.cancelButtonText),
+            { finish() }
+        )
+    }
+
+
+    internal fun createModalWindow(
+        ctx: Context,
+        messageText: String,
+        confirmButtonText: String,
+        cancelButtonText: String,
+        confirmButtonHandler: (AppCompatButton) -> Unit,
+        cancelButtonHandler: ((AppCompatButton) -> Unit)? = null
+    ) {
+        val dialog = Dialog(ctx)
+
+        dialog.setContentView(R.layout.popup_window_view)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogText = dialog.window?.findViewById<TextView>(R.id.simplePopupText)!!
+        val dialogSubmitButton =
+            dialog.window?.findViewById<AppCompatButton>(R.id.simplePopupButtonSubmit)!!
+        val dialogCancelButton =
+            dialog.window?.findViewById<AppCompatButton>(R.id.simplePopupButtonCancel)!!
+
+        dialogText.text = messageText
+        dialogSubmitButton.text = confirmButtonText
+        dialogCancelButton.text = cancelButtonText
+
+        dialogSubmitButton.setOnClickListener { btn ->
+            confirmButtonHandler(btn as AppCompatButton)
+            dialog.dismiss()
+        }
+        dialogCancelButton.setOnClickListener { btn ->
+            if (cancelButtonHandler != null) cancelButtonHandler(btn as AppCompatButton)
+            dialog.dismiss()
+        }
+
+        dialog.create()
+        dialog.show()
     }
 
     override fun onSupportNavigateUp(): Boolean {

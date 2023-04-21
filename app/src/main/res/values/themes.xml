@@ -58,4 +58,9 @@
     <style name="popup_window" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <style name="goal_wizard_title" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background">@color/purple_light</item>
+        <item name="android:textColor">@color/white_light</item>
+    </style>
 </resources>

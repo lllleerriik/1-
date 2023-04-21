@@ -2,7 +2,6 @@ package com.webiki.bucketlist.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
+import com.webiki.bucketlist.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import org.json.JSONArray
@@ -38,6 +38,8 @@ class WelcomeForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_form)
+
+        startActivity(Intent(this, GreetingActivity::class.java))
 
         mainLayout = findViewById(R.id.mainWelcomeLayout)
         title = findViewById(R.id.welcomeFormTitle)
@@ -123,21 +125,23 @@ class WelcomeForm : AppCompatActivity() {
         if (titles.size != answers.size || titles.size <= pageNumber)
             throw ArrayIndexOutOfBoundsException(getString(R.string.pageNumberMoreThanContentSize) + " $pageNumber")
 
-        this.answersLayout.removeAllViews()
+        answersLayout.removeAllViews()
         title.text = titles[pageNumber].toString()
 
         for (i in 0 until answers[pageNumber].size) {
             val answerButton = layoutInflater.inflate(R.layout.basic_button, answersLayout, false)
 
-            answerButton.let { (it as AppCompatButton).text = answers[pageNumber][i].toString() }
+            answerButton.let {
+                (it as AppCompatButton).text = answers[pageNumber][i].toString()
+            }
 
             answerButton.setOnClickListener {
-                chosenGoals.add(proposedGoals[pageNumber][i].map { goalName -> Goal(goalName, false) }.toMutableList())
+                chosenGoals.add(proposedGoals[pageNumber][i].map { goalName -> Goal(goalName, false, GoalPriority.Middle) }.toMutableList())
                 moveOnPage(pageNumber + 1, titles, answers)
             }
 
             progressBar.progress = ceil(100F * pageNumber / answers.size).toInt()
-            this.answersLayout.addView(answerButton)
+            answersLayout.addView(answerButton)
         }
     }
 
@@ -160,7 +164,6 @@ class WelcomeForm : AppCompatActivity() {
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else {
             SugarRecord.deleteAll(Goal::class.java)
-            Log.d("DEB", chosenGoals.joinToString("\n"))
             chosenGoals.flatten().forEach { SugarRecord.save(it) }
 
             if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true))

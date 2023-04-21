@@ -85,6 +85,7 @@ animator nav_default_pop_exit_anim
 array com_google_android_gms_fonts_certs
 array com_google_android_gms_fonts_certs_dev
 array com_google_android_gms_fonts_certs_prod
+array goalPriorities
 array preloaded_fonts
 attr SharedValue
 attr SharedValueId
@@ -2793,8 +2794,6 @@ drawable ic_arrow_back_black_24
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
-drawable ic_launcher_background
-drawable ic_launcher_foreground
 drawable ic_logo_background
 drawable ic_logo_foreground
 drawable ic_m3_chip_check
@@ -2882,6 +2881,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable popup_goal_body
+drawable popup_goal_title
 drawable popup_item
 drawable pressed_checkbox
 drawable settings_icon
@@ -3106,12 +3107,16 @@ id fullscreen_header
 id ghost_view
 id ghost_view_holder
 id goalCheckBox
-id goalWizardLabel
-id goalWizardSaveButton
+id goalWizardBody
+id goalWizardConfirmButton
+id goalWizardLayout
+id goalWizardName
+id goalWizardPriorityList
 id goalsLayout
 id gone
 id graph
 id graph_wrap
+id greetingLayout
 id group_divider
 id grouping
 id groups
@@ -3257,9 +3262,6 @@ id pathRelative
 id peekHeight
 id percent
 id pin
-id popupButtonCancel
-id popupButtonSubmit
-id popupText
 id position
 id postLayout
 id pressed
@@ -3319,6 +3321,9 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id simplePopupButtonCancel
+id simplePopupButtonSubmit
+id simplePopupText
 id sin
 id skipCollapsed
 id skipped
@@ -3375,6 +3380,8 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView2
+id textView3
 id text_gallery
 id text_input_end_icon
 id text_input_error_icon
@@ -3536,7 +3543,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_goal_wizard
+layout activity_greeting
 layout activity_main
 layout activity_splash_screen
 layout activity_welcome_form
@@ -3620,6 +3627,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout popup_goal_wizard_view
 layout popup_window_view
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
@@ -3628,8 +3636,6 @@ layout simple_goal_view
 layout support_simple_spinner_dropdown_item
 menu activity_main_drawer
 menu main
-mipmap ic_launcher
-mipmap ic_launcher_round
 mipmap ic_logo
 mipmap ic_logo_round
 navigation mobile_navigation
@@ -3662,6 +3668,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string action_settings
+string addGoal
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
@@ -3671,12 +3678,14 @@ string bottomsheet_action_expand
 string bottomsheet_action_expand_halfway
 string bottomsheet_drag_handle_clicked
 string bottomsheet_drag_handle_content_description
-string cancelDeleteGoal
+string cancelButtonText
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
-string doYouWantDeleteGoal
+string clickForContinue
+string doYouWantToCloseApp
+string doYouWantToDeleteGoal
 string dummy_button
 string dummy_content
 string emptySequence
@@ -3686,10 +3695,14 @@ string existingTarget
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string goalNameHint
 string goalPartsSeparator
+string goalPriorityHint
+string greetingNewUserText
 string hasNotGoals
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
+string incorrectGoal
 string isUserPassedInitialQuestionnaire
 string item_view_role_description
 string m3_sys_motion_easing_emphasized
@@ -3820,6 +3833,8 @@ string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string stateWasNotSave
 string status_bar_notification_info_overflow
+string submitCloseApp
+string submitCreateGoal
 string submitDeleteGoal
 string title_activity_fullscreen
 string tooSmallDelay
@@ -4929,6 +4944,7 @@ style Widget_Theme_BucketList_ActionBar_Fullscreen
 style Widget_Theme_BucketList_ButtonBar_Fullscreen
 style base_button_style
 style custom_checkbox_text
+style goal_wizard_title
 style popup_item
 style popup_window
 style splash_screen

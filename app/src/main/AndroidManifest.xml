@@ -15,6 +15,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BucketList"
             tools:targetApi="31">
+        <activity
+                android:name=".activities.GreetingActivity"
+                android:exported="false" />
 
         <meta-data
                 android:name="DATABASE"
