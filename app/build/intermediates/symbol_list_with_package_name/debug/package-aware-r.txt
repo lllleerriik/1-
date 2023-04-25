@@ -3119,10 +3119,12 @@ id ghost_view
 id ghost_view_holder
 id goalCheckBox
 id goalWizardBody
+id goalWizardCategoryList
 id goalWizardConfirmButton
 id goalWizardLayout
 id goalWizardName
 id goalWizardPriorityList
+id goalsCategoriesLayout
 id goalsLayout
 id gone
 id graph
@@ -3332,6 +3334,8 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id simpleCategoryLayout
+id simpleCategoryName
 id simplePopupButtonCancel
 id simplePopupButtonSubmit
 id simplePopupText
@@ -3643,6 +3647,7 @@ layout popup_window_view
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout simple_category_view
 layout simple_goal_view
 layout support_simple_spinner_dropdown_item
 menu activity_main_drawer
@@ -3715,7 +3720,6 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string goalNameHint
 string goalPartsSeparator
-string goalPriorityHint
 string greetingNewUserText
 string hasNotGoals
 string hide_bottom_view_on_scroll_behavior

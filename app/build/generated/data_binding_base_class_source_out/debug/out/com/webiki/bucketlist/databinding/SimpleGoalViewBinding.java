@@ -5,31 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import androidx.viewbinding.ViewBindings;
 import com.webiki.bucketlist.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
-import java.lang.String;
 
 public final class SimpleGoalViewBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CheckBox rootView;
 
   @NonNull
   public final CheckBox goalCheckBox;
 
-  private SimpleGoalViewBinding(@NonNull LinearLayout rootView, @NonNull CheckBox goalCheckBox) {
+  private SimpleGoalViewBinding(@NonNull CheckBox rootView, @NonNull CheckBox goalCheckBox) {
     this.rootView = rootView;
     this.goalCheckBox = goalCheckBox;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CheckBox getRoot() {
     return rootView;
   }
 
@@ -50,19 +47,12 @@ public final class SimpleGoalViewBinding implements ViewBinding {
 
   @NonNull
   public static SimpleGoalViewBinding bind(@NonNull View rootView) {
-    // The body of this method is generated in a way you would not otherwise write.
-    // This is done to optimize the compiled bytecode for size and performance.
-    int id;
-    missingId: {
-      id = R.id.goalCheckBox;
-      CheckBox goalCheckBox = ViewBindings.findChildViewById(rootView, id);
-      if (goalCheckBox == null) {
-        break missingId;
-      }
-
-      return new SimpleGoalViewBinding((LinearLayout) rootView, goalCheckBox);
+    if (rootView == null) {
+      throw new NullPointerException("rootView");
     }
-    String missingId = rootView.getResources().getResourceName(id);
-    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
+
+    CheckBox goalCheckBox = (CheckBox) rootView;
+
+    return new SimpleGoalViewBinding((CheckBox) rootView, goalCheckBox);
   }
 }

@@ -137,11 +137,11 @@ class WelcomeForm : AppCompatActivity() {
             answerButton.setOnClickListener {
                 chosenGoals.add(proposedGoals[pageNumber][i].map { goalTitle ->
                     val goalName = goalTitle.split(GOAL_NAME_SEPARATOR)[0]
-//                    val goalCategory = goalTitle.split(GOAL_NAME_SEPARATOR)[1]
+                    val goalCategory = goalTitle.split(GOAL_NAME_SEPARATOR)[1]
 
-                    Goal(goalName, false, GoalPriority.Middle) //, enumValues<GoalCategory>().first{it.value == goalCategory}
+                    Goal(goalName, false, GoalPriority.Middle, enumValues<GoalCategory>().first{it.value == goalCategory})
                 }.toMutableList())
-                // TODO to testing
+
                 moveOnPage(pageNumber + 1, titles, answers)
             }
 

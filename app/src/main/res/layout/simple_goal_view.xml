@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<CheckBox
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp">
-
-    <CheckBox
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/goalCheckBox"
             tools:text="Test text"
             android:paddingStart="14dp"
             android:button="@drawable/custom_checkbox"
-            android:fontFamily="@font/roboto_medium"
-            android:paddingEnd="14dp" />
+            android:fontFamily="@font/roboto"
+            android:paddingEnd="14dp"
+            android:layout_marginStart="10dp">
 
-</LinearLayout>
+</CheckBox>

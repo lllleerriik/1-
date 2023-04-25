@@ -24,12 +24,8 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/goalsLayout"></LinearLayout>
+                    android:id="@+id/goalsCategoriesLayout"></LinearLayout>
 
-            <ExpandableListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:entries="@array/goalCategories"></ExpandableListView>
         </LinearLayout>
     </ScrollView>
 

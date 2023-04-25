@@ -71,10 +71,12 @@ id closeAppButton
 id drawer_layout
 id goalCheckBox
 id goalWizardBody
+id goalWizardCategoryList
 id goalWizardConfirmButton
 id goalWizardLayout
 id goalWizardName
 id goalWizardPriorityList
+id goalsCategoriesLayout
 id goalsLayout
 id greetingLayout
 id homeFabButton
@@ -87,6 +89,8 @@ id nav_host_fragment_content_main
 id nav_motivation
 id nav_settings
 id nav_view
+id simpleCategoryLayout
+id simpleCategoryName
 id simplePopupButtonCancel
 id simplePopupButtonSubmit
 id simplePopupText
@@ -112,6 +116,7 @@ layout fragment_settings
 layout nav_header_main
 layout popup_goal_wizard_view
 layout popup_window_view
+layout simple_category_view
 layout simple_goal_view
 menu activity_main_drawer
 menu main
@@ -131,7 +136,6 @@ string emptySequence
 string existingTarget
 string goalNameHint
 string goalPartsSeparator
-string goalPriorityHint
 string greetingNewUserText
 string hasNotGoals
 string incorrectGoal

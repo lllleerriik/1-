@@ -4,12 +4,12 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\activity_welcome_form.xml"
     },
     {
-        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\basic_button.xml",
-        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\basic_button.xml"
-    },
-    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\simple_goal_view.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\simple_goal_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\basic_button.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\basic_button.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\custom_toolbar_view.xml",
@@ -28,12 +28,16 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\app_bar_main.xml"
     },
     {
-        "merged": "com.webiki.bucketlist.app-mergeDebugResources-48:/layout/fragment_home.xml",
-        "source": "com.webiki.bucketlist.app-main-51:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\simple_category_view.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\simple_category_view.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\fragment_home.xml",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "com.webiki.bucketlist.app-mergeDebugResources-48:/layout/simple_goal_view.xml",
+        "source": "com.webiki.bucketlist.app-main-51:/layout/simple_goal_view.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\nav_header_main.xml",

@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import com.webiki.bucketlist.activities.MainActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -26,7 +28,6 @@ import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
 import com.webiki.bucketlist.enums.GoalCategory
-import java.util.Locale.Category
 
 
 class HomeFragment : Fragment() {
@@ -36,10 +37,8 @@ class HomeFragment : Fragment() {
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var fab: AppCompatButton
 
-    private val CREATE_GOAL_REQUEST_CODE = 1
     private var goalsList: MutableList<Goal> = mutableListOf()
     private lateinit var topIndexesByPriority: MutableList<Int>
-    private lateinit var goalSetKey: String
 
     private lateinit var goalsLayout: LinearLayout
 
@@ -52,7 +51,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         fab = root.findViewById(R.id.homeFabButton)
         fab.setOnClickListener { handleFabClick(it) }
-        goalSetKey = getString(R.string.userGoalsSet)
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsCategoriesLayout
 
@@ -60,12 +58,13 @@ class HomeFragment : Fragment() {
             .listAll(Goal::class.java)
 
         goalsList.sortDescending()
-        
-        val priorityGroups = goalsList
+
+        goalsList = goalsList
+            .sortedBy { it.getCompleted() }
             .groupBy { g -> g.getPriority() }
             .toSortedMap(compareByDescending { it.value })
-
-        goalsList = priorityGroups.flatMap { pair -> pair.value }.toMutableList()
+            .flatMap { pair -> pair.value }
+            .toMutableList()
         
         return root
     }
@@ -97,7 +96,7 @@ class HomeFragment : Fragment() {
      */
     private fun initializeGoalLayout(
         layout: LinearLayout,
-        goals: MutableList<Goal>
+        goals: List<Goal>
     ) {
         topIndexesByPriority = mutableListOf(0, 0, 0)
         layout.removeAllViews()
@@ -111,13 +110,38 @@ class HomeFragment : Fragment() {
      * Добавляет цели в макет (LinearLayout)
      *
      * @param layout Макет для списка целей
-     * @param goals Список целей
+     * @param goalsMap Список целей
      */
     private fun addGoalsToLayout(
         layout: LinearLayout,
-        goals: MutableList<Goal>
+        goalsList: List<Goal>
     ) {
-        for (goal in goals) createCheckboxWithPosition(layout, goal)
+        goalsList
+            .sortedWith(compareBy({it.getCompleted()}, { it.getPriority().value * -1 }, {it.getCreateDate() * -1}))
+            .groupBy { it.getCategory() }
+            .toSortedMap()
+            .forEach { (category, goals) ->  addCategoryGoalsToLayout(goals, category, layout) }
+    }
+
+    /**
+     * Добавляет новую категорию в макет
+     *
+     * @param goals Список целей
+     * @param category Категория целей
+     * @param layout Макет
+     */
+    private fun addCategoryGoalsToLayout(goals: List<Goal>, category: GoalCategory, layout: LinearLayout){
+        val view = layoutInflater.inflate(R.layout.simple_category_view, layout, false)
+        val goalsLayout = view.findViewById<LinearLayout>(R.id.goalsLayout)
+        val categoryTitle = view.findViewById<TextView>(R.id.simpleCategoryName)
+
+        categoryTitle.text = category.value
+        for (goal in goals){
+            val checkbox = createCheckboxWithPosition(goalsLayout, goal)
+            Log.d("DEB", goal.getDescription())
+            goalsLayout.addView(checkbox.first, checkbox.second)
+        }
+        layout.addView(view)
     }
 
     /**
@@ -151,7 +175,7 @@ class HomeFragment : Fragment() {
         val layoutParameters = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
-        ).apply { bottomMargin = 6; topMargin = 6 }
+        ).apply { bottomMargin = 6; topMargin = 6; leftMargin = 20 }
 
         viewCheckBox.let {
             it.layoutParams = layoutParameters
@@ -173,15 +197,16 @@ class HomeFragment : Fragment() {
                 "${getString(R.string.doYouWantToDeleteGoal)}\n\n(${viewCheckBox.text})",
                 getString(R.string.submitDeleteGoal),
                 getString(R.string.cancelButtonText),
-                { val index = goalsList.indexOf(
+                {
+                    val goalIndex = goalsList.indexOf(
                         Goal(
                             viewCheckBox.text.toString(),
                             viewCheckBox.isChecked
                         )
                     )
 
-                    SugarRecord.delete(goalsList[index])
-                    goalsList.removeAt(index)
+                    SugarRecord.delete(goalsList[goalIndex])
+                    goalsList.removeAt(goalIndex)
                     initializeGoalLayout(goalsLayout, goalsList)
                 })
 
@@ -203,9 +228,8 @@ class HomeFragment : Fragment() {
         val newGoalVariation = mutableListOf(Goal(name, false, priority, category), Goal(name, true, priority, category))
 
         if (newGoalVariation.all { !goalsList.contains(it) }) {
-            goalsList.add(topIndexesByPriority[priority.value], newGoalVariation.first())
-            createCheckboxWithPosition(goalsLayout, newGoalVariation.first(),
-                topIndexesByPriority[newGoalVariation.first().getPriority().value])
+            goalsList.add(newGoalVariation.first())
+            createCheckboxWithPosition(goalsLayout, newGoalVariation.first())
         } else
             Toast.makeText(
                 context,
@@ -233,8 +257,8 @@ class HomeFragment : Fragment() {
 
         dialogButton.setOnClickListener {
             if (dialogNameInput.text.trim().isNotEmpty()
-                && (dialogPriorityList.selectedView as MaterialTextView).text.toString() != Resources.getSystem().getStringArray(R.array.goalPriorities)[0]
-                && (dialogCategoryList.selectedView as MaterialTextView).text.toString() != Resources.getSystem().getStringArray(R.array.goalCategories)[0]) {
+                && dialogPriorityList.selectedItemPosition != 0
+                && dialogCategoryList.selectedItemPosition != 0) {
 
                 val priority = when ((dialogPriorityList.selectedView as MaterialTextView).text.toString()){
                     view.context.resources.getStringArray(R.array.goalPriorities)[1] -> GoalPriority.Low
@@ -243,13 +267,14 @@ class HomeFragment : Fragment() {
                 }
 
                 val category = when ((dialogCategoryList.selectedView as MaterialTextView).text.toString()){
-                    view.context.resources.getStringArray(R.array.goalCategories)[0] -> GoalCategory.Health
-                    view.context.resources.getStringArray(R.array.goalCategories)[1] -> GoalCategory.Career
-                    view.context.resources.getStringArray(R.array.goalCategories)[2] -> GoalCategory.Finance
-                    view.context.resources.getStringArray(R.array.goalCategories)[3] -> GoalCategory.Relationships
-                    view.context.resources.getStringArray(R.array.goalCategories)[4] -> GoalCategory.FamilyAndFriends
-                    view.context.resources.getStringArray(R.array.goalCategories)[5] -> GoalCategory.Materialist
-                    view.context.resources.getStringArray(R.array.goalCategories)[6] -> GoalCategory.Selfbuilding
+                    view.context.resources.getStringArray(R.array.goalCategories)[1] -> GoalCategory.Health
+                    view.context.resources.getStringArray(R.array.goalCategories)[2] -> GoalCategory.Career
+                    view.context.resources.getStringArray(R.array.goalCategories)[3] -> GoalCategory.Finance
+                    view.context.resources.getStringArray(R.array.goalCategories)[4] -> GoalCategory.LifeBrightness
+                    view.context.resources.getStringArray(R.array.goalCategories)[5] -> GoalCategory.Relationships
+                    view.context.resources.getStringArray(R.array.goalCategories)[6] -> GoalCategory.FamilyAndFriends
+                    view.context.resources.getStringArray(R.array.goalCategories)[7] -> GoalCategory.Materialist
+                    view.context.resources.getStringArray(R.array.goalCategories)[8] -> GoalCategory.Selfbuilding
                     else -> GoalCategory.Other
                 }
 

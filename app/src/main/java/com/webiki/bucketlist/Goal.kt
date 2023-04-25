@@ -34,12 +34,14 @@ class Goal(
 
     fun getPriority(): GoalPriority { return this.priority }
 
+    fun getCategory(): GoalCategory { return this.category }
+
     override fun toString(): String {
         return label
     }
 
     public fun getDescription(): String {
-        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена; время создания (мс): $createDate; приоритет: $priority"
+        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена; время создания (мс): $createDate; приоритет: $priority; категория: $category"
     }
 
     override fun compareTo(other: Any): Int {

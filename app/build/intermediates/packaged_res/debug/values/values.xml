@@ -19,6 +19,7 @@
         <item>Здоровье</item>
         <item>Карьера</item>
         <item>Финансы</item>
+        <item>Яркость жизни</item>
         <item>Отношения</item>
         <item>Семья и друзья</item>
         <item>Материальное</item>
@@ -69,8 +70,7 @@
     <string name="emptySequence">В коллекции нет элементов</string>
     <string name="existingTarget">Такая цель уже существует!</string>
     <string name="goalNameHint">Напишите название</string>
-    <string name="goalPartsSeparator">$%$</string>
-    <string name="goalPriorityHint">Выберите приоритет</string>
+    <string name="goalPartsSeparator">$_$</string>
     <string name="greetingNewUserText">Наша команда разработала данное приложение, чтобы помочь тебе записывать, отслеживать цели и добиваться их\n\nПредлагаем пройти входное анкетирование, чтобы мы могли предложить тебе несколько целей, которые могут тебя заинтересовать</string>
     <string name="hasNotGoals">Вы не поставили ни одной цели!</string>
     <string name="incorrectGoal">Введите название цели и её приоритет!</string>
