@@ -58,6 +58,13 @@
                     android:id="@+id/goalWizardPriorityList"
                     android:entries="@array/goalPriorities"
                     android:layout_marginTop="20dp" />
+
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/goalWizardCategoryList"
+                    android:entries="@array/goalCategories"
+                    android:layout_marginTop="20dp" />
         </LinearLayout>
     </LinearLayout>
 

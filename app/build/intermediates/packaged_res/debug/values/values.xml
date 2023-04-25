@@ -14,6 +14,17 @@
             MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtWLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKkedxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjAsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/CxURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJEqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/Tgt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/yzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCEyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1SKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifKZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3WfMBEmh/9iFBDAaTCK
         </item>
     </string-array>
+    <string-array name="goalCategories">
+        <item><i>Выберите категорию</i></item>
+        <item>Здоровье</item>
+        <item>Карьера</item>
+        <item>Финансы</item>
+        <item>Отношения</item>
+        <item>Семья и друзья</item>
+        <item>Материальное</item>
+        <item>Самосовершенствование</item>
+        <item>Другое</item>
+    </string-array>
     <string-array name="goalPriorities">
         <item><i>Выберите приоритет</i></item>
         <item>Низкий</item>
@@ -38,6 +49,7 @@
     <color name="pink_light">@color/pink</color>
     <color name="purple_dark">#A276FF</color>
     <color name="purple_light">#745E96</color>
+    <color name="transparent">#00000000</color>
     <color name="violet">#38004C</color>
     <color name="white_light">#FAF8ED</color>
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -89,9 +101,6 @@
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
     <string name="unexpectedResultCode">Неожиданный код ответа</string>
     <string name="userGoalsSet">userGoalsSet</string>
-    <style name="MyActionBar" parent="Theme.BucketList">
-        <item name="android:background">?attr/colorSecondary</item>
-    </style>
     <style name="Theme.BucketList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="windowNoTitle">true</item>
         
@@ -107,7 +116,7 @@
         
         <item name="android:colorBackground">@color/beige</item>
         <item name="android:textColor">@color/black_dark</item>
-        <item name="android:actionBarTheme">@style/MyActionBar</item>
+
         <item name="android:navigationBarColor">?attr/colorSecondary</item>
     </style>
     <style name="Theme.BucketList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>

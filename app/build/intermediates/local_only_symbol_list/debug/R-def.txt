@@ -3,6 +3,7 @@ local
 array com_google_android_gms_fonts_certs
 array com_google_android_gms_fonts_certs_dev
 array com_google_android_gms_fonts_certs_prod
+array goalCategories
 array goalPriorities
 array preloaded_fonts
 attr? fullscreenBackgroundColor
@@ -20,6 +21,7 @@ color pink_dark
 color pink_light
 color purple_dark
 color purple_light
+color transparent
 color violet
 color white_light
 dimen activity_horizontal_margin
@@ -65,6 +67,7 @@ id action_nav_home_to_nav_motivation
 id action_nav_home_to_nav_settings
 id action_settings
 id app_bar_main
+id closeAppButton
 id drawer_layout
 id goalCheckBox
 id goalWizardBody
@@ -159,7 +162,6 @@ string title_activity_fullscreen
 string tooSmallDelay
 string unexpectedResultCode
 string userGoalsSet
-style MyActionBar
 style Theme.BucketList
 style Theme.BucketList.AppBarOverlay
 style Theme.BucketList.NoActionBar

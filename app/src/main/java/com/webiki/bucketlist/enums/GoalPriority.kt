@@ -1,4 +1,4 @@
-package com.webiki.bucketlist
+package com.webiki.bucketlist.enums
 
 enum class GoalPriority(var value: Int) {
     Low(0),

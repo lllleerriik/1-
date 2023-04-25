@@ -1,14 +1,11 @@
 package com.webiki.bucketlist.fragments.home
 
-import android.app.Activity
 import android.app.Dialog
-import android.app.GameManager
-import android.content.Intent
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,20 +13,20 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import com.webiki.bucketlist.activities.MainActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
-import com.webiki.bucketlist.GoalPriority
+import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
+import com.webiki.bucketlist.enums.GoalCategory
+import java.util.Locale.Category
 
 
 class HomeFragment : Fragment() {
@@ -57,7 +54,7 @@ class HomeFragment : Fragment() {
         fab.setOnClickListener { handleFabClick(it) }
         goalSetKey = getString(R.string.userGoalsSet)
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
-        goalsLayout = binding.goalsLayout
+        goalsLayout = binding.goalsCategoriesLayout
 
         goalsList = SugarRecord
             .listAll(Goal::class.java)
@@ -120,20 +117,22 @@ class HomeFragment : Fragment() {
         layout: LinearLayout,
         goals: MutableList<Goal>
     ) {
-        for (goal in goals) addGoalToLayout(layout, goal)
+        for (goal in goals) createCheckboxWithPosition(layout, goal)
     }
 
     /**
-     * Добавляет цель в макет (LinearLayout)
+     * Создаёт и возвращает чекбокс, созданный по цели
      *
      * @param layout Макет для списка целей
      * @param goal Цель
+     * @param index Номер позиции в макете для вставки чекбокса
+     * @return Пару (чекбокс, позиция в макете)
      */
-    private fun addGoalToLayout(
+    private fun createCheckboxWithPosition(
         layout: LinearLayout,
         goal: Goal,
         index: Int? = null
-    ) {
+    ) : Pair<View, Int> {
         val isCurrentThemeDay = requireContext().resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO
 
@@ -191,15 +190,21 @@ class HomeFragment : Fragment() {
 
         customCheckboxHandleClick(viewCheckBox)
 
-        layout.addView(view, index ?: layout.childCount)
+        return Pair(view, index ?: layout.childCount)
     }
 
-    private fun addGoalToStorage(name: String, priority: GoalPriority) {
-        val newGoalVariation = mutableListOf(Goal(name, false, priority), Goal(name, true, priority))
+    /**
+     * Сохраняет созданную цель
+     *
+     * @param name Название цели
+     * @param priority Приоритет цели (высокий\средний\низкий)
+     */
+    private fun addGoalToStorage(name: String, priority: GoalPriority, category: GoalCategory) {
+        val newGoalVariation = mutableListOf(Goal(name, false, priority, category), Goal(name, true, priority, category))
 
         if (newGoalVariation.all { !goalsList.contains(it) }) {
             goalsList.add(topIndexesByPriority[priority.value], newGoalVariation.first())
-            addGoalToLayout(goalsLayout, newGoalVariation.first(),
+            createCheckboxWithPosition(goalsLayout, newGoalVariation.first(),
                 topIndexesByPriority[newGoalVariation.first().getPriority().value])
         } else
             Toast.makeText(
@@ -209,11 +214,11 @@ class HomeFragment : Fragment() {
             ).show()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
+    /**
+     * Вызывает модальное окно добавления цели по имени, приоритету (и группе)
+     *
+     * @param view Fab-кнопка
+     */
     private fun handleFabClick(view: View) {
 
         val dialog = Dialog(view.context)
@@ -224,10 +229,12 @@ class HomeFragment : Fragment() {
         val dialogNameInput = dialog.window?.findViewById<EditText>(R.id.goalWizardName)!!
         val dialogButton = dialog.window?.findViewById<AppCompatButton>(R.id.goalWizardConfirmButton)!!
         val dialogPriorityList = dialog.window?.findViewById<Spinner>(R.id.goalWizardPriorityList)!!
+        val dialogCategoryList = dialog.window?.findViewById<Spinner>(R.id.goalWizardCategoryList)!!
 
-        dialogButton.setOnClickListener { _ ->
+        dialogButton.setOnClickListener {
             if (dialogNameInput.text.trim().isNotEmpty()
-                && (dialogPriorityList.selectedView as MaterialTextView).text.toString() != getString(R.string.goalPriorityHint)) {
+                && (dialogPriorityList.selectedView as MaterialTextView).text.toString() != Resources.getSystem().getStringArray(R.array.goalPriorities)[0]
+                && (dialogCategoryList.selectedView as MaterialTextView).text.toString() != Resources.getSystem().getStringArray(R.array.goalCategories)[0]) {
 
                 val priority = when ((dialogPriorityList.selectedView as MaterialTextView).text.toString()){
                     view.context.resources.getStringArray(R.array.goalPriorities)[1] -> GoalPriority.Low
@@ -235,7 +242,18 @@ class HomeFragment : Fragment() {
                     else -> GoalPriority.High
                 }
 
-                addGoalToStorage(dialogNameInput.text.toString(), priority)
+                val category = when ((dialogCategoryList.selectedView as MaterialTextView).text.toString()){
+                    view.context.resources.getStringArray(R.array.goalCategories)[0] -> GoalCategory.Health
+                    view.context.resources.getStringArray(R.array.goalCategories)[1] -> GoalCategory.Career
+                    view.context.resources.getStringArray(R.array.goalCategories)[2] -> GoalCategory.Finance
+                    view.context.resources.getStringArray(R.array.goalCategories)[3] -> GoalCategory.Relationships
+                    view.context.resources.getStringArray(R.array.goalCategories)[4] -> GoalCategory.FamilyAndFriends
+                    view.context.resources.getStringArray(R.array.goalCategories)[5] -> GoalCategory.Materialist
+                    view.context.resources.getStringArray(R.array.goalCategories)[6] -> GoalCategory.Selfbuilding
+                    else -> GoalCategory.Other
+                }
+
+                addGoalToStorage(dialogNameInput.text.toString(), priority, category)
                 dialog.dismiss()
                 initializeGoalLayout(goalsLayout, goalsList)
             } else
@@ -244,5 +262,10 @@ class HomeFragment : Fragment() {
 
         dialog.create()
         dialog.show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

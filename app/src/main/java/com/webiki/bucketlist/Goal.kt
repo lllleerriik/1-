@@ -1,25 +1,28 @@
 package com.webiki.bucketlist
 
-import android.app.Application
 import com.orm.SugarRecord
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Date
+import com.webiki.bucketlist.enums.GoalCategory
+import com.webiki.bucketlist.enums.GoalPriority
 
+/**
+ * Класс, описывающий цель
+ *
+ * @param label Название цели
+ * @param isCompleted Выполнена ли цель
+ * @param createDate Время создания цели (мс)
+ * @param priority Приоритет цели
+ */
 class Goal(
     private var label: String,
     private var isCompleted: Boolean,
     private var createDate: Long,
-    private var priority: GoalPriority
+    private var priority: GoalPriority,
+    private var category: GoalCategory
     ) : SugarRecord(), Comparable<Any> {
-    public constructor()
-            : this("", false, 0, GoalPriority.Middle)
-    public constructor(newGoal: Goal)
-            : this(newGoal.label, newGoal.isCompleted, newGoal.createDate, newGoal.priority)
-    public constructor(label: String, isCompleted: Boolean)
-            : this(label, isCompleted, System.currentTimeMillis(), GoalPriority.Middle)
-    public constructor(label: String, isCompleted: Boolean, priority: GoalPriority)
-            : this(label, isCompleted, System.currentTimeMillis(), priority)
+    constructor()
+            : this("", false, 0, GoalPriority.Middle, GoalCategory.Other)
+    constructor(label: String, isCompleted: Boolean, priority: GoalPriority = GoalPriority.Middle, category: GoalCategory = GoalCategory.Other)
+            : this(label, isCompleted, System.currentTimeMillis(), priority, category)
 
     fun getCompleted(): Boolean { return this.isCompleted }
 

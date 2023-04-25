@@ -315,9 +315,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="777575" />
-                            <entry key="outputName" value="baseline_check_circle_24" />
-                            <entry key="sourceFile" value="C:\Users\79823\Desktop\pressed_checkbox.svg" />
+                            <entry key="outputName" value="custom_toolbar_background_night" />
+                            <entry key="sourceFile" value="C:\Users\79823\Desktop\custom_toolbar_background_night.svg" />
                           </map>
                         </option>
                       </PersistentState>

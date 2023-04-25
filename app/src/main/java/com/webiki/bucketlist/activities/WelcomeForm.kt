@@ -11,9 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
-import com.webiki.bucketlist.GoalPriority
+import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
+import com.webiki.bucketlist.enums.GoalCategory
 import org.json.JSONArray
 import java.util.*
 import kotlin.math.ceil
@@ -34,6 +35,7 @@ class WelcomeForm : AppCompatActivity() {
 
     private var currentPage = 0
     private val TRANSITION_DELAY = 200L
+    private val GOAL_NAME_SEPARATOR = "\$_$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +70,6 @@ class WelcomeForm : AppCompatActivity() {
      * Инициализирует поля вопросов анкеты: заголовок, ответы и т.д.
      *
      * @param titles Список заголовков
-     * @param descriptions Список описаний
      * @param answerVariants Список вариантов ответа
      */
     private fun <T> parseFromJsonQuestionData(
@@ -111,9 +112,7 @@ class WelcomeForm : AppCompatActivity() {
     /** Заменяет заголовок, описание, (картинку), список вариантов ответов на n-ные
      * @param pageNumber Номер страницы (с 0)
      * @param titles Список заголовков
-     * @param descriptions Список описаний
      * @param answers Список вариантов ответа
-     * @param transitionSpeed Скорость перехода на новую страницу
      * @exception ArrayIndexOutOfBoundsException Если номер страницы меньше либо равен длине переданной коллекции
      */
     private fun <T> switchQuestionData(
@@ -136,7 +135,13 @@ class WelcomeForm : AppCompatActivity() {
             }
 
             answerButton.setOnClickListener {
-                chosenGoals.add(proposedGoals[pageNumber][i].map { goalName -> Goal(goalName, false, GoalPriority.Middle) }.toMutableList())
+                chosenGoals.add(proposedGoals[pageNumber][i].map { goalTitle ->
+                    val goalName = goalTitle.split(GOAL_NAME_SEPARATOR)[0]
+//                    val goalCategory = goalTitle.split(GOAL_NAME_SEPARATOR)[1]
+
+                    Goal(goalName, false, GoalPriority.Middle) //, enumValues<GoalCategory>().first{it.value == goalCategory}
+                }.toMutableList())
+                // TODO to testing
                 moveOnPage(pageNumber + 1, titles, answers)
             }
 

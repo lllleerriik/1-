@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/simpleCategoryLayout">
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/simpleCategoryName"
+            tools:text="Example category"
+            android:paddingStart="14dp"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingEnd="14dp"
+            android:textSize="20dp"
+            android:gravity="center_vertical" />
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/goalsLayout"></LinearLayout>
+</LinearLayout>

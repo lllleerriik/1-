@@ -40,6 +40,13 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+        binding.closeAppButton.setOnClickListener { createModalWindow(
+            this,
+            getString(R.string.doYouWantToCloseApp),
+            getString(R.string.submitCloseApp),
+            getString(R.string.cancelButtonText),
+            { finish() }
+        ) }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -73,7 +80,17 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-
+/**
+ * Создаёт модальное окно по макету popup_window_view
+ *
+ * @param ctx Контекст создания окна
+ * @param messageText Текст главного текста окна
+ * @param confirmButtonText Текст на кнопке положительного ответа
+ * @param cancelButtonText Текст на кнопке отрицательного ответа
+ * @param confirmButtonHandler Обработчик положительного ответа
+ * @param cancelButtonHandler Обработчик отрицательного ответа
+ *
+ */
     internal fun createModalWindow(
         ctx: Context,
         messageText: String,
