@@ -1,5 +1,6 @@
 package com.webiki.bucketlist.activities
 
+import android.app.DownloadManager.Request
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -171,8 +172,10 @@ class WelcomeForm : AppCompatActivity() {
             SugarRecord.deleteAll(Goal::class.java)
             chosenGoals.flatten().forEach { SugarRecord.save(it) }
 
-            if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true))
+            if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)) {
                 startActivity(Intent(this, MainActivity::class.java))
+                finishActivity(RESULT_OK)
+            }
             else
                 throw IllegalStateException(getString(R.string.stateWasNotSave))
         }
