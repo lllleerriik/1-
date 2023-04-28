@@ -11,8 +11,8 @@ android {
         applicationId "com.webiki.bucketlist"
         minSdk 26
         targetSdk 33
-        versionCode 4
-        versionName "0.3"
+        versionCode 5
+        versionName "0.3.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
