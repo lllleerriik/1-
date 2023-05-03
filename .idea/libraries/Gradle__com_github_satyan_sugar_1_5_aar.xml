@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.satyan:sugar:1.5@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2593fec7f71cb9b1b1f52eae2ab0e523/transformed/sugar-1.5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2593fec7f71cb9b1b1f52eae2ab0e523/transformed/sugar-1.5/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/655d8b3d22adb4796f87e0a571964152/transformed/sugar-1.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/655d8b3d22adb4796f87e0a571964152/transformed/sugar-1.5/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.satyan/sugar/1.5/514daaf0c68f315441bee8acebffd81e116a7f/sugar-1.5-javadoc.jar!/" />
