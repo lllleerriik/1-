@@ -32,6 +32,11 @@
         <item>Средний</item>
         <item>Высокий</item>
     </string-array>
+    <string-array name="goalProgress">
+        <item>Все</item>
+        <item>Активные</item>
+        <item>Достигнутые</item>
+    </string-array>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/roboto</item>
         <item>@font/roboto_medium</item>
@@ -62,7 +67,10 @@
     <string name="addGoal">Добавьте цель</string>
     <string name="app_name">Bucket List</string>
     <string name="cancelButtonText">Отмена</string>
+    <string name="chosenFilterKey">CHOSEN_FILTER_KEY</string>
     <string name="clickForContinue"><u>Нажмите, чтоб приступить к анкетированию</u></string>
+    <string name="collapsedCategoriesKey">COLLAPSED_CATEGORIES_KEY</string>
+    <string name="display">Выберите вариант отображения целей:</string>
     <string name="doYouWantToCloseApp">Вы уверены, что хотите выйти из приложения?</string>
     <string name="doYouWantToDeleteGoal"><b>Вы хотите удалить данную цель?</b></string>
     <string name="dummy_button">Dummy Button</string>
@@ -73,7 +81,7 @@
     <string name="goalPartsSeparator">$_$</string>
     <string name="greetingNewUserText">Наша команда разработала данное приложение, чтобы помочь тебе записывать, отслеживать цели и добиваться их\n\nПредлагаем пройти входное анкетирование, чтобы мы могли предложить тебе несколько целей, которые могут тебя заинтересовать</string>
     <string name="hasNotGoals">Вы не поставили ни одной цели!</string>
-    <string name="incorrectGoal">Введите название цели и её приоритет!</string>
+    <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
     <string name="menu_home">Цели</string>
     <string name="menu_motivation">Мотивация</string>

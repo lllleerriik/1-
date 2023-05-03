@@ -4,6 +4,7 @@ package com.webiki.bucketlist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,10 +23,14 @@ public final class FragmentMotivationBinding implements ViewBinding {
   @NonNull
   public final TextView textGallery;
 
+  @NonNull
+  public final WebView videoView;
+
   private FragmentMotivationBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView textGallery) {
+      @NonNull TextView textGallery, @NonNull WebView videoView) {
     this.rootView = rootView;
     this.textGallery = textGallery;
+    this.videoView = videoView;
   }
 
   @Override
@@ -61,7 +66,13 @@ public final class FragmentMotivationBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentMotivationBinding((ConstraintLayout) rootView, textGallery);
+      id = R.id.videoView;
+      WebView videoView = ViewBindings.findChildViewById(rootView, id);
+      if (videoView == null) {
+        break missingId;
+      }
+
+      return new FragmentMotivationBinding((ConstraintLayout) rootView, textGallery, videoView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

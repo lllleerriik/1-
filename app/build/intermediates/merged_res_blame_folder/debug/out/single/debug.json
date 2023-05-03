@@ -8,6 +8,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\menu\\main.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable_minus_icon.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\minus_icon.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable_popup_goal_title.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\popup_goal_title.xml"
     },
@@ -200,6 +204,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\mipmap-xxhdpi\\ic_logo.png"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable_category_label_background.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\category_label_background.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable_ic_menu_gallery.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\ic_menu_gallery.xml"
     },
@@ -260,6 +268,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\ic_logo_background.xml"
     },
     {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\anim_goals_category_list_collapse_animation.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\anim\\goals_category_list_collapse_animation.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable-night_fab_background.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable-night\\fab_background.xml"
     },
@@ -272,16 +284,16 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\popup_goal_body.xml"
     },
     {
-        "merged": "com.webiki.bucketlist.app-merged_res-49:/layout_simple_goal_view.xml.flat",
-        "source": "com.webiki.bucketlist.app-main-51:/layout/simple_goal_view.xml"
-    },
-    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\layout_fragment_home.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable_custom_actionbar.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\custom_actionbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable-night_category_label_background.xml.flat",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable-night\\category_label_background.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\font_aladin.ttf.flat",
@@ -318,6 +330,10 @@
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\drawable_fab_background.xml.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\drawable\\fab_background.xml"
+    },
+    {
+        "merged": "com.webiki.bucketlist.app-merged_res-49:/drawable-night_category_label_background.xml.flat",
+        "source": "com.webiki.bucketlist.app-main-51:/drawable-night/category_label_background.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-49:\\layout_activity_main.xml.flat",

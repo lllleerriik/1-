@@ -1,10 +1,12 @@
 R_DEF: Internal format may change without notice
 local
+anim goals_category_list_collapse_animation
 array com_google_android_gms_fonts_certs
 array com_google_android_gms_fonts_certs_dev
 array com_google_android_gms_fonts_certs_prod
 array goalCategories
 array goalPriorities
+array goalProgress
 array preloaded_fonts
 attr? fullscreenBackgroundColor
 attr? fullscreenTextColor
@@ -31,6 +33,7 @@ dimen nav_header_height
 dimen nav_header_vertical_spacing
 drawable add_icon
 drawable basic_button
+drawable category_label_background
 drawable checked_checkbox
 drawable custom_actionbar
 drawable custom_checkbox
@@ -45,6 +48,7 @@ drawable ic_menu_gallery
 drawable ic_menu_slideshow
 drawable logo
 drawable logo_round
+drawable minus_icon
 drawable motivation_icon
 drawable popup_goal_body
 drawable popup_goal_title
@@ -78,6 +82,7 @@ id goalWizardName
 id goalWizardPriorityList
 id goalsCategoriesLayout
 id goalsLayout
+id goalsProgressSpinner
 id greetingLayout
 id homeFabButton
 id imageView
@@ -89,6 +94,8 @@ id nav_host_fragment_content_main
 id nav_motivation
 id nav_settings
 id nav_view
+id simpleCategoryImage
+id simpleCategoryLabel
 id simpleCategoryLayout
 id simpleCategoryName
 id simplePopupButtonCancel
@@ -97,9 +104,11 @@ id simplePopupText
 id textView
 id textView2
 id textView3
+id textView5
 id text_gallery
 id text_slideshow
 id toolbar
+id videoView
 id welcomeFormAnswers
 id welcomeFormProgressBar
 id welcomeFormTitle
@@ -127,7 +136,10 @@ string action_settings
 string addGoal
 string app_name
 string cancelButtonText
+string chosenFilterKey
 string clickForContinue
+string collapsedCategoriesKey
+string display
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
 string dummy_button

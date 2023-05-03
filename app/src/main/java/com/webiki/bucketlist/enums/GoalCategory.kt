@@ -1,13 +1,13 @@
 package com.webiki.bucketlist.enums
 
-enum class GoalCategory(var value: String) {
-    Health("Здоровье"),
-    Career("Карьера"),
-    Finance("Финансы"),
-    LifeBrightness("Яркость жизни"),
-    Relationships("Отношения"),
-    FamilyAndFriends("Семья и друзья"),
-    Materialist("Материальное"),
-    Selfbuilding("Самосовершенствование"),
-    Other("Другое")
+enum class GoalCategory(var value: String, var position: Int) {
+    Health("Здоровье", 10),
+    Career("Карьера", 11),
+    Finance("Финансы", 12),
+    LifeBrightness("Яркость жизни", 13),
+    Relationships("Отношения", 14),
+    FamilyAndFriends("Семья и друзья", 15),
+    Materialist("Материальное", 16),
+    Selfbuilding("Самосовершенствование", 17),
+    Other("Другое", 18)
 }

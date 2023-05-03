@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -24,13 +26,22 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final LinearLayout goalsCategoriesLayout;
 
   @NonNull
+  public final Spinner goalsProgressSpinner;
+
+  @NonNull
   public final AppCompatButton homeFabButton;
 
+  @NonNull
+  public final TextView textView5;
+
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LinearLayout goalsCategoriesLayout, @NonNull AppCompatButton homeFabButton) {
+      @NonNull LinearLayout goalsCategoriesLayout, @NonNull Spinner goalsProgressSpinner,
+      @NonNull AppCompatButton homeFabButton, @NonNull TextView textView5) {
     this.rootView = rootView;
     this.goalsCategoriesLayout = goalsCategoriesLayout;
+    this.goalsProgressSpinner = goalsProgressSpinner;
     this.homeFabButton = homeFabButton;
+    this.textView5 = textView5;
   }
 
   @Override
@@ -66,14 +77,26 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.goalsProgressSpinner;
+      Spinner goalsProgressSpinner = ViewBindings.findChildViewById(rootView, id);
+      if (goalsProgressSpinner == null) {
+        break missingId;
+      }
+
       id = R.id.homeFabButton;
       AppCompatButton homeFabButton = ViewBindings.findChildViewById(rootView, id);
       if (homeFabButton == null) {
         break missingId;
       }
 
+      id = R.id.textView5;
+      TextView textView5 = ViewBindings.findChildViewById(rootView, id);
+      if (textView5 == null) {
+        break missingId;
+      }
+
       return new FragmentHomeBinding((ConstraintLayout) rootView, goalsCategoriesLayout,
-          homeFabButton);
+          goalsProgressSpinner, homeFabButton, textView5);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

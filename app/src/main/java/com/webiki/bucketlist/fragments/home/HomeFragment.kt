@@ -1,8 +1,8 @@
 package com.webiki.bucketlist.fragments.home
 
+import android.app.ActionBar.LayoutParams
 import android.app.Dialog
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,37 +10,43 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import com.webiki.bucketlist.activities.MainActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
-import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
+import com.webiki.bucketlist.activities.MainActivity
 import com.webiki.bucketlist.databinding.FragmentHomeBinding
 import com.webiki.bucketlist.enums.GoalCategory
+import com.webiki.bucketlist.enums.GoalPriority
+import com.webiki.bucketlist.enums.GoalProgress
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var fab: AppCompatButton
+    private lateinit var goalsProgressSpinner: Spinner
+    private lateinit var goalsLayout: LinearLayout
 
     private var goalsList: MutableList<Goal> = mutableListOf()
     private lateinit var topIndexesByPriority: MutableList<Int>
-
-    private lateinit var goalsLayout: LinearLayout
+    private var collapsedGoalCategories: MutableSet<Int> = mutableSetOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +56,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         fab = root.findViewById(R.id.homeFabButton)
+        goalsProgressSpinner = root.findViewById(R.id.goalsProgressSpinner)
         fab.setOnClickListener { handleFabClick(it) }
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsCategoriesLayout
@@ -65,13 +72,14 @@ class HomeFragment : Fragment() {
             .toSortedMap(compareByDescending { it.value })
             .flatMap { pair -> pair.value }
             .toMutableList()
-        
+
         return root
     }
 
     override fun onResume() {
         super.onResume()
 
+        goalsProgressSpinner.onItemSelectedListener = this
         initializeGoalLayout(goalsLayout, goalsList)
 
         if (goalsList.isEmpty()) Snackbar.make(
@@ -79,11 +87,29 @@ class HomeFragment : Fragment() {
             getString(R.string.hasNotGoals),
             Snackbar.LENGTH_LONG
         ).show()
+
+        val chosenFilterValueFromStorage = storageHelper.getIntFromStorage(getString(R.string.chosenFilterKey), -1)
+        val collapsedCategoriesFromStorage = storageHelper.getStringSetFromStorage(getString(R.string.collapsedCategoriesKey))
+        if (chosenFilterValueFromStorage != -1) goalsProgressSpinner.setSelection(chosenFilterValueFromStorage)
+
+        collapsedGoalCategories.addAll(collapsedCategoriesFromStorage.map { it.toInt()})
     }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        when(position) {
+            GoalProgress.All.value -> initializeGoalLayout(goalsLayout, goalsList)
+            GoalProgress.Active.value -> initializeGoalLayout(goalsLayout, goalsList.filter { !it.getCompleted() })
+            GoalProgress.Completed.value -> initializeGoalLayout(goalsLayout, goalsList.filter { it.getCompleted() })
+        }
+        storageHelper.addIntToStorage(getString(R.string.chosenFilterKey), position)
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     override fun onPause() {
         super.onPause()
 
+        storageHelper.addStringSetToStorage(getString(R.string.collapsedCategoriesKey), collapsedGoalCategories.map { it.toString() })
         SugarRecord.deleteAll(Goal::class.java)
         goalsList.forEach { it.save() }
     }
@@ -103,6 +129,7 @@ class HomeFragment : Fragment() {
         addGoalsToLayout(layout, goals)
         for (i in goalsList.size - 1 downTo 0)
             topIndexesByPriority[goalsList[i].getPriority().value] = i
+        changeGoalCategoryDisplay(collapsedGoalCategories)
         // reversing list index and decrement 1 for get previous position
     }
 
@@ -120,7 +147,7 @@ class HomeFragment : Fragment() {
             .sortedWith(compareBy({it.getCompleted()}, { it.getPriority().value * -1 }, {it.getCreateDate() * -1}))
             .groupBy { it.getCategory() }
             .toSortedMap()
-            .forEach { (category, goals) ->  addCategoryGoalsToLayout(goals, category, layout) }
+            .forEach { (category, goals) ->  addCategoryGoalsToLayout(goals, category, layout, collapsedGoalCategories) }
     }
 
     /**
@@ -130,18 +157,64 @@ class HomeFragment : Fragment() {
      * @param category Категория целей
      * @param layout Макет
      */
-    private fun addCategoryGoalsToLayout(goals: List<Goal>, category: GoalCategory, layout: LinearLayout){
+    private fun addCategoryGoalsToLayout(
+        goals: List<Goal>,
+        category: GoalCategory,
+        layout: LinearLayout,
+        collapseCategoryIndexes: Set<Int>
+    ){
         val view = layoutInflater.inflate(R.layout.simple_category_view, layout, false)
-        val goalsLayout = view.findViewById<LinearLayout>(R.id.goalsLayout)
+        val goalsInCategoryLayout = view.findViewById<LinearLayout>(R.id.goalsLayout)
+        val goalCategoryLabel = view.findViewById<LinearLayout>(R.id.simpleCategoryLabel)
+        val goalCategoryIcon = view.findViewById<ImageView>(R.id.simpleCategoryImage)
         val categoryTitle = view.findViewById<TextView>(R.id.simpleCategoryName)
+        var isCategoryOpened = !collapseCategoryIndexes.map{it % 10}.contains(layout.childCount)
 
+        view.tag = category.position % 10
         categoryTitle.text = category.value
+
         for (goal in goals){
-            val checkbox = createCheckboxWithPosition(goalsLayout, goal)
-            Log.d("DEB", goal.getDescription())
-            goalsLayout.addView(checkbox.first, checkbox.second)
+            val checkbox = createCheckboxWithPosition(goalsInCategoryLayout, goal)
+            goalsInCategoryLayout.addView(checkbox.first, checkbox.second)
         }
+
+        goalCategoryLabel.setOnClickListener {
+            changeGoalCategoryDisplay(isCategoryOpened, category, goalCategoryIcon, goalsInCategoryLayout)
+            isCategoryOpened = !isCategoryOpened
+        }
+        
         layout.addView(view)
+    }
+    
+    private fun changeGoalCategoryDisplay(
+        isOpened: Boolean,
+        category: GoalCategory,
+        icon: ImageView,
+        layout: LinearLayout
+    ) {
+        icon.background = getDrawable(requireContext(),
+            if (isOpened) R.drawable.add_icon
+            else R.drawable.minus_icon
+        )
+        layout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+            if (isOpened) 0
+            else LayoutParams.WRAP_CONTENT
+        )
+        if (isOpened) collapsedGoalCategories.add(category.position)
+        else collapsedGoalCategories.remove(category.position)
+        Log.d("DEB", collapsedGoalCategories.toString())
+    }
+
+    private fun changeGoalCategoryDisplay(collapseCategoryIndexes: Set<Int>){
+        val categoriesInLayout = goalsLayout.children.toList()
+        val indexes = collapsedGoalCategories.map { it  % 10 }
+
+        for (i in categoriesInLayout.indices)
+            if (indexes.contains(categoriesInLayout[i].tag.toString().toInt())){
+                val categoryItem = categoriesInLayout[i] as LinearLayout;
+                categoryItem.findViewById<ImageView>(R.id.simpleCategoryImage).background = getDrawable(requireContext(), R.drawable.add_icon)
+                categoryItem.findViewById<LinearLayout>(R.id.goalsLayout).layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
+            }
     }
 
     /**
@@ -190,6 +263,8 @@ class HomeFragment : Fragment() {
             goalsList
                 .find { goal -> goal.getLabel() == viewCheckBox.text.toString() }!!
                 .setCompleted(viewCheckBox.isChecked)
+
+            initializeGoalLayout(goalsLayout, goalsList) //FIXME may be reason for long response on click
         }
         viewCheckBox.setOnLongClickListener {
             (activity as MainActivity).createModalWindow(

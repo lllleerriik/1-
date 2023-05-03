@@ -24,11 +24,12 @@
     <string name="submitCreateGoal">Сохранить</string>
     <string name="submitCloseApp">Выйти</string>
     <string name="cancelButtonText">Отмена</string>
+    <string name="display">Выберите вариант отображения целей:</string>
     <string name="clickForContinue"><u>Нажмите, чтоб приступить к анкетированию</u></string>
     <string name="greetingNewUserText">Наша команда разработала данное приложение, чтобы помочь тебе записывать, отслеживать цели и добиваться их\n\nПредлагаем пройти входное анкетирование, чтобы мы могли предложить тебе несколько целей, которые могут тебя заинтересовать</string>
     <string name="addGoal">Добавьте цель</string>
     <string name="goalNameHint">Напишите название</string>
-    <string name="incorrectGoal">Введите название цели и её приоритет!</string>
+    <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
 
     <string-array name="goalPriorities">
         <item><i>Выберите приоритет</i></item>
@@ -49,6 +50,12 @@
         <item>Самосовершенствование</item>
         <item>Другое</item>
     </string-array>
+
+    <string-array name="goalProgress">
+        <item>Все</item>
+        <item>Активные</item>
+        <item>Достигнутые</item>
+    </string-array>
     <!-- endregion -->
 
     <!-- region LOGIC CODE -->
@@ -65,6 +72,8 @@
     <string name="questionsTitleKey">title</string>
     <string name="questionsAnswersKey">answers</string>
     <string name="questionsGoalsKey">goals</string>
+    <string name="chosenFilterKey">CHOSEN_FILTER_KEY</string>
+    <string name="collapsedCategoriesKey">COLLAPSED_CATEGORIES_KEY</string>
     <string name="questionsFileName">Questionnaire.json</string>
     <string name="motivationPhrasesFileName">MotivationPhrases.json</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>

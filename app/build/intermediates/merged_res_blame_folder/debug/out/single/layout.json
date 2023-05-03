@@ -32,12 +32,12 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\simple_category_view.xml"
     },
     {
-        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\fragment_home.xml"
+        "merged": "com.webiki.bucketlist.app-mergeDebugResources-48:/layout/simple_category_view.xml",
+        "source": "com.webiki.bucketlist.app-main-51:/layout/simple_category_view.xml"
     },
     {
-        "merged": "com.webiki.bucketlist.app-mergeDebugResources-48:/layout/simple_goal_view.xml",
-        "source": "com.webiki.bucketlist.app-main-51:/layout/simple_goal_view.xml"
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-51:\\layout\\fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-48:\\layout\\nav_header_main.xml",
