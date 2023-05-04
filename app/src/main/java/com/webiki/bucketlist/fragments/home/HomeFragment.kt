@@ -356,6 +356,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 addGoalToStorage(dialogNameInput.text.toString(), priority, category)
                 dialog.dismiss()
                 initializeGoalLayout(goalsLayout, goalsList)
+                onItemSelected(null, null, goalsProgressSpinner.selectedItemPosition, 0)
             } else
                 Toast.makeText(requireContext(), getString(R.string.incorrectGoal), Toast.LENGTH_LONG).show()
         }
