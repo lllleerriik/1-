@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.home.HomeFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.home.HomeFragment">
 
     <ScrollView
             android:layout_width="match_parent"
@@ -21,10 +21,41 @@
                 android:orientation="vertical">
 
             <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                <TextView
+                        android:text="@string/display"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView5"
+                        android:layout_weight="3"
+                        android:gravity="center_horizontal"
+                        android:textSize="20sp" />
+
+                <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/goalsProgressSpinner"
+                        android:layout_weight="4"
+                        android:entries="@array/goalProgress"
+                        android:backgroundTintMode="add"
+                        android:background="@drawable/category_label_background"
+                        android:padding="7dp"
+                        android:layout_marginRight="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/goalsLayout"></LinearLayout>
+                    android:id="@+id/goalsCategoriesLayout"></LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

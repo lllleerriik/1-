@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-48:/values-v18/values-v18.xml",
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-47:/values-v18/values-v18.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\800b6b5f4a117c466e52b521ae498ed5\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "48",
-                        "endOffsets": "99"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\00ac0ed43bfe84a0d9b07f0462f650a3\\transformed\\core-1.5.0\\res\\values-v18\\values.xml",
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\b9c6bfb252fe3235c1756161ad11a086\\transformed\\core-1.5.0\\res\\values-v18\\values.xml",
                     "from": {
                         "startLines": "4,12",
                         "startColumns": "0,0",
@@ -30,6 +20,16 @@
                         "endLines": "10,18",
                         "endColumns": "8,8",
                         "endOffsets": "519,937"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\678ac082474fe5fe1e0e16889c26f38f\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
                     }
                 }
             ]

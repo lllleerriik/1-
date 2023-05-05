@@ -10,7 +10,8 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="50dp"
-        android:paddingBottom="70dp">
+        android:paddingBottom="20dp"
+        style="@style/welcome_form">
 
     <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -21,7 +22,7 @@
 
     <TextView
             android:layout_width="wrap_content"
-            android:layout_height="270dp"
+            android:layout_height="200dp"
             android:id="@+id/welcomeFormTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,8 +42,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/welcomeFormAnswers"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="410dp">
+            tools:layout_editor_absoluteY="410dp"
+            android:layout_weight="1">
+
 
     </LinearLayout>
-
 </LinearLayout>

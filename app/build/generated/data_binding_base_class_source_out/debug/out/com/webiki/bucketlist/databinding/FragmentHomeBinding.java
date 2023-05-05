@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -21,16 +23,25 @@ public final class FragmentHomeBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final LinearLayout goalsLayout;
+  public final LinearLayout goalsCategoriesLayout;
+
+  @NonNull
+  public final Spinner goalsProgressSpinner;
 
   @NonNull
   public final AppCompatButton homeFabButton;
 
-  private FragmentHomeBinding(@NonNull ConstraintLayout rootView, @NonNull LinearLayout goalsLayout,
-      @NonNull AppCompatButton homeFabButton) {
+  @NonNull
+  public final TextView textView5;
+
+  private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
+      @NonNull LinearLayout goalsCategoriesLayout, @NonNull Spinner goalsProgressSpinner,
+      @NonNull AppCompatButton homeFabButton, @NonNull TextView textView5) {
     this.rootView = rootView;
-    this.goalsLayout = goalsLayout;
+    this.goalsCategoriesLayout = goalsCategoriesLayout;
+    this.goalsProgressSpinner = goalsProgressSpinner;
     this.homeFabButton = homeFabButton;
+    this.textView5 = textView5;
   }
 
   @Override
@@ -60,9 +71,15 @@ public final class FragmentHomeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.goalsLayout;
-      LinearLayout goalsLayout = ViewBindings.findChildViewById(rootView, id);
-      if (goalsLayout == null) {
+      id = R.id.goalsCategoriesLayout;
+      LinearLayout goalsCategoriesLayout = ViewBindings.findChildViewById(rootView, id);
+      if (goalsCategoriesLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.goalsProgressSpinner;
+      Spinner goalsProgressSpinner = ViewBindings.findChildViewById(rootView, id);
+      if (goalsProgressSpinner == null) {
         break missingId;
       }
 
@@ -72,7 +89,14 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((ConstraintLayout) rootView, goalsLayout, homeFabButton);
+      id = R.id.textView5;
+      TextView textView5 = ViewBindings.findChildViewById(rootView, id);
+      if (textView5 == null) {
+        break missingId;
+      }
+
+      return new FragmentHomeBinding((ConstraintLayout) rootView, goalsCategoriesLayout,
+          goalsProgressSpinner, homeFabButton, textView5);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

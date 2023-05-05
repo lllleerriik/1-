@@ -4,6 +4,7 @@ package com.webiki.bucketlist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,15 +24,20 @@ public final class ActivityMainBinding implements ViewBinding {
   public final AppBarMainBinding appBarMain;
 
   @NonNull
+  public final TextView closeAppButton;
+
+  @NonNull
   public final DrawerLayout drawerLayout;
 
   @NonNull
   public final NavigationView navView;
 
   private ActivityMainBinding(@NonNull DrawerLayout rootView, @NonNull AppBarMainBinding appBarMain,
-      @NonNull DrawerLayout drawerLayout, @NonNull NavigationView navView) {
+      @NonNull TextView closeAppButton, @NonNull DrawerLayout drawerLayout,
+      @NonNull NavigationView navView) {
     this.rootView = rootView;
     this.appBarMain = appBarMain;
+    this.closeAppButton = closeAppButton;
     this.drawerLayout = drawerLayout;
     this.navView = navView;
   }
@@ -70,6 +76,12 @@ public final class ActivityMainBinding implements ViewBinding {
       }
       AppBarMainBinding binding_appBarMain = AppBarMainBinding.bind(appBarMain);
 
+      id = R.id.closeAppButton;
+      TextView closeAppButton = ViewBindings.findChildViewById(rootView, id);
+      if (closeAppButton == null) {
+        break missingId;
+      }
+
       DrawerLayout drawerLayout = (DrawerLayout) rootView;
 
       id = R.id.nav_view;
@@ -78,8 +90,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((DrawerLayout) rootView, binding_appBarMain, drawerLayout,
-          navView);
+      return new ActivityMainBinding((DrawerLayout) rootView, binding_appBarMain, closeAppButton,
+          drawerLayout, navView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

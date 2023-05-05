@@ -23,7 +23,16 @@
             app:menu="@menu/activity_main_drawer"
             android:background="?attr/colorPrimaryVariant">
         <!--            app:headerLayout="@layout/nav_header_main" TODO decomment when make account-->
-
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submitCloseApp"
+                android:layout_gravity="bottom"
+                android:textColor="@color/gray"
+                android:textSize="20dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
+                android:id="@+id/closeAppButton" />
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

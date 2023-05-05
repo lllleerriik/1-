@@ -4,13 +4,9 @@
             android:radius="1000px">
     </corners>
     <padding
-            android:bottom="5dp"
-            android:top="5dp">
+            android:bottom="20dp"
+            android:top="20dp">
     </padding>
-    <size
-            android:width="840dp"
-            android:height="160dp">
-    </size>
     <gradient
             android:startColor="@color/purple_dark"
             android:endColor="@color/purple_dark">

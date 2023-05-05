@@ -1,28 +1,22 @@
 package com.webiki.bucketlist.activities
 
+import android.app.DownloadManager.Request
 import android.content.Intent
-import android.graphics.PorterDuff
-import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
-import android.view.ContextThemeWrapper
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.marginBottom
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
+import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
+import com.webiki.bucketlist.enums.GoalCategory
 import org.json.JSONArray
-import java.lang.reflect.Type
 import java.util.*
 import kotlin.math.ceil
 
@@ -38,14 +32,17 @@ class WelcomeForm : AppCompatActivity() {
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
     private var proposedGoals: MutableList<MutableList<MutableList<String>>> = mutableListOf(mutableListOf())
-    private var chosenGoals: MutableList<MutableList<String>> = mutableListOf() // TODO change to Goal class
+    private var chosenGoals: MutableList<MutableList<Goal>> = mutableListOf()
 
     private var currentPage = 0
     private val TRANSITION_DELAY = 200L
+    private val GOAL_NAME_SEPARATOR = "\$_$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_form)
+
+        startActivity(Intent(this, GreetingActivity::class.java))
 
         mainLayout = findViewById(R.id.mainWelcomeLayout)
         title = findViewById(R.id.welcomeFormTitle)
@@ -74,7 +71,6 @@ class WelcomeForm : AppCompatActivity() {
      * Инициализирует поля вопросов анкеты: заголовок, ответы и т.д.
      *
      * @param titles Список заголовков
-     * @param descriptions Список описаний
      * @param answerVariants Список вариантов ответа
      */
     private fun <T> parseFromJsonQuestionData(
@@ -117,9 +113,7 @@ class WelcomeForm : AppCompatActivity() {
     /** Заменяет заголовок, описание, (картинку), список вариантов ответов на n-ные
      * @param pageNumber Номер страницы (с 0)
      * @param titles Список заголовков
-     * @param descriptions Список описаний
      * @param answers Список вариантов ответа
-     * @param transitionSpeed Скорость перехода на новую страницу
      * @exception ArrayIndexOutOfBoundsException Если номер страницы меньше либо равен длине переданной коллекции
      */
     private fun <T> switchQuestionData(
@@ -131,21 +125,29 @@ class WelcomeForm : AppCompatActivity() {
         if (titles.size != answers.size || titles.size <= pageNumber)
             throw ArrayIndexOutOfBoundsException(getString(R.string.pageNumberMoreThanContentSize) + " $pageNumber")
 
-        this.answersLayout.removeAllViews()
+        answersLayout.removeAllViews()
         title.text = titles[pageNumber].toString()
 
         for (i in 0 until answers[pageNumber].size) {
             val answerButton = layoutInflater.inflate(R.layout.basic_button, answersLayout, false)
 
-            answerButton.let { (it as AppCompatButton).text = answers[pageNumber][i].toString() }
+            answerButton.let {
+                (it as AppCompatButton).text = answers[pageNumber][i].toString()
+            }
 
             answerButton.setOnClickListener {
-                chosenGoals.add(proposedGoals[pageNumber][i])
+                chosenGoals.add(proposedGoals[pageNumber][i].map { goalTitle ->
+                    val goalName = goalTitle.split(GOAL_NAME_SEPARATOR)[0]
+                    val goalCategory = goalTitle.split(GOAL_NAME_SEPARATOR)[1]
+
+                    Goal(goalName, false, GoalPriority.Middle, enumValues<GoalCategory>().first{it.value == goalCategory})
+                }.toMutableList())
+
                 moveOnPage(pageNumber + 1, titles, answers)
             }
 
             progressBar.progress = ceil(100F * pageNumber / answers.size).toInt()
-            this.answersLayout.addView(answerButton)
+            answersLayout.addView(answerButton)
         }
     }
 
@@ -170,10 +172,10 @@ class WelcomeForm : AppCompatActivity() {
             SugarRecord.deleteAll(Goal::class.java)
             chosenGoals.flatten().forEach { SugarRecord.save(it) }
 
-            storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)
-
-            if (storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
+            if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)) {
                 startActivity(Intent(this, MainActivity::class.java))
+                finishActivity(RESULT_OK)
+            }
             else
                 throw IllegalStateException(getString(R.string.stateWasNotSave))
         }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_optimizationLevel="graph_wrap">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/goal_wizard_title"
+            android:id="@+id/goalWizardLayout"
+            android:background="@drawable/popup_goal_title"
+            android:backgroundTintMode="add"
+            android:padding="3dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.005">
+
+        <TextView
+                tools:text="Добавьте цель"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/simplePopupText"
+                android:paddingHorizontal="27dp"
+                android:paddingVertical="24dp"
+                android:textSize="24sp"
+                android:gravity="center"
+                style="@style/goal_wizard_title"
+                android:background="@drawable/popup_goal_title"
+                android:text="@string/addGoal" />
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/popup_goal_body"
+                android:id="@+id/goalWizardBody">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/goalWizardName"
+                    android:hint="@string/goalNameHint" />
+
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/goalWizardPriorityList"
+                    android:entries="@array/goalPriorities"
+                    android:layout_marginTop="20dp" />
+
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/goalWizardCategoryList"
+                    android:entries="@array/goalCategories"
+                    android:layout_marginTop="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/submitCreateGoal"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/goalWizardConfirmButton"
+            android:background="@drawable/popup_item"
+            android:backgroundTintMode="add"
+            android:textSize="16sp"
+            style="@style/popup_item"
+            app:layout_constraintTop_toBottomOf="@+id/goalWizardLayout"
+            android:layout_marginTop="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/goalWizardLayout"
+            app:layout_constraintVertical_bias="0.05" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.webiki.bucketlist"
-    android:versionCode="2"
-    android:versionName="0.1.1" >
+    android:versionCode="6"
+    android:versionName="0.4" >
 
     <uses-sdk
         android:minSdkVersion="26"
@@ -31,6 +31,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.BucketList" >
+        <activity
+            android:name="com.webiki.bucketlist.activities.GreetingActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="DATABASE"
             android:value="bucket_list.db" />
@@ -127,6 +131,12 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
             </intent-filter>
         </receiver>
     </application>

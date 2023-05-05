@@ -1,17 +1,28 @@
 package com.webiki.bucketlist
 
-import android.app.Application
 import com.orm.SugarRecord
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Date
+import com.webiki.bucketlist.enums.GoalCategory
+import com.webiki.bucketlist.enums.GoalPriority
 
+/**
+ * Класс, описывающий цель
+ *
+ * @param label Название цели
+ * @param isCompleted Выполнена ли цель
+ * @param createDate Время создания цели (мс)
+ * @param priority Приоритет цели
+ */
 class Goal(
     private var label: String,
-    private var isCompleted: Boolean
+    private var isCompleted: Boolean,
+    private var createDate: Long,
+    private var priority: GoalPriority,
+    private var category: GoalCategory
     ) : SugarRecord(), Comparable<Any> {
-    public constructor() : this("", false)
-    public constructor(newGoal: Goal) : this(newGoal.label, newGoal.isCompleted)
+    constructor()
+            : this("", false, 0, GoalPriority.Middle, GoalCategory.Other)
+    constructor(label: String, isCompleted: Boolean, priority: GoalPriority = GoalPriority.Middle, category: GoalCategory = GoalCategory.Other)
+            : this(label, isCompleted, System.currentTimeMillis(), priority, category)
 
     fun getCompleted(): Boolean { return this.isCompleted }
 
@@ -19,18 +30,24 @@ class Goal(
 
     fun getLabel(): String { return this.label }
 
+    fun getCreateDate(): Long { return this.createDate }
+
+    fun getPriority(): GoalPriority { return this.priority }
+
+    fun getCategory(): GoalCategory { return this.category }
+
     override fun toString(): String {
         return label
     }
 
     public fun getDescription(): String {
-        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена"
+        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена; время создания (мс): $createDate; приоритет: $priority; категория: $category"
     }
 
     override fun compareTo(other: Any): Int {
-        if (javaClass != other?.javaClass) throw IllegalArgumentException("Не цель")
+        if (javaClass != other.javaClass) throw IllegalArgumentException("Не цель")
         other as Goal
-        return this.label.compareTo(other.label)
+        return this.getCreateDate().compareTo(other.getCreateDate())
     }
 
     override fun equals(other: Any?): Boolean {
@@ -38,7 +55,8 @@ class Goal(
         if (javaClass != other?.javaClass) return false
         other as Goal
 
-        return label == other.label && isCompleted == other.isCompleted
+        return label == other.label
+                && isCompleted == other.isCompleted
     }
 
     override fun hashCode(): Int {
