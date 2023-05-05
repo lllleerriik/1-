@@ -4,7 +4,7 @@
             "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-47:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\678ac082474fe5fe1e0e16889c26f38f\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\8a44db2af8d87bf730d12c32f51aaa75\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

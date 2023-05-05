@@ -1,6 +1,5 @@
 package com.webiki.bucketlist.activities
 
-import android.app.DownloadManager.Request
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
-import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.enums.GoalCategory
+import com.webiki.bucketlist.enums.GoalPriority
 import org.json.JSONArray
 import java.util.*
 import kotlin.math.ceil
@@ -173,8 +172,8 @@ class WelcomeForm : AppCompatActivity() {
             chosenGoals.flatten().forEach { SugarRecord.save(it) }
 
             if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finishActivity(RESULT_OK)
+                startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+                finish()
             }
             else
                 throw IllegalStateException(getString(R.string.stateWasNotSave))
