@@ -1,20 +1,24 @@
 package com.webiki.bucketlist.fragments.motivation
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.MediaController
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.VideoView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.FragmentMotivationBinding
+import org.json.JSONArray
+import java.io.FileNotFoundException
+import java.io.InputStream
+import java.util.Scanner
+import kotlin.reflect.typeOf
 
 class MotivationFragment : Fragment() {
 
@@ -24,43 +28,104 @@ class MotivationFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var motivationArticlesLayout: LinearLayout
+    private var articlesList = mutableListOf(mutableListOf<String>())
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val motivationViewModel =
-            ViewModelProvider(this).get(MotivationViewModel::class.java)
-
         _binding = FragmentMotivationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        val videoView: WebView = binding.videoView
-        val videoURL = "https://www.youtube.com/watch?v=R6dk8FJkyMA"
+        motivationArticlesLayout = binding.motivationArticlesLayout
 
-        videoView.settings.javaScriptEnabled = true
-        videoView.webViewClient  = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                url: String?
-            ): Boolean {
-                if (url != null) {
-                    view?.loadUrl(url)
-                }
-                return true
-            }
-        }
-        videoView.loadData("<html><body><iframe width=\\\"320\\\" height=\\\"315\\\"\" +\n" +
-                "            \" src=\\\"https://www.youtube.com/embed/watch?v=5kbwx78zdag\\\" frameborder=\\\"0\\\" \" +\n" +
-                "            \"allowfullscreen></iframe></body></html>",
-        "text/html",
-        "utf-8")
-
-        motivationViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        articlesList =
+            getArticlesFromJson(requireContext().assets.open(getString(R.string.articlesFileName)))
+
+        addArticlesToLayout(articlesList, motivationArticlesLayout)
+    }
+
+    /**
+     * Заполняет макет статьями
+     *
+     * @param articlesList Список со статьям
+     * @param rootLayout Макет для статей
+     */
+    private fun addArticlesToLayout(
+        articlesList: MutableList<MutableList<String>>,
+        rootLayout: LinearLayout
+    ) {
+        rootLayout.removeAllViews()
+        articlesList.toList().forEach {
+//            Log.d("DEB", createArticleViewByList(it)::class.simpleName.toString())
+            rootLayout.removeView(createArticleViewByList(it))
+            rootLayout.addView(createArticleViewByList(it))
+        }
+    }
+
+    /**
+     * Создаёт и отдаёт view статьи
+     *
+     * @param articleProperties Список свойств статьи
+     * @return View статьи
+     */
+    private fun createArticleViewByList(articleProperties: MutableList<String>): View {
+        val article = layoutInflater.inflate(
+            resources.getLayout(R.layout.simple_motivation_article),
+            null,
+            true
+        )
+        val articlePreview = article.findViewById<ImageView>(R.id.simpleMotivationArticleImage)
+        val articleTitle = article.findViewById<TextView>(R.id.simpleMotivationArticleTitle)
+
+        article.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(articleProperties[0])))
+        }
+//        Log.d("DEB", resources.getIdentifier(articleProperties[1], "drawable", requireContext().packageName).toString())
+        articlePreview.setImageDrawable(
+            getDrawable(
+                requireContext(),
+                resources.getIdentifier(
+                    articleProperties[1],
+                    "drawable",
+                    requireContext().packageName
+                )
+            )
+        )
+        articleTitle.text = articleProperties[2]
+
+        return article
+    }
+
+    /**
+     * Парсит список статей из JSON-файла
+     *
+     * @param open Поток ввода json
+     * @return Список статей в формате [сылка_на_сайт, имя_файла_превью, заголовок_статьи]
+     * @exception FileNotFoundException если введён поток с некорректным именем файла
+     */
+    private fun getArticlesFromJson(open: InputStream): MutableList<MutableList<String>> {
+        val scan = Scanner(open)
+        val stringBuilder = StringBuilder()
+
+        while (scan.hasNext()) stringBuilder.append(scan.nextLine())
+        scan.close()
+
+        val jsonArray = JSONArray(stringBuilder.toString())
+
+        return (0..5).map { array ->
+            (0..2).map { line ->
+                jsonArray.getJSONArray(array).getString(line)
+            }.toMutableList()
+        }.toMutableList()
     }
 
     override fun onDestroyView() {

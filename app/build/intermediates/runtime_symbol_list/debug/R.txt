@@ -2692,6 +2692,8 @@ int dimen tooltip_precise_anchor_threshold 0x7f0702c4
 int dimen tooltip_vertical_padding 0x7f0702c5
 int dimen tooltip_y_offset_non_touch 0x7f0702c6
 int dimen tooltip_y_offset_touch 0x7f0702c7
+int drawable _mpbwigka7w 0x7f080101
+int drawable _z0f9bi45vy 0x7f080102
 int drawable abc_ab_share_pack_mtrl_alpha 0x7f080028
 int drawable abc_action_bar_item_background_material 0x7f080029
 int drawable abc_btn_borderless_material 0x7f08002a
@@ -2796,6 +2798,7 @@ int drawable design_snackbar_background 0x7f08008c
 int drawable fab_background 0x7f08008d
 int drawable fab_button 0x7f08008e
 int drawable home_icon 0x7f08008f
+int drawable i7kmkmsyuvy 0x7f080103
 int drawable ic_arrow_back_black_24 0x7f080090
 int drawable ic_call_answer 0x7f080091
 int drawable ic_call_answer_low 0x7f080092
@@ -2894,10 +2897,12 @@ int drawable notification_template_icon_bg 0x7f0800ee
 int drawable notification_template_icon_low_bg 0x7f0800ef
 int drawable notification_tile_bg 0x7f0800f0
 int drawable notify_panel_notification_icon_bg 0x7f0800f1
+int drawable ojubjfsy3vg 0x7f080104
 int drawable popup_goal_body 0x7f0800f2
 int drawable popup_goal_title 0x7f0800f3
 int drawable popup_item 0x7f0800f4
 int drawable pressed_checkbox 0x7f0800f5
+int drawable scxm9tkm8fs 0x7f080105
 int drawable settings_icon 0x7f0800f6
 int drawable side_nav_bar 0x7f0800f7
 int drawable splash_image 0x7f0800f8
@@ -2909,6 +2914,7 @@ int drawable test_level_drawable 0x7f0800fd
 int drawable tooltip_frame_dark 0x7f0800fe
 int drawable tooltip_frame_light 0x7f0800ff
 int drawable unchecked_checkbox 0x7f080100
+int drawable xubwskjrk_4 0x7f080106
 int font aladin 0x7f090000
 int font alata 0x7f090001
 int font roboto 0x7f090002
@@ -3211,6 +3217,7 @@ int id month_navigation_next 0x7f0a0125
 int id month_navigation_previous 0x7f0a0126
 int id month_title 0x7f0a0127
 int id motion_base 0x7f0a0128
+int id motivationArticlesLayout 0x7f0a0225
 int id motivationText 0x7f0a0129
 int id mtrl_anchor_parent 0x7f0a012a
 int id mtrl_calendar_day_selector_frame 0x7f0a012b
@@ -3342,6 +3349,9 @@ int id simpleCategoryImage 0x7f0a01a8
 int id simpleCategoryLabel 0x7f0a01a9
 int id simpleCategoryLayout 0x7f0a01aa
 int id simpleCategoryName 0x7f0a01ab
+int id simpleMotivationArticle 0x7f0a0226
+int id simpleMotivationArticleImage 0x7f0a0227
+int id simpleMotivationArticleTitle 0x7f0a0228
 int id simplePopupButtonCancel 0x7f0a01ac
 int id simplePopupButtonSubmit 0x7f0a01ad
 int id simplePopupText 0x7f0a01ae
@@ -3404,7 +3414,6 @@ int id textView 0x7f0a01e6
 int id textView2 0x7f0a01e7
 int id textView3 0x7f0a01e8
 int id textView5 0x7f0a01e9
-int id text_gallery 0x7f0a01ea
 int id text_input_end_icon 0x7f0a01eb
 int id text_input_error_icon 0x7f0a01ec
 int id text_input_start_icon 0x7f0a01ed
@@ -3438,7 +3447,6 @@ int id unlabeled 0x7f0a0208
 int id up 0x7f0a0209
 int id useLogo 0x7f0a020a
 int id vertical_only 0x7f0a020b
-int id videoView 0x7f0a020c
 int id view_offset_helper 0x7f0a020d
 int id view_transition 0x7f0a020e
 int id view_tree_lifecycle_owner 0x7f0a020f
@@ -3657,6 +3665,7 @@ int layout select_dialog_multichoice_material 0x7f0d0073
 int layout select_dialog_singlechoice_material 0x7f0d0074
 int layout simple_category_view 0x7f0d0075
 int layout simple_goal_view 0x7f0d0076
+int layout simple_motivation_article 0x7f0d0078
 int layout support_simple_spinner_dropdown_item 0x7f0d0077
 int menu activity_main_drawer 0x7f0f0000
 int menu main 0x7f0f0001
@@ -3696,6 +3705,7 @@ int string addGoal 0x7f13001c
 int string androidx_startup 0x7f13001d
 int string app_name 0x7f13001e
 int string appbar_scrolling_view_behavior 0x7f13001f
+int string articlesFileName 0x7f1300d1
 int string bottom_sheet_behavior 0x7f130020
 int string bottomsheet_action_collapse 0x7f130021
 int string bottomsheet_action_expand 0x7f130022
