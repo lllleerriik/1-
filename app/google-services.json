@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "585629607132",
+    "project_id": "bucket-list-eadc7",
+    "storage_bucket": "bucket-list-eadc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585629607132:android:484d510d71589825da4019",
+        "android_client_info": {
+          "package_name": "com.webiki.bucketlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585629607132-o6k2p71i5gu45p34ssu8bqej03lb8lf1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webiki.bucketlist",
+            "certificate_hash": "7530577a3e1563a0f7b0e0fb1aec45c4de31a136"
+          }
+        },
+        {
+          "client_id": "585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz1x8PwFsXKOHI2Wpespo9yjYb6WeR2oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585629607132-0h452i80h1rimqafg8g70ongbfl1u3el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

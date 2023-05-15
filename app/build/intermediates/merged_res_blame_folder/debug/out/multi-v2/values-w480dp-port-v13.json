@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-47:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-52:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\6d45e00214a547b5abd68ee39a8f4e1c\\transformed\\material-1.8.0\\res\\values-w480dp-port-v13\\values-w480dp-port-v13.xml",
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\2d78053a0d9a6e02907b41a319bfa4e6\\transformed\\material-1.9.0\\res\\values-w480dp-port-v13\\values-w480dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

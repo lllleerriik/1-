@@ -264,7 +264,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 .find { goal -> goal.getLabel() == viewCheckBox.text.toString() }!!
                 .setCompleted(viewCheckBox.isChecked)
 
-            initializeGoalLayout(goalsLayout, goalsList) //FIXME may be reason for long response on click
+            initializeGoalLayout(goalsLayout, goalsList)
         }
         viewCheckBox.setOnLongClickListener {
             (activity as MainActivity).createModalWindow(

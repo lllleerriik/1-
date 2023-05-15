@@ -305,7 +305,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/horizontal_rule/baseline_horizontal_rule_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/account_circle/baseline_account_circle_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -316,7 +316,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="faf8ed" />
-                            <entry key="outputName" value="minus_icon" />
+                            <entry key="outputName" value="ic_account_circle" />
                             <entry key="sourceFile" value="C:\Users\79823\Desktop\custom_toolbar_background_night.svg" />
                           </map>
                         </option>

@@ -31,6 +31,8 @@ dimen activity_vertical_margin
 dimen fab_margin
 dimen nav_header_height
 dimen nav_header_vertical_spacing
+drawable _mpbwigka7w
+drawable _z0f9bi45vy
 drawable add_icon
 drawable basic_button
 drawable category_label_background
@@ -41,6 +43,8 @@ drawable custom_progressbar
 drawable fab_background
 drawable fab_button
 drawable home_icon
+drawable i7kmkmsyuvy
+drawable ic_account_circle
 drawable ic_logo_background
 drawable ic_logo_foreground
 drawable ic_menu_camera
@@ -50,10 +54,12 @@ drawable logo
 drawable logo_round
 drawable minus_icon
 drawable motivation_icon
+drawable ojubjfsy3vg
 drawable popup_goal_body
 drawable popup_goal_title
 drawable popup_item
 drawable pressed_checkbox
+drawable scxm9tkm8fs
 drawable settings_icon
 drawable side_nav_bar
 drawable splash_image
@@ -62,6 +68,7 @@ drawable splash_screen
 drawable splash_screen_gradient
 drawable splash_screen_image
 drawable unchecked_checkbox
+drawable xubwskjrk_4
 font aladin
 font alata
 font roboto
@@ -88,6 +95,7 @@ id homeFabButton
 id imageView
 id mainWelcomeLayout
 id mobile_navigation
+id motivationArticlesLayout
 id motivationText
 id nav_home
 id nav_host_fragment_content_main
@@ -98,6 +106,9 @@ id simpleCategoryImage
 id simpleCategoryLabel
 id simpleCategoryLayout
 id simpleCategoryName
+id simpleMotivationArticle
+id simpleMotivationArticleImage
+id simpleMotivationArticleTitle
 id simplePopupButtonCancel
 id simplePopupButtonSubmit
 id simplePopupText
@@ -105,10 +116,8 @@ id textView
 id textView2
 id textView3
 id textView5
-id text_gallery
 id text_slideshow
 id toolbar
-id videoView
 id welcomeFormAnswers
 id welcomeFormProgressBar
 id welcomeFormTitle
@@ -127,6 +136,7 @@ layout popup_goal_wizard_view
 layout popup_window_view
 layout simple_category_view
 layout simple_goal_view
+layout simple_motivation_article
 menu activity_main_drawer
 menu main
 mipmap ic_logo
@@ -135,10 +145,12 @@ navigation mobile_navigation
 string action_settings
 string addGoal
 string app_name
+string articlesFileName
 string cancelButtonText
 string chosenFilterKey
 string clickForContinue
 string collapsedCategoriesKey
+string default_web_client_id
 string display
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
@@ -146,8 +158,13 @@ string dummy_button
 string dummy_content
 string emptySequence
 string existingTarget
+string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string greetingNewUserText
 string hasNotGoals
 string incorrectGoal
@@ -164,6 +181,7 @@ string navigation_drawer_close
 string navigation_drawer_open
 string newGoalKey
 string pageNumberMoreThanContentSize
+string project_id
 string questionsAnswersKey
 string questionsFileName
 string questionsGoalsKey
