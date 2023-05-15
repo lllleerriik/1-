@@ -75,10 +75,9 @@
     <string name="display">Выберите вариант отображения целей:</string>
     <string name="doYouWantToCloseApp">Вы уверены, что хотите выйти из приложения?</string>
     <string name="doYouWantToDeleteGoal"><b>Вы хотите удалить данную цель?</b></string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="emptySequence">В коллекции нет элементов</string>
     <string name="existingTarget">Такая цель уже существует!</string>
+    <string name="firebaseClientID">585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com</string>
     <string name="gcm_defaultSenderId" translatable="false">585629607132</string>
     <string name="goalNameHint">Напишите название</string>
     <string name="goalPartsSeparator">$_$</string>
@@ -88,8 +87,13 @@
     <string name="google_storage_bucket" translatable="false">bucket-list-eadc7.appspot.com</string>
     <string name="greetingNewUserText">Привет! Мы рады, что ты решил изменить свою жизнь! Наше приложение поможет тебе ставить цели, следить за привычками, отслеживать прогресс и сохранить мотивацию.\n\nНо перед этим пройди небольшой опрос, чтобы мы могли предложить тебе цели по твоим интересам.</string>
     <string name="hasNotGoals">Вы не поставили ни одной цели!</string>
+    <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
     <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
+    <string name="logInVariants">Вы можете зарегистрироваться или войти одним из предложенных вариантов:</string>
+    <string name="logInWithGoogle">Войти через Google</string>
+    <string name="logOut">Выйти из аккаунта</string>
+    <string name="loginWithVK">Войти через Вконтакте</string>
     <string name="menu_home">Цели</string>
     <string name="menu_motivation">Мотивация</string>
     <string name="menu_settings">Настройки</string>
@@ -107,15 +111,18 @@
     <string name="questionsFileName">Questionnaire.json</string>
     <string name="questionsGoalsKey">goals</string>
     <string name="questionsTitleKey">title</string>
+    <string name="resetProgress"><u><b>Сбросить прогресс</b></u></string>
     <string name="save_results">Сохранить результат</string>
     <string name="sharedPreferencesName">BucketList-Webiki</string>
+    <string name="skipWelcomeForm"><u>Пропустить входное анкетирование</u></string>
     <string name="stateWasNotSave">Результаты не были сохранены!</string>
     <string name="submitCloseApp">Выйти</string>
     <string name="submitCreateGoal">Сохранить</string>
     <string name="submitDeleteGoal">Удалить</string>
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
     <string name="unexpectedResultCode">Неожиданный код ответа</string>
+    <string name="userFolderInDatabase">users</string>
+    <string name="userGoalsInDatabase">userGoals</string>
     <string name="userGoalsSet">userGoalsSet</string>
     <style name="Theme.BucketList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="windowNoTitle">true</item>

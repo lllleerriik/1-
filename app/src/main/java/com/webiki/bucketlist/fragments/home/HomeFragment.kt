@@ -24,6 +24,12 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.type.DateTime
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
@@ -33,6 +39,7 @@ import com.webiki.bucketlist.databinding.FragmentHomeBinding
 import com.webiki.bucketlist.enums.GoalCategory
 import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.enums.GoalProgress
+import java.util.Calendar
 
 
 class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -47,6 +54,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var goalsList: MutableList<Goal> = mutableListOf()
     private lateinit var topIndexesByPriority: MutableList<Int>
     private var collapsedGoalCategories: MutableSet<Int> = mutableSetOf()
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,6 +80,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             .toSortedMap(compareByDescending { it.value })
             .flatMap { pair -> pair.value }
             .toMutableList()
+
+        databaseReference = Firebase.database.reference
 
         return root
     }
@@ -267,7 +277,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             initializeGoalLayout(goalsLayout, goalsList)
         }
         viewCheckBox.setOnLongClickListener {
-            (activity as MainActivity).createModalWindow(
+            MainActivity.createModalWindow(
                 requireContext(),
                 "${getString(R.string.doYouWantToDeleteGoal)}\n\n(${viewCheckBox.text})",
                 getString(R.string.submitDeleteGoal),
@@ -354,7 +364,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }
 
                 addGoalToStorage(dialogNameInput.text.toString(), priority, category)
+                saveGoalToFirebase(dialogNameInput.text.toString(), priority, category)
                 dialog.dismiss()
+
                 initializeGoalLayout(goalsLayout, goalsList)
                 onItemSelected(null, null, goalsProgressSpinner.selectedItemPosition, 0)
             } else
@@ -363,6 +375,18 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         dialog.create()
         dialog.show()
+    }
+
+    private fun saveGoalToFirebase(goalName: String, priority: GoalPriority, category: GoalCategory) {
+        val user = Firebase.auth.currentUser ?: return
+        val goal = Goal(goalName, false, Calendar.getInstance().time.time, priority, category)
+
+        databaseReference
+            .child(getString(R.string.userFolderInDatabase))
+            .child(user.uid)
+            .child(getString(R.string.userGoalsInDatabase))
+            .push()
+            .setValue(goal.parseToString())
     }
 
     override fun onDestroyView() {

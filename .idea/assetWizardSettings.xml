@@ -315,9 +315,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="faf8ed" />
-                            <entry key="outputName" value="ic_account_circle" />
-                            <entry key="sourceFile" value="C:\Users\79823\Desktop\custom_toolbar_background_night.svg" />
+                            <entry key="outputName" value="button_vk" />
+                            <entry key="sourceFile" value="F:\Download\button_vk.svg" />
                           </map>
                         </option>
                       </PersistentState>

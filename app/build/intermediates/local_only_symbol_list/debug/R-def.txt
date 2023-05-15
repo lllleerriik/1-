@@ -1,6 +1,5 @@
 R_DEF: Internal format may change without notice
 local
-anim goals_category_list_collapse_animation
 array com_google_android_gms_fonts_certs
 array com_google_android_gms_fonts_certs_dev
 array com_google_android_gms_fonts_certs_prod
@@ -47,9 +46,12 @@ drawable i7kmkmsyuvy
 drawable ic_account_circle
 drawable ic_logo_background
 drawable ic_logo_foreground
+drawable ic_logo_google
+drawable ic_logo_vk
 drawable ic_menu_camera
 drawable ic_menu_gallery
 drawable ic_menu_slideshow
+drawable load_animation
 drawable logo
 drawable logo_round
 drawable minus_icon
@@ -74,6 +76,12 @@ font alata
 font roboto
 font roboto_medium
 font ubuntu_light
+id accountButtonLogOut
+id accountButtonResetProgress
+id accountPreviewLayout
+id accountUserAvatar
+id accountUserEmail
+id accountUserName
 id action_nav_home_to_nav_motivation
 id action_nav_home_to_nav_settings
 id action_settings
@@ -90,6 +98,7 @@ id goalWizardPriorityList
 id goalsCategoriesLayout
 id goalsLayout
 id goalsProgressSpinner
+id googleSignInButton
 id greetingLayout
 id homeFabButton
 id imageView
@@ -115,13 +124,18 @@ id simplePopupText
 id textView
 id textView2
 id textView3
+id textView4
 id textView5
 id text_slideshow
 id toolbar
+id vkSignInButton
 id welcomeFormAnswers
 id welcomeFormProgressBar
+id welcomeFormSkipText
 id welcomeFormTitle
+layout activity_account
 layout activity_greeting
+layout activity_login
 layout activity_main
 layout activity_splash_screen
 layout activity_welcome_form
@@ -154,10 +168,9 @@ string default_web_client_id
 string display
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
-string dummy_button
-string dummy_content
 string emptySequence
 string existingTarget
+string firebaseClientID
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -167,8 +180,13 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
 string hasNotGoals
+string inDevProgress
 string incorrectGoal
 string isUserPassedInitialQuestionnaire
+string logInVariants
+string logInWithGoogle
+string logOut
+string loginWithVK
 string menu_home
 string menu_motivation
 string menu_settings
@@ -186,15 +204,18 @@ string questionsAnswersKey
 string questionsFileName
 string questionsGoalsKey
 string questionsTitleKey
+string resetProgress
 string save_results
 string sharedPreferencesName
+string skipWelcomeForm
 string stateWasNotSave
 string submitCloseApp
 string submitCreateGoal
 string submitDeleteGoal
-string title_activity_fullscreen
 string tooSmallDelay
 string unexpectedResultCode
+string userFolderInDatabase
+string userGoalsInDatabase
 string userGoalsSet
 style Theme.BucketList
 style Theme.BucketList.AppBarOverlay

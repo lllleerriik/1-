@@ -9,6 +9,10 @@ import android.view.animation.Animation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
@@ -25,6 +29,7 @@ class WelcomeForm : AppCompatActivity() {
     private lateinit var answersLayout: LinearLayout
     private lateinit var mainLayout: LinearLayout
     private lateinit var progressBar: ProgressBar
+    private lateinit var skipFormText: TextView
 
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
 
@@ -32,6 +37,7 @@ class WelcomeForm : AppCompatActivity() {
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
     private var proposedGoals: MutableList<MutableList<MutableList<String>>> = mutableListOf(mutableListOf())
     private var chosenGoals: MutableList<MutableList<Goal>> = mutableListOf()
+    private lateinit var databaseReference: DatabaseReference
 
     private var currentPage = 0
     private val TRANSITION_DELAY = 200L
@@ -47,6 +53,9 @@ class WelcomeForm : AppCompatActivity() {
         title = findViewById(R.id.welcomeFormTitle)
         answersLayout = findViewById(R.id.welcomeFormAnswers)
         progressBar = findViewById(R.id.welcomeFormProgressBar)
+        skipFormText = findViewById(R.id.welcomeFormSkipText)
+
+        skipFormText.setOnClickListener { closeWelcomeForm() }
 
         storageHelper = ProjectSharedPreferencesHelper(this)
 
@@ -63,6 +72,7 @@ class WelcomeForm : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        databaseReference = Firebase.database.reference
         moveOnPage(currentPage, titles, answerVariants)
     }
 
@@ -167,17 +177,19 @@ class WelcomeForm : AppCompatActivity() {
             switchQuestionData(pageNumber, questions, answers)
             // here there is current (correct) page number
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
-        } else {
-            SugarRecord.deleteAll(Goal::class.java)
-            chosenGoals.flatten().forEach { SugarRecord.save(it) }
+        } else closeWelcomeForm()
+    }
 
-            if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)) {
-                startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
-                finish()
-            }
-            else
-                throw IllegalStateException(getString(R.string.stateWasNotSave))
+    private fun closeWelcomeForm() {
+        SugarRecord.deleteAll(Goal::class.java)
+        chosenGoals.flatten().forEach { SugarRecord.save(it) }
+
+        if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)) {
+            startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+            finish()
         }
+        else
+            throw IllegalStateException(getString(R.string.stateWasNotSave))
     }
 
     /**

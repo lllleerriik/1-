@@ -1,5 +1,6 @@
 package com.webiki.bucketlist
 
+import android.util.Log
 import com.orm.SugarRecord
 import com.webiki.bucketlist.enums.GoalCategory
 import com.webiki.bucketlist.enums.GoalPriority
@@ -24,6 +25,8 @@ class Goal(
     constructor(label: String, isCompleted: Boolean, priority: GoalPriority = GoalPriority.Middle, category: GoalCategory = GoalCategory.Other)
             : this(label, isCompleted, System.currentTimeMillis(), priority, category)
 
+    val GOAL_PARTIES_SEPARATOR = "$)&"
+
     fun getCompleted(): Boolean { return this.isCompleted }
 
     fun setCompleted(flag: Boolean) { this.isCompleted = flag }
@@ -40,9 +43,24 @@ class Goal(
         return label
     }
 
-    public fun getDescription(): String {
-        return "${this.label}: ${if (this.isCompleted) "" else "не "}выполнена; время создания (мс): $createDate; приоритет: $priority; категория: $category"
+    companion object {
+        val GOAL_PARTIES_SEPARATOR = "$)&"
+        fun parseFromString(source: String): Goal {
+            val goalParties = source.split(GOAL_PARTIES_SEPARATOR)
+            Log.d("DEB", goalParties.toString())
+            return Goal(goalParties[0],
+                goalParties[1] == "true",
+                goalParties[2].toLong(),
+                enumValues<GoalPriority>().first { it.value == goalParties[3].toInt() },
+                enumValues<GoalCategory>().first { it.value == goalParties[4] })
+        }
     }
+
+    fun parseToString(): String = "$label$GOAL_PARTIES_SEPARATOR" +
+            "$isCompleted$GOAL_PARTIES_SEPARATOR" +
+            "$createDate$GOAL_PARTIES_SEPARATOR" +
+            "${priority.value}$GOAL_PARTIES_SEPARATOR" +
+            "${category.value}"
 
     override fun compareTo(other: Any): Int {
         if (javaClass != other.javaClass) throw IllegalArgumentException("Не цель")

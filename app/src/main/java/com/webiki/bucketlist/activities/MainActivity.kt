@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -17,6 +18,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
+    private lateinit var accountPreviewLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +39,25 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        supportActionBar?.setBackgroundDrawable(AppCompatResources.getDrawable(this, R.drawable.custom_actionbar))
+        supportActionBar?.setBackgroundDrawable(
+            AppCompatResources.getDrawable(
+                this,
+                R.drawable.custom_actionbar
+            )
+        )
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        binding.closeAppButton.setOnClickListener { createModalWindow(
-            this,
-            getString(R.string.doYouWantToCloseApp),
-            getString(R.string.submitCloseApp),
-            getString(R.string.cancelButtonText),
-            { finish() }
-        ) }
+        binding.closeAppButton.setOnClickListener {
+            createModalWindow(
+                this,
+                getString(R.string.doYouWantToCloseApp),
+                getString(R.string.submitCloseApp),
+                getString(R.string.cancelButtonText),
+                { finish() }
+            )
+        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -57,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        accountPreviewLayout = navView.getHeaderView(0).findViewById(R.id.accountPreviewLayout)
         storageHelper = ProjectSharedPreferencesHelper(this)
     }
 
@@ -66,7 +78,20 @@ class MainActivity : AppCompatActivity() {
 //        SugarRecord.deleteAll(Goal::class.java)
 //        storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
 
-        if (!storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
+        accountPreviewLayout.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    if (Firebase.auth.currentUser == null) LoginActivity::class.java
+                    else AccountActivity::class.java
+                )
+            )
+        }
+        if (!storageHelper.getBooleanFromStorage(
+                getString(R.string.isUserPassedInitialQuestionnaire),
+                false
+            )
+        )
             startActivity(Intent(this, WelcomeForm::class.java))
     }
 
@@ -80,51 +105,53 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-/**
- * Создаёт модальное окно по макету popup_window_view
- *
- * @param ctx Контекст создания окна
- * @param messageText Текст главного текста окна
- * @param confirmButtonText Текст на кнопке положительного ответа
- * @param cancelButtonText Текст на кнопке отрицательного ответа
- * @param confirmButtonHandler Обработчик положительного ответа
- * @param cancelButtonHandler Обработчик отрицательного ответа
- *
- */
-    internal fun createModalWindow(
-        ctx: Context,
-        messageText: String,
-        confirmButtonText: String,
-        cancelButtonText: String,
-        confirmButtonHandler: (AppCompatButton) -> Unit,
-        cancelButtonHandler: ((AppCompatButton) -> Unit)? = null
-    ) {
-        val dialog = Dialog(ctx)
+    /**
+     * Создаёт модальное окно по макету popup_window_view
+     *
+     * @param ctx Контекст создания окна
+     * @param messageText Текст главного текста окна
+     * @param confirmButtonText Текст на кнопке положительного ответа
+     * @param cancelButtonText Текст на кнопке отрицательного ответа
+     * @param confirmButtonHandler Обработчик положительного ответа
+     * @param cancelButtonHandler Обработчик отрицательного ответа
+     *
+     */
+    companion object {
+        internal fun createModalWindow(
+            ctx: Context,
+            messageText: String,
+            confirmButtonText: String,
+            cancelButtonText: String,
+            confirmButtonHandler: (AppCompatButton) -> Unit,
+            cancelButtonHandler: ((AppCompatButton) -> Unit)? = null
+        ) {
+            val dialog = Dialog(ctx)
 
-        dialog.setContentView(R.layout.popup_window_view)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setContentView(R.layout.popup_window_view)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        val dialogText = dialog.window?.findViewById<TextView>(R.id.simplePopupText)!!
-        val dialogSubmitButton =
-            dialog.window?.findViewById<AppCompatButton>(R.id.simplePopupButtonSubmit)!!
-        val dialogCancelButton =
-            dialog.window?.findViewById<AppCompatButton>(R.id.simplePopupButtonCancel)!!
+            val dialogText = dialog.window?.findViewById<TextView>(R.id.simplePopupText)!!
+            val dialogSubmitButton =
+                dialog.window?.findViewById<AppCompatButton>(R.id.simplePopupButtonSubmit)!!
+            val dialogCancelButton =
+                dialog.window?.findViewById<AppCompatButton>(R.id.simplePopupButtonCancel)!!
 
-        dialogText.text = messageText
-        dialogSubmitButton.text = confirmButtonText
-        dialogCancelButton.text = cancelButtonText
+            dialogText.text = messageText
+            dialogSubmitButton.text = confirmButtonText
+            dialogCancelButton.text = cancelButtonText
 
-        dialogSubmitButton.setOnClickListener { btn ->
-            confirmButtonHandler(btn as AppCompatButton)
-            dialog.dismiss()
+            dialogSubmitButton.setOnClickListener { btn ->
+                confirmButtonHandler(btn as AppCompatButton)
+                dialog.dismiss()
+            }
+            dialogCancelButton.setOnClickListener { btn ->
+                if (cancelButtonHandler != null) cancelButtonHandler(btn as AppCompatButton)
+                dialog.dismiss()
+            }
+
+            dialog.create()
+            dialog.show()
         }
-        dialogCancelButton.setOnClickListener { btn ->
-            if (cancelButtonHandler != null) cancelButtonHandler(btn as AppCompatButton)
-            dialog.dismiss()
-        }
-
-        dialog.create()
-        dialog.show()
     }
 
     override fun onSupportNavigateUp(): Boolean {

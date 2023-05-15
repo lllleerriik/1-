@@ -28,7 +28,6 @@ anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
 anim fragment_fast_out_extra_slow_in
-anim goals_category_list_collapse_animation
 anim linear_indeterminate_line1_head_interpolator
 anim linear_indeterminate_line1_tail_interpolator
 anim linear_indeterminate_line2_head_interpolator
@@ -3061,6 +3060,8 @@ drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_logo_background
 drawable ic_logo_foreground
+drawable ic_logo_google
+drawable ic_logo_vk
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
@@ -3072,6 +3073,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable load_animation
 drawable logo
 drawable logo_round
 drawable m3_appbar_background
@@ -3218,6 +3220,12 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accountButtonLogOut
+id accountButtonResetProgress
+id accountPreviewLayout
+id accountUserAvatar
+id accountUserEmail
+id accountUserName
 id actionDown
 id actionDownUp
 id actionUp
@@ -3385,6 +3393,7 @@ id frost
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id goalCheckBox
 id goalWizardBody
 id goalWizardCategoryList
@@ -3396,6 +3405,7 @@ id goalsCategoriesLayout
 id goalsLayout
 id goalsProgressSpinner
 id gone
+id googleSignInButton
 id graph
 id graph_wrap
 id greetingLayout
@@ -3674,6 +3684,7 @@ id textTop
 id textView
 id textView2
 id textView3
+id textView4
 id textView5
 id text_input_end_icon
 id text_input_error_icon
@@ -3716,8 +3727,10 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id vkSignInButton
 id welcomeFormAnswers
 id welcomeFormProgressBar
+id welcomeFormSkipText
 id welcomeFormTitle
 id west
 id wide
@@ -3844,7 +3857,9 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_account
 layout activity_greeting
+layout activity_login
 layout activity_main
 layout activity_splash_screen
 layout activity_welcome_form
@@ -4023,8 +4038,6 @@ string default_web_client_id
 string display
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
-string dummy_button
-string dummy_content
 string emptySequence
 string error_a11y_label
 string error_icon_content_description
@@ -4035,6 +4048,7 @@ string fab_transformation_sheet_behavior
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string firebaseClientID
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -4046,9 +4060,14 @@ string greetingNewUserText
 string hasNotGoals
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
+string inDevProgress
 string incorrectGoal
 string isUserPassedInitialQuestionnaire
 string item_view_role_description
+string logInVariants
+string logInWithGoogle
+string logOut
+string loginWithVK
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
 string m3_ref_typeface_plain_medium
@@ -4172,6 +4191,7 @@ string questionsAnswersKey
 string questionsFileName
 string questionsGoalsKey
 string questionsTitleKey
+string resetProgress
 string save_results
 string search_menu_title
 string searchbar_scrolling_view_behavior
@@ -4180,14 +4200,16 @@ string searchview_navigation_content_description
 string sharedPreferencesName
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string skipWelcomeForm
 string stateWasNotSave
 string status_bar_notification_info_overflow
 string submitCloseApp
 string submitCreateGoal
 string submitDeleteGoal
-string title_activity_fullscreen
 string tooSmallDelay
 string unexpectedResultCode
+string userFolderInDatabase
+string userGoalsInDatabase
 string userGoalsSet
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

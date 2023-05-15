@@ -47,4 +47,13 @@
 
 
     </LinearLayout>
+
+    <TextView
+            android:text="@string/skipWelcomeForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/welcomeFormSkipText"
+            android:textStyle="bold"
+            android:singleLine="false"
+            android:gravity="center" />
 </LinearLayout>

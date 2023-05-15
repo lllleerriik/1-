@@ -30,6 +30,15 @@
     <string name="addGoal">Добавьте цель</string>
     <string name="goalNameHint">Напишите название</string>
     <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
+    <string name="logInVariants">Вы можете зарегистрироваться или войти одним из предложенных вариантов:</string>
+    <string name="logInWithGoogle">Войти через Google</string>
+    <string name="loginWithVK">Войти через Вконтакте</string>
+    <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
+    <string name="skipWelcomeForm"><u>Пропустить входное анкетирование</u></string>
+    <string name="resetProgress"><u><b>Сбросить прогресс</b></u></string>
+    <string name="logOut">Выйти из аккаунта</string>
+    <string name="userGoalsInDatabase">userGoals</string>
+    <string name="userFolderInDatabase">users</string>
     <!--endregion-->
 
     <!-- region ARRAYS-->
@@ -78,8 +87,6 @@
     <string name="questionsFileName">Questionnaire.json</string>
     <string name="motivationPhrasesFileName">MotivationPhrases.json</string>
     <string name="articlesFileName">MotivationArticleLinks.json</string>
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="firebaseClientID">585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com</string>
     <!-- endregion    -->
 </resources>
