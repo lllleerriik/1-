@@ -22,14 +22,18 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import com.google.type.DateTime
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
@@ -98,18 +102,27 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             Snackbar.LENGTH_LONG
         ).show()
 
-        val chosenFilterValueFromStorage = storageHelper.getIntFromStorage(getString(R.string.chosenFilterKey), -1)
-        val collapsedCategoriesFromStorage = storageHelper.getStringSetFromStorage(getString(R.string.collapsedCategoriesKey))
-        if (chosenFilterValueFromStorage != -1) goalsProgressSpinner.setSelection(chosenFilterValueFromStorage)
+        val chosenFilterValueFromStorage =
+            storageHelper.getIntFromStorage(getString(R.string.chosenFilterKey), -1)
+        val collapsedCategoriesFromStorage =
+            storageHelper.getStringSetFromStorage(getString(R.string.collapsedCategoriesKey))
+        if (chosenFilterValueFromStorage != -1) goalsProgressSpinner.setSelection(
+            chosenFilterValueFromStorage
+        )
 
-        collapsedGoalCategories.addAll(collapsedCategoriesFromStorage.map { it.toInt()})
+        collapsedGoalCategories.addAll(collapsedCategoriesFromStorage.map { it.toInt() })
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when(position) {
+        when (position) {
             GoalProgress.All.value -> initializeGoalLayout(goalsLayout, goalsList)
-            GoalProgress.Active.value -> initializeGoalLayout(goalsLayout, goalsList.filter { !it.getCompleted() })
-            GoalProgress.Completed.value -> initializeGoalLayout(goalsLayout, goalsList.filter { it.getCompleted() })
+            GoalProgress.Active.value -> initializeGoalLayout(
+                goalsLayout,
+                goalsList.filter { !it.getCompleted() })
+
+            GoalProgress.Completed.value -> initializeGoalLayout(
+                goalsLayout,
+                goalsList.filter { it.getCompleted() })
         }
         storageHelper.addIntToStorage(getString(R.string.chosenFilterKey), position)
     }
@@ -119,7 +132,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onPause() {
         super.onPause()
 
-        storageHelper.addStringSetToStorage(getString(R.string.collapsedCategoriesKey), collapsedGoalCategories.map { it.toString() })
+        storageHelper.addStringSetToStorage(
+            getString(R.string.collapsedCategoriesKey),
+            collapsedGoalCategories.map { it.toString() })
         SugarRecord.deleteAll(Goal::class.java)
         goalsList.forEach { it.save() }
     }
@@ -154,10 +169,22 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         goalsList: List<Goal>
     ) {
         goalsList
-            .sortedWith(compareBy({it.getCompleted()}, { it.getPriority().value * -1 }, {it.getCreateDate() * -1}))
+            .sortedWith(
+                compareBy(
+                    { it.getCompleted() },
+                    { it.getPriority().value * -1 },
+                    { it.getCreateDate() * -1 })
+            )
             .groupBy { it.getCategory() }
             .toSortedMap()
-            .forEach { (category, goals) ->  addCategoryGoalsToLayout(goals, category, layout, collapsedGoalCategories) }
+            .forEach { (category, goals) ->
+                addCategoryGoalsToLayout(
+                    goals,
+                    category,
+                    layout,
+                    collapsedGoalCategories
+                )
+            }
     }
 
     /**
@@ -172,41 +199,48 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         category: GoalCategory,
         layout: LinearLayout,
         collapseCategoryIndexes: Set<Int>
-    ){
+    ) {
         val view = layoutInflater.inflate(R.layout.simple_category_view, layout, false)
         val goalsInCategoryLayout = view.findViewById<LinearLayout>(R.id.goalsLayout)
         val goalCategoryLabel = view.findViewById<LinearLayout>(R.id.simpleCategoryLabel)
         val goalCategoryIcon = view.findViewById<ImageView>(R.id.simpleCategoryImage)
         val categoryTitle = view.findViewById<TextView>(R.id.simpleCategoryName)
-        var isCategoryOpened = !collapseCategoryIndexes.map{it % 10}.contains(layout.childCount)
+        var isCategoryOpened = !collapseCategoryIndexes.map { it % 10 }.contains(layout.childCount)
 
         view.tag = category.position % 10
         categoryTitle.text = category.value
 
-        for (goal in goals){
+        for (goal in goals) {
             val checkbox = createCheckboxWithPosition(goalsInCategoryLayout, goal)
             goalsInCategoryLayout.addView(checkbox.first, checkbox.second)
         }
 
         goalCategoryLabel.setOnClickListener {
-            changeGoalCategoryDisplay(isCategoryOpened, category, goalCategoryIcon, goalsInCategoryLayout)
+            changeGoalCategoryDisplay(
+                isCategoryOpened,
+                category,
+                goalCategoryIcon,
+                goalsInCategoryLayout
+            )
             isCategoryOpened = !isCategoryOpened
         }
-        
+
         layout.addView(view)
     }
-    
+
     private fun changeGoalCategoryDisplay(
         isOpened: Boolean,
         category: GoalCategory,
         icon: ImageView,
         layout: LinearLayout
     ) {
-        icon.background = getDrawable(requireContext(),
+        icon.background = getDrawable(
+            requireContext(),
             if (isOpened) R.drawable.add_icon
             else R.drawable.minus_icon
         )
-        layout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+        layout.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
             if (isOpened) 0
             else LayoutParams.WRAP_CONTENT
         )
@@ -215,15 +249,17 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         Log.d("DEB", collapsedGoalCategories.toString())
     }
 
-    private fun changeGoalCategoryDisplay(collapseCategoryIndexes: Set<Int>){
+    private fun changeGoalCategoryDisplay(collapseCategoryIndexes: Set<Int>) {
         val categoriesInLayout = goalsLayout.children.toList()
-        val indexes = collapsedGoalCategories.map { it  % 10 }
+        val indexes = collapsedGoalCategories.map { it % 10 }
 
         for (i in categoriesInLayout.indices)
-            if (indexes.contains(categoriesInLayout[i].tag.toString().toInt())){
+            if (indexes.contains(categoriesInLayout[i].tag.toString().toInt())) {
                 val categoryItem = categoriesInLayout[i] as LinearLayout;
-                categoryItem.findViewById<ImageView>(R.id.simpleCategoryImage).background = getDrawable(requireContext(), R.drawable.add_icon)
-                categoryItem.findViewById<LinearLayout>(R.id.goalsLayout).layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
+                categoryItem.findViewById<ImageView>(R.id.simpleCategoryImage).background =
+                    getDrawable(requireContext(), R.drawable.add_icon)
+                categoryItem.findViewById<LinearLayout>(R.id.goalsLayout).layoutParams =
+                    LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
             }
     }
 
@@ -239,7 +275,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         layout: LinearLayout,
         goal: Goal,
         index: Int? = null
-    ) : Pair<View, Int> {
+    ): Pair<View, Int> {
         val isCurrentThemeDay = requireContext().resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO
 
@@ -310,7 +346,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
      * @param priority Приоритет цели (высокий\средний\низкий)
      */
     private fun addGoalToStorage(name: String, priority: GoalPriority, category: GoalCategory) {
-        val newGoalVariation = mutableListOf(Goal(name, false, priority, category), Goal(name, true, priority, category))
+        val newGoalVariation = mutableListOf(
+            Goal(name, false, priority, category),
+            Goal(name, true, priority, category)
+        )
 
         if (newGoalVariation.all { !goalsList.contains(it) }) {
             goalsList.add(newGoalVariation.first())
@@ -336,32 +375,36 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val dialogNameInput = dialog.window?.findViewById<EditText>(R.id.goalWizardName)!!
-        val dialogButton = dialog.window?.findViewById<AppCompatButton>(R.id.goalWizardConfirmButton)!!
+        val dialogButton =
+            dialog.window?.findViewById<AppCompatButton>(R.id.goalWizardConfirmButton)!!
         val dialogPriorityList = dialog.window?.findViewById<Spinner>(R.id.goalWizardPriorityList)!!
         val dialogCategoryList = dialog.window?.findViewById<Spinner>(R.id.goalWizardCategoryList)!!
 
         dialogButton.setOnClickListener {
             if (dialogNameInput.text.trim().isNotEmpty()
                 && dialogPriorityList.selectedItemPosition != 0
-                && dialogCategoryList.selectedItemPosition != 0) {
+                && dialogCategoryList.selectedItemPosition != 0
+            ) {
 
-                val priority = when ((dialogPriorityList.selectedView as MaterialTextView).text.toString()){
-                    view.context.resources.getStringArray(R.array.goalPriorities)[1] -> GoalPriority.Low
-                    view.context.resources.getStringArray(R.array.goalPriorities)[2] -> GoalPriority.Middle
-                    else -> GoalPriority.High
-                }
+                val priority =
+                    when ((dialogPriorityList.selectedView as MaterialTextView).text.toString()) {
+                        view.context.resources.getStringArray(R.array.goalPriorities)[1] -> GoalPriority.Low
+                        view.context.resources.getStringArray(R.array.goalPriorities)[2] -> GoalPriority.Middle
+                        else -> GoalPriority.High
+                    }
 
-                val category = when ((dialogCategoryList.selectedView as MaterialTextView).text.toString()){
-                    view.context.resources.getStringArray(R.array.goalCategories)[1] -> GoalCategory.Health
-                    view.context.resources.getStringArray(R.array.goalCategories)[2] -> GoalCategory.Career
-                    view.context.resources.getStringArray(R.array.goalCategories)[3] -> GoalCategory.Finance
-                    view.context.resources.getStringArray(R.array.goalCategories)[4] -> GoalCategory.LifeBrightness
-                    view.context.resources.getStringArray(R.array.goalCategories)[5] -> GoalCategory.Relationships
-                    view.context.resources.getStringArray(R.array.goalCategories)[6] -> GoalCategory.FamilyAndFriends
-                    view.context.resources.getStringArray(R.array.goalCategories)[7] -> GoalCategory.Materialist
-                    view.context.resources.getStringArray(R.array.goalCategories)[8] -> GoalCategory.Selfbuilding
-                    else -> GoalCategory.Other
-                }
+                val category =
+                    when ((dialogCategoryList.selectedView as MaterialTextView).text.toString()) {
+                        view.context.resources.getStringArray(R.array.goalCategories)[1] -> GoalCategory.Health
+                        view.context.resources.getStringArray(R.array.goalCategories)[2] -> GoalCategory.Career
+                        view.context.resources.getStringArray(R.array.goalCategories)[3] -> GoalCategory.Finance
+                        view.context.resources.getStringArray(R.array.goalCategories)[4] -> GoalCategory.LifeBrightness
+                        view.context.resources.getStringArray(R.array.goalCategories)[5] -> GoalCategory.Relationships
+                        view.context.resources.getStringArray(R.array.goalCategories)[6] -> GoalCategory.FamilyAndFriends
+                        view.context.resources.getStringArray(R.array.goalCategories)[7] -> GoalCategory.Materialist
+                        view.context.resources.getStringArray(R.array.goalCategories)[8] -> GoalCategory.Selfbuilding
+                        else -> GoalCategory.Other
+                    }
 
                 addGoalToStorage(dialogNameInput.text.toString(), priority, category)
                 saveGoalToFirebase(dialogNameInput.text.toString(), priority, category)
@@ -370,23 +413,33 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 initializeGoalLayout(goalsLayout, goalsList)
                 onItemSelected(null, null, goalsProgressSpinner.selectedItemPosition, 0)
             } else
-                Toast.makeText(requireContext(), getString(R.string.incorrectGoal), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.incorrectGoal),
+                    Toast.LENGTH_LONG
+                ).show()
         }
 
         dialog.create()
         dialog.show()
     }
 
-    private fun saveGoalToFirebase(goalName: String, priority: GoalPriority, category: GoalCategory) {
+    private fun saveGoalToFirebase(
+        goalName: String,
+        priority: GoalPriority,
+        category: GoalCategory
+    ) {
         val user = Firebase.auth.currentUser ?: return
         val goal = Goal(goalName, false, Calendar.getInstance().time.time, priority, category)
 
         databaseReference
-            .child(getString(R.string.userFolderInDatabase))
-            .child(user.uid)
-            .child(getString(R.string.userGoalsInDatabase))
+            .child("${getString(R.string.userFolderInDatabase)}" +
+                    "/${user.uid}" +
+                    "/${getString(R.string.userGoalsInDatabase)}")
             .push()
             .setValue(goal.parseToString())
+            .addOnSuccessListener { }
+            .addOnFailureListener { }
     }
 
     override fun onDestroyView() {
