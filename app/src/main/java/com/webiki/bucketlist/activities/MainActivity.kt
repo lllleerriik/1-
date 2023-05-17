@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -30,9 +31,28 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var accountPreviewLayout: LinearLayout
+    private var isModalWindowWasShown: Boolean = false
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val hasInternetConnection =
+            (this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+                .activeNetworkInfo?.isConnected ?: false
+
+        if (!hasInternetConnection && !isModalWindowWasShown) {
+            createModalWindow(
+                this,
+                getString(R.string.hasnotNetworkConnection),
+                "Хорошо",
+                "Отмена",
+                {},
+                {}
+            )
+            isModalWindowWasShown = true
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

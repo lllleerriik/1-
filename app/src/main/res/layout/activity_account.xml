@@ -38,6 +38,17 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/accountButtonBackup"
+            tools:text="Delete progress"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="#777575"
+            android:text="@string/doBackup"
+            android:layout_marginVertical="36dp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/accountButtonResetProgress"
             tools:text="Delete progress"
             android:gravity="center_horizontal"
@@ -51,7 +62,7 @@
             android:id="@+id/accountButtonLogOut"
             tools:text="Log out"
             android:text="@string/logOut"
-            android:layout_marginVertical="16dp"
+            android:layout_marginVertical="24dp"
             android:background="@drawable/basic_button"
             style="@style/base_button_style" />
 </LinearLayout>

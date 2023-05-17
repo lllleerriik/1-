@@ -62,6 +62,8 @@ class Goal(
             "${priority.value}$GOAL_PARTIES_SEPARATOR" +
             "${category.value}"
 
+    fun withChangedCompletion() = Goal(label, !isCompleted, createDate, priority, category)
+
     override fun compareTo(other: Any): Int {
         if (javaClass != other.javaClass) throw IllegalArgumentException("Не цель")
         other as Goal

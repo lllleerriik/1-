@@ -22,8 +22,6 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.ktx.auth
@@ -32,7 +30,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
@@ -73,6 +70,14 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
         goalsLayout = binding.goalsCategoriesLayout
 
+        databaseReference = Firebase.database.reference
+
+        return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         goalsList = SugarRecord
             .listAll(Goal::class.java)
 
@@ -84,14 +89,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             .toSortedMap(compareByDescending { it.value })
             .flatMap { pair -> pair.value }
             .toMutableList()
-
-        databaseReference = Firebase.database.reference
-
-        return root
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         goalsProgressSpinner.onItemSelectedListener = this
         initializeGoalLayout(goalsLayout, goalsList)
@@ -246,7 +243,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
         if (isOpened) collapsedGoalCategories.add(category.position)
         else collapsedGoalCategories.remove(category.position)
-        Log.d("DEB", collapsedGoalCategories.toString())
     }
 
     private fun changeGoalCategoryDisplay(collapseCategoryIndexes: Set<Int>) {
@@ -306,12 +302,15 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         viewCheckBox.setOnClickListener {
             customCheckboxHandleClick(viewCheckBox)
-            goalsList
+            val currentGoal =  goalsList
                 .find { goal -> goal.getLabel() == viewCheckBox.text.toString() }!!
-                .setCompleted(viewCheckBox.isChecked)
+
+           currentGoal.setCompleted(viewCheckBox.isChecked)
 
             initializeGoalLayout(goalsLayout, goalsList)
+            changeCompletionInFirebase(currentGoal)
         }
+
         viewCheckBox.setOnLongClickListener {
             MainActivity.createModalWindow(
                 requireContext(),
@@ -326,6 +325,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         )
                     )
 
+                    removeGoalFromFirebase(goal)
                     SugarRecord.delete(goalsList[goalIndex])
                     goalsList.removeAt(goalIndex)
                     initializeGoalLayout(goalsLayout, goalsList)
@@ -407,7 +407,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     }
 
                 addGoalToStorage(dialogNameInput.text.toString(), priority, category)
-                saveGoalToFirebase(dialogNameInput.text.toString(), priority, category)
+                saveGoalToFirebase(dialogNameInput.text.toString(), priority = priority,category = category)
                 dialog.dismiss()
 
                 initializeGoalLayout(goalsLayout, goalsList)
@@ -426,20 +426,67 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun saveGoalToFirebase(
         goalName: String,
+        completed: Boolean = false,
+        createDate: Long = Calendar.getInstance().time.time,
         priority: GoalPriority,
         category: GoalCategory
     ) {
         val user = Firebase.auth.currentUser ?: return
-        val goal = Goal(goalName, false, Calendar.getInstance().time.time, priority, category)
+        val goal = Goal(goalName, completed, createDate, priority, category)
 
         databaseReference
-            .child("${getString(R.string.userFolderInDatabase)}" +
-                    "/${user.uid}" +
-                    "/${getString(R.string.userGoalsInDatabase)}")
+            .child(
+                "${getString(R.string.userFolderInDatabase)}" +
+                        "/${user.uid}" +
+                        "/${getString(R.string.userGoalsInDatabase)}"
+            )
             .push()
             .setValue(goal.parseToString())
             .addOnSuccessListener { }
             .addOnFailureListener { }
+        Log.d("DEB", goal.parseToString() + " was added")
+    }
+
+    private fun saveGoalToFirebase(
+        goal: Goal
+    ) {
+        saveGoalToFirebase(
+            goal.getLabel(),
+            goal.getCompleted(),
+            goal.getCreateDate(),
+            goal.getPriority(),
+            goal.getCategory()
+        )
+    }
+
+    private fun removeGoalFromFirebase(goal: Goal) {
+        val query = databaseReference
+            .child(
+                "${getString(R.string.userFolderInDatabase)}" +
+                        "/${(Firebase.auth.currentUser ?: return).uid}" +
+                        "/${getString(R.string.userGoalsInDatabase)}"
+            )
+            .orderByValue()
+            .equalTo(goal.parseToString())
+
+        val listener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (item in snapshot.children) item.ref.removeValue().addOnSuccessListener {
+                    query.removeEventListener(this)
+                }
+                Log.d("DEB", goal.parseToString() + " was removed")
+                return
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        }
+
+        query.addValueEventListener(listener)
+    }
+
+    private fun changeCompletionInFirebase(goal: Goal) {
+        removeGoalFromFirebase(goal.withChangedCompletion())
+        saveGoalToFirebase(goal)
     }
 
     override fun onDestroyView() {

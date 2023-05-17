@@ -73,6 +73,7 @@
     <string name="collapsedCategoriesKey">COLLAPSED_CATEGORIES_KEY</string>
     <string name="default_web_client_id" translatable="false">585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com</string>
     <string name="display">Выберите вариант отображения целей:</string>
+    <string name="doBackup"><u><b>Выполнить резервное копирование</b></u></string>
     <string name="doYouWantToCloseApp">Вы уверены, что хотите выйти из приложения?</string>
     <string name="doYouWantToDeleteGoal"><b>Вы хотите удалить данную цель?</b></string>
     <string name="emptySequence">В коллекции нет элементов</string>
@@ -87,6 +88,7 @@
     <string name="google_storage_bucket" translatable="false">bucket-list-eadc7.appspot.com</string>
     <string name="greetingNewUserText">Привет! Мы рады, что ты решил изменить свою жизнь! Наше приложение поможет тебе ставить цели, следить за привычками, отслеживать прогресс и сохранить мотивацию.\n\nНо перед этим пройди небольшой опрос, чтобы мы могли предложить тебе цели по твоим интересам.</string>
     <string name="hasNotGoals">Вы не поставили ни одной цели!</string>
+    <string name="hasnotNetworkConnection">Отсутствует подключение к интернету!\n\nДля сохраннения новых целей выполните резервное копирование на экране Вашего аккаунта после подключения к сети</string>
     <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
     <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>

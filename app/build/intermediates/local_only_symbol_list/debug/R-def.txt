@@ -76,6 +76,7 @@ font alata
 font roboto
 font roboto_medium
 font ubuntu_light
+id accountButtonBackup
 id accountButtonLogOut
 id accountButtonResetProgress
 id accountPreviewLayout
@@ -166,6 +167,7 @@ string clickForContinue
 string collapsedCategoriesKey
 string default_web_client_id
 string display
+string doBackup
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
 string emptySequence
@@ -180,6 +182,7 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
 string hasNotGoals
+string hasnotNetworkConnection
 string inDevProgress
 string incorrectGoal
 string isUserPassedInitialQuestionnaire

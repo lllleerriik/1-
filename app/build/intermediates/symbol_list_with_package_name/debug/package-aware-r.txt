@@ -3220,6 +3220,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accountButtonBackup
 id accountButtonLogOut
 id accountButtonResetProgress
 id accountPreviewLayout
@@ -4036,6 +4037,7 @@ string common_signin_button_text_long
 string copy_toast_msg
 string default_web_client_id
 string display
+string doBackup
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
 string emptySequence
@@ -4058,6 +4060,7 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
 string hasNotGoals
+string hasnotNetworkConnection
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string inDevProgress

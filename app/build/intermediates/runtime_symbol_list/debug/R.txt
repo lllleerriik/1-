@@ -3219,6 +3219,7 @@ int id accessibility_custom_action_6 0x7f0a002c
 int id accessibility_custom_action_7 0x7f0a002d
 int id accessibility_custom_action_8 0x7f0a002e
 int id accessibility_custom_action_9 0x7f0a002f
+int id accountButtonBackup 0x7f0a023a
 int id accountButtonLogOut 0x7f0a0030
 int id accountButtonResetProgress 0x7f0a0031
 int id accountPreviewLayout 0x7f0a0032
@@ -4035,6 +4036,7 @@ int string common_signin_button_text_long 0x7f140047
 int string copy_toast_msg 0x7f140048
 int string default_web_client_id 0x7f140049
 int string display 0x7f14004a
+int string doBackup 0x7f1400fa
 int string doYouWantToCloseApp 0x7f14004b
 int string doYouWantToDeleteGoal 0x7f14004c
 int string emptySequence 0x7f14004d
@@ -4057,6 +4059,7 @@ int string google_crash_reporting_api_key 0x7f14005d
 int string google_storage_bucket 0x7f14005e
 int string greetingNewUserText 0x7f14005f
 int string hasNotGoals 0x7f140060
+int string hasnotNetworkConnection 0x7f1400fb
 int string hide_bottom_view_on_scroll_behavior 0x7f140061
 int string icon_content_description 0x7f140062
 int string inDevProgress 0x7f140063
@@ -4207,9 +4210,9 @@ int string submitCreateGoal 0x7f1400f3
 int string submitDeleteGoal 0x7f1400f4
 int string tooSmallDelay 0x7f1400f5
 int string unexpectedResultCode 0x7f1400f6
-int string userFolderInDatabase 0x7f1400fa
-int string userGoalsInDatabase 0x7f1400f9
-int string userGoalsSet 0x7f1400f7
+int string userFolderInDatabase 0x7f1400f7
+int string userGoalsInDatabase 0x7f1400f8
+int string userGoalsSet 0x7f1400f9
 int style AlertDialog_AppCompat 0x7f150000
 int style AlertDialog_AppCompat_Light 0x7f150001
 int style Animation_AppCompat_Dialog 0x7f150002
