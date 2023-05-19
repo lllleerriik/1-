@@ -3223,7 +3223,10 @@ id accessibility_custom_action_9
 id accountButtonBackup
 id accountButtonLogOut
 id accountButtonResetProgress
+id accountPreviewAvatar
+id accountPreviewEmail
 id accountPreviewLayout
+id accountPreviewName
 id accountUserAvatar
 id accountUserEmail
 id accountUserName
@@ -3427,7 +3430,6 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageView
 id immediateStop
 id included
 id indeterminate
@@ -3682,7 +3684,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id textView2
 id textView3
 id textView4

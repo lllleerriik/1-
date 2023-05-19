@@ -21,21 +21,25 @@ public final class NavHeaderMainBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageView accountPreviewAvatar;
+
+  @NonNull
+  public final TextView accountPreviewEmail;
+
+  @NonNull
   public final LinearLayout accountPreviewLayout;
 
   @NonNull
-  public final ImageView imageView;
-
-  @NonNull
-  public final TextView textView;
+  public final TextView accountPreviewName;
 
   private NavHeaderMainBinding(@NonNull LinearLayout rootView,
-      @NonNull LinearLayout accountPreviewLayout, @NonNull ImageView imageView,
-      @NonNull TextView textView) {
+      @NonNull ImageView accountPreviewAvatar, @NonNull TextView accountPreviewEmail,
+      @NonNull LinearLayout accountPreviewLayout, @NonNull TextView accountPreviewName) {
     this.rootView = rootView;
+    this.accountPreviewAvatar = accountPreviewAvatar;
+    this.accountPreviewEmail = accountPreviewEmail;
     this.accountPreviewLayout = accountPreviewLayout;
-    this.imageView = imageView;
-    this.textView = textView;
+    this.accountPreviewName = accountPreviewName;
   }
 
   @Override
@@ -65,22 +69,28 @@ public final class NavHeaderMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.accountPreviewAvatar;
+      ImageView accountPreviewAvatar = ViewBindings.findChildViewById(rootView, id);
+      if (accountPreviewAvatar == null) {
+        break missingId;
+      }
+
+      id = R.id.accountPreviewEmail;
+      TextView accountPreviewEmail = ViewBindings.findChildViewById(rootView, id);
+      if (accountPreviewEmail == null) {
+        break missingId;
+      }
+
       LinearLayout accountPreviewLayout = (LinearLayout) rootView;
 
-      id = R.id.imageView;
-      ImageView imageView = ViewBindings.findChildViewById(rootView, id);
-      if (imageView == null) {
+      id = R.id.accountPreviewName;
+      TextView accountPreviewName = ViewBindings.findChildViewById(rootView, id);
+      if (accountPreviewName == null) {
         break missingId;
       }
 
-      id = R.id.textView;
-      TextView textView = ViewBindings.findChildViewById(rootView, id);
-      if (textView == null) {
-        break missingId;
-      }
-
-      return new NavHeaderMainBinding((LinearLayout) rootView, accountPreviewLayout, imageView,
-          textView);
+      return new NavHeaderMainBinding((LinearLayout) rootView, accountPreviewAvatar,
+          accountPreviewEmail, accountPreviewLayout, accountPreviewName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

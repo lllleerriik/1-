@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +20,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
@@ -29,11 +34,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var accountPreviewLayout: LinearLayout
+    private lateinit var accountPreviewAvatar: ImageView
+    private lateinit var accountPreviewName: TextView
+    private lateinit var accountPreviewEmail: TextView
+
+    private lateinit var storageHelper: ProjectSharedPreferencesHelper
+    private lateinit var auth: FirebaseAuth
+    private var currentUser: FirebaseUser? = null
     private var isModalWindowWasShown: Boolean = false
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +98,29 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         accountPreviewLayout = navView.getHeaderView(0).findViewById(R.id.accountPreviewLayout)
+        accountPreviewAvatar = navView.getHeaderView(0).findViewById(R.id.accountPreviewAvatar)
+        accountPreviewName = navView.getHeaderView(0).findViewById(R.id.accountPreviewName)
+        accountPreviewEmail = navView.getHeaderView(0).findViewById(R.id.accountPreviewEmail)
+
+        auth = Firebase.auth
+
         storageHelper = ProjectSharedPreferencesHelper(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            Glide
+                .with(this)
+                .load(currentUser!!.photoUrl)
+                .into(accountPreviewAvatar)
+        } else accountPreviewAvatar.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_account_circle))
+
+        accountPreviewName.text = if (currentUser != null) currentUser!!.displayName else getString(R.string.name_surname)
+        accountPreviewEmail.text = if (currentUser != null) currentUser!!.email else getString(R.string.nav_email)
     }
 
     override fun onStart() {
@@ -97,6 +128,9 @@ class MainActivity : AppCompatActivity() {
 
 //        SugarRecord.deleteAll(Goal::class.java)
 //        storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
+
+        if (!storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
+            startActivity(Intent(this, WelcomeForm::class.java))
 
         accountPreviewLayout.setOnClickListener {
             startActivity(
@@ -107,12 +141,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        if (!storageHelper.getBooleanFromStorage(
-                getString(R.string.isUserPassedInitialQuestionnaire),
-                false
-            )
-        )
-            startActivity(Intent(this, WelcomeForm::class.java))
+
     }
 
     override fun onBackPressed() {

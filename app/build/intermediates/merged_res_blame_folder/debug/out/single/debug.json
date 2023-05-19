@@ -136,6 +136,10 @@
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-58:\\layout\\activity_welcome_form.xml"
     },
     {
+        "merged": "com.webiki.bucketlist.app-merged_res-56:/layout_nav_header_main.xml.flat",
+        "source": "com.webiki.bucketlist.app-main-58:/layout/nav_header_main.xml"
+    },
+    {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-56:\\drawable_ic_logo_google.png.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-58:\\drawable\\ic_logo_google.png"
     },
@@ -306,10 +310,6 @@
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-56:\\mipmap-xxhdpi_ic_logo.png.flat",
         "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-58:\\mipmap-xxhdpi\\ic_logo.png"
-    },
-    {
-        "merged": "com.webiki.bucketlist.app-merged_res-56:/layout_activity_account.xml.flat",
-        "source": "com.webiki.bucketlist.app-main-58:/layout/activity_account.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-merged_res-56:\\drawable-night_fab_button.xml.flat",

@@ -16,9 +16,9 @@
         android:id="@+id/accountPreviewLayout">
 
     <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/accountPreviewAvatar"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:contentDescription="@string/nav_header_desc"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             app:srcCompat="@drawable/ic_account_circle" />
@@ -28,10 +28,11 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="@string/name_surname"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:id="@+id/accountPreviewName" />
 
     <TextView
-            android:id="@+id/textView"
+            android:id="@+id/accountPreviewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nav_email" />

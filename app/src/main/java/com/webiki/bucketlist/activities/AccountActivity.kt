@@ -59,12 +59,12 @@ class AccountActivity : AppCompatActivity() {
             .map { it.parseToString() }
             .toMutableList()
 
-        if (intent.extras?.getBoolean("isNeedToSaveAllGoals", false) == true) {
+//        if (intent.extras?.getBoolean("isNeedToSaveAllGoals", false) == true) {
             saveAllGoalsToFirebase(allGoalsInStringList)
-        }
+//        }
 
         accountButtonBackup.setOnClickListener {
-            saveAllGoalsToFirebase(allGoalsInStringList, false)
+            saveAllGoalsToFirebase(allGoalsInStringList)
             Snackbar
                 .make(
                     findViewById(R.id.accountButtonBackup),
@@ -82,8 +82,7 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun saveAllGoalsToFirebase(
-        localGoals: MutableList<String>,
-        isFirstLogin: Boolean = true
+        localGoals: MutableList<String>
     ) {
         val userGoalsDatabase = Firebase
             .database
@@ -94,15 +93,12 @@ class AccountActivity : AppCompatActivity() {
                         "/${getString(R.string.userGoalsInDatabase)}"
             )
 
-        if (isFirstLogin) userGoalsDatabase.setValue(null)
-
         userGoalsDatabase.get().addOnCompleteListener {
             val cloudGoals = ((it.result.value
                 ?: hashMapOf<String, String>()) as HashMap<*, *>)
                 .map { pair -> pair.value }
                 .toSet()
 
-            if (!isFirstLogin) {
                 val intersectionGoals = localGoals.intersect(cloudGoals)
                 val uniqueLocalGoals = localGoals.toMutableList()
                 uniqueLocalGoals.removeAll(intersectionGoals)
@@ -110,22 +106,8 @@ class AccountActivity : AppCompatActivity() {
                 val uniqueCloudGoals = cloudGoals.map { g -> g.toString() }.toMutableList()
                 uniqueCloudGoals.removeAll(intersectionGoals)
 
-//                Log.d("DEB", intersectionGoals.joinToString("\n") + "      I")      // нет претензий
-//                Log.d("DEB", "")
-//                Log.d("DEB", uniqueLocalGoals.joinToString ("\n")  + "       UL")   // нет претензий
-//                Log.d("DEB", "")
-//                Log.d("DEB", uniqueCloudGoals.joinToString ("\n") + "       UC")    // нет претензий
-//                Log.d("DEB", "")
-//                Log.d("DEB", cloudGoals.joinToString("\n") + "       C")            // нет претензий
-//                Log.d("DEB", "")
-//                Log.d("DEB", localGoals.joinToString("\n") + "       L")            // нет претензий TODO at this place distribution is right
-
                 for (goal in uniqueCloudGoals.map { goalString -> Goal.parseFromString(goalString) }) goal.save()
                 for (goal in uniqueLocalGoals) saveGoalToFirebase(goal)
-            } else {
-                localGoals.removeAll(cloudGoals)
-                localGoals.forEach { goal -> userGoalsDatabase.push().setValue(goal) }
-            }
         }
     }
 

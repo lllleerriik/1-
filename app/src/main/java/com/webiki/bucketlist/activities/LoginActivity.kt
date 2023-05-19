@@ -99,7 +99,8 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             currentUser = auth.currentUser
                             finish()
-                            startActivity(Intent(this, AccountActivity::class.java).putExtra("isNeedToSaveAllGoals", true)) //TODO put string to res
+                            startActivity(Intent(this, AccountActivity::class.java)) //TODO put string to res
+                            throw NotImplementedError("Need to realise excluding goals with same names")
                         }
                     }
             }
@@ -109,10 +110,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-
 }
