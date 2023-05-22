@@ -315,7 +315,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             MainActivity.createModalWindow(
                 requireContext(),
                 "${getString(R.string.doYouWantToDeleteGoal)}\n\n(${viewCheckBox.text})",
-                getString(R.string.submitDeleteGoal),
+                getString(R.string.submitDelete),
                 getString(R.string.cancelButtonText),
                 {
                     val goalIndex = goalsList.indexOf(

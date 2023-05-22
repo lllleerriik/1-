@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -25,7 +26,9 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
@@ -54,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         if (!hasInternetConnection && !isModalWindowWasShown) {
             createModalWindow(
                 this,
-                getString(R.string.hasnotNetworkConnection),
+                getString(R.string.hasNotNetworkConnection),
                 "Хорошо",
                 "Отмена",
                 {},
@@ -112,15 +115,7 @@ class MainActivity : AppCompatActivity() {
 
         currentUser = auth.currentUser
 
-        if (currentUser != null) {
-            Glide
-                .with(this)
-                .load(currentUser!!.photoUrl)
-                .into(accountPreviewAvatar)
-        } else accountPreviewAvatar.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_account_circle))
-
-        accountPreviewName.text = if (currentUser != null) currentUser!!.displayName else getString(R.string.name_surname)
-        accountPreviewEmail.text = if (currentUser != null) currentUser!!.email else getString(R.string.nav_email)
+        Thread { loadUserData(accountPreviewAvatar, accountPreviewName, accountPreviewEmail) }
     }
 
     override fun onStart() {
@@ -202,6 +197,33 @@ class MainActivity : AppCompatActivity() {
             dialog.show()
         }
     }
+
+    private fun loadUserData(avatar: ImageView, name: TextView, email: TextView) {
+        Firebase.storage.reference.child("ic_account_circle.xml").downloadUrl.addOnCompleteListener { task ->
+            Log.d("DEB", task.result.toString())
+
+            if (currentUser?.displayName?.isEmpty() == true || currentUser?.photoUrl == null) {
+                currentUser?.updateProfile(userProfileChangeRequest {
+                    displayName =
+                        if (currentUser?.displayName?.isEmpty()!!) "Гость" else currentUser?.displayName
+                    photoUri = photoUri
+                        ?: Uri.parse(Firebase.storage.reference.child("ic_account_circle.xml").path)
+                })?.addOnCompleteListener {
+                    if (it.isSuccessful) Log.d("DEB", "Success")
+                }
+            }
+
+            currentUser.let {
+                Glide
+                    .with(this)
+                    .load(it?.photoUrl.toString().replace("s96-c", "s400-c"))
+                    .into(avatar)
+                name.text = it?.displayName
+                email.text = it?.email
+            }
+        }
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)

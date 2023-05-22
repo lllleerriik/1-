@@ -1,26 +1,44 @@
 package com.webiki.bucketlist.activities
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthCallback
+import com.vk.api.sdk.auth.VKScope
 import com.webiki.bucketlist.R
+import kotlin.random.Random
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var signInRequest: BeginSignInRequest
-    private val REQUEST_ID = 2201
+    private val GOOGLE_REQUEST_ID = 2201
+
+    //    private val VK_REQUEST_ID = 2202
     private lateinit var googleSignInClient: GoogleSignInClient
     private var currentUser: FirebaseUser? = null
 
@@ -54,16 +72,18 @@ class LoginActivity : AppCompatActivity() {
             googleSignInClient = GoogleSignIn.getClient(this, signInOptions)
             startActivityForResult(
                 googleSignInClient.signInIntent,
-                REQUEST_ID
+                GOOGLE_REQUEST_ID
             )
         }
         vkLogInButton.setOnClickListener {
             MainActivity.createModalWindow(
                 this,
-                getString(R.string.inDevProgress),
+                getString(R.string.vpnAttention),
                 "Хорошо",
                 "Отмена",
-                { },
+                {
+                    VK.login(this, arrayListOf(VKScope.EMAIL, VKScope.WALL))
+                },
                 { })
         }
     }
@@ -72,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            REQUEST_ID -> {
+            GOOGLE_REQUEST_ID -> {
                 try {
                     val account = GoogleSignIn.getSignedInAccountFromIntent(data)
                         .getResult(ApiException::class.java)!!
@@ -84,8 +104,76 @@ class LoginActivity : AppCompatActivity() {
                         else -> {
                         }
                     }
-                } catch (e: ApiException) {
+                } catch (_: ApiException) {
                 }
+            }
+
+            else -> {
+                val callback = object : VKAuthCallback {
+                    override fun onLogin(token: VKAccessToken) {
+
+                        val email = token.email!!
+                        val password = token.userId.toString()
+                        val instance = FirebaseAuth.getInstance()
+                        
+                        Log.d("DEB", "${email} ${password}")
+                        
+                        instance.fetchSignInMethodsForEmail(email)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val isNewUser = task.result?.signInMethods?.isEmpty() ?: false
+
+                                    if (isNewUser) {
+                                        instance.createUserWithEmailAndPassword(email, password)
+                                            .addOnCompleteListener {
+                                                if (it.isSuccessful)
+                                                    Toast.makeText(
+                                                        applicationContext,
+                                                        getString(R.string.successLogin),
+                                                        Toast.LENGTH_LONG
+                                                    ).show()
+                                            }
+                                    } else {
+                                        Log.d("DEB", "old user")
+                                        instance.signInWithEmailAndPassword(email, password)
+                                            .addOnCompleteListener { 
+                                                if (it.isSuccessful) 
+                                                    Log.d("DEB", "auth old user") 
+                                                else 
+                                                    Log.d("DEB", "not auth old user", it.exception)
+                                            }
+                                    }
+
+                                    currentUser = auth.currentUser
+                                    finish()
+                                    startActivity(Intent(applicationContext, AccountActivity::class.java))
+                                } else Log.d("DEB", "task error")
+                            }
+
+                        Toast.makeText(
+                            applicationContext,
+                            getString(R.string.successLogin),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                    override fun onLoginFailed(errorCode: Int) {
+                        Log.d("DEB", "FAIL$errorCode")
+                        Toast.makeText(
+                            applicationContext,
+                            getString(R.string.failedLogin),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+                if (data == null || !VK.onActivityResult(
+                        requestCode,
+                        resultCode,
+                        data,
+                        callback
+                    )
+                ) return
             }
         }
     }
@@ -99,8 +187,8 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             currentUser = auth.currentUser
                             finish()
-                            startActivity(Intent(this, AccountActivity::class.java)) //TODO put string to res
-                            throw NotImplementedError("Need to realise excluding goals with same names")
+                            startActivity(Intent(this, AccountActivity::class.java))
+//                            throw NotImplementedError("Need to realise excluding goals with same names")
                         }
                     }
             }

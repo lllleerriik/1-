@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-54:/values-v23/values-v23.xml",
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-55:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\91c44448e22cf7c614d9e8c56a2c79a3\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",

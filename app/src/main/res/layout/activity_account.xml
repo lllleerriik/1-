@@ -44,7 +44,7 @@
             android:textSize="16sp"
             android:textColor="#777575"
             android:text="@string/doBackup"
-            android:layout_marginVertical="36dp" />
+            android:paddingVertical="24dp" />
 
     <TextView
             android:layout_width="match_parent"
@@ -54,7 +54,8 @@
             android:gravity="center_horizontal"
             android:textSize="16sp"
             android:textColor="#777575"
-            android:text="@string/resetProgress" />
+            android:text="@string/resetProgress"
+            android:paddingVertical="24dp" />
 
     <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
@@ -62,7 +63,8 @@
             android:id="@+id/accountButtonLogOut"
             tools:text="Log out"
             android:text="@string/logOut"
-            android:layout_marginVertical="24dp"
             android:background="@drawable/basic_button"
-            style="@style/base_button_style" />
+            style="@style/base_button_style"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="8dp" />
 </LinearLayout>

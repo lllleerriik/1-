@@ -135,6 +135,7 @@ id welcomeFormAnswers
 id welcomeFormProgressBar
 id welcomeFormSkipText
 id welcomeFormTitle
+integer com_vk_sdk_AppId
 layout activity_account
 layout activity_greeting
 layout activity_login
@@ -171,9 +172,12 @@ string display
 string doBackup
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
+string douYouWantToResetProgress
 string emptySequence
 string existingTarget
+string failedLogin
 string firebaseClientID
+string firebase_database_url
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -183,8 +187,7 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
 string hasNotGoals
-string hasnotNetworkConnection
-string inDevProgress
+string hasNotNetworkConnection
 string incorrectGoal
 string isUserPassedInitialQuestionnaire
 string logInVariants
@@ -215,12 +218,14 @@ string skipWelcomeForm
 string stateWasNotSave
 string submitCloseApp
 string submitCreateGoal
-string submitDeleteGoal
+string submitDelete
+string successLogin
 string tooSmallDelay
 string unexpectedResultCode
 string userFolderInDatabase
 string userGoalsInDatabase
 string userGoalsSet
+string vpnAttention
 style Theme.BucketList
 style Theme.BucketList.AppBarOverlay
 style Theme.BucketList.NoActionBar

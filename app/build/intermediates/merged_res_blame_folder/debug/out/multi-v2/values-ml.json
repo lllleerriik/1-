@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-54:/values-ml/values-ml.xml",
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-55:/values-ml/values-ml.xml",
             "map": [
                 {
                     "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\befc6017638a645ec2195e509623fa98\\transformed\\play-services-basement-18.2.0\\res\\values-ml\\values.xml",

@@ -3563,6 +3563,7 @@ id pin
 id position
 id postLayout
 id pressed
+id progress
 id progress_circular
 id progress_horizontal
 id radio
@@ -3730,6 +3731,7 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id vkSignInButton
+id webView
 id welcomeFormAnswers
 id welcomeFormProgressBar
 id welcomeFormSkipText
@@ -3749,6 +3751,7 @@ integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
 integer bottom_sheet_slide_duration
 integer cancel_button_image_alpha
+integer com_vk_sdk_AppId
 integer config_navAnimTime
 integer config_tooltipAnimTime
 integer design_snackbar_text_max_lines
@@ -3956,6 +3959,7 @@ layout simple_category_view
 layout simple_goal_view
 layout simple_motivation_article
 layout support_simple_spinner_dropdown_item
+layout vk_webview_auth_dialog
 menu activity_main_drawer
 menu main
 mipmap ic_logo
@@ -4041,6 +4045,7 @@ string display
 string doBackup
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
+string douYouWantToResetProgress
 string emptySequence
 string error_a11y_label
 string error_icon_content_description
@@ -4048,10 +4053,12 @@ string existingTarget
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string failedLogin
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
 string firebaseClientID
+string firebase_database_url
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -4061,10 +4068,9 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
 string hasNotGoals
-string hasnotNetworkConnection
+string hasNotNetworkConnection
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
-string inDevProgress
 string incorrectGoal
 string isUserPassedInitialQuestionnaire
 string item_view_role_description
@@ -4209,12 +4215,17 @@ string stateWasNotSave
 string status_bar_notification_info_overflow
 string submitCloseApp
 string submitCreateGoal
-string submitDeleteGoal
+string submitDelete
+string successLogin
 string tooSmallDelay
 string unexpectedResultCode
 string userFolderInDatabase
 string userGoalsInDatabase
 string userGoalsSet
+string vk_captcha_hint
+string vk_confirm
+string vk_retry
+string vpnAttention
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -4946,6 +4957,7 @@ style ThemeOverlay_MaterialComponents_TimePicker_Display_TextInputEditText
 style ThemeOverlay_MaterialComponents_Toolbar_Popup_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Surface
+style VK_Transparent
 style WhiteBackgroundDialogTheme
 style WhiteBackgroundTheme
 style Widget_AppCompat_ActionBar

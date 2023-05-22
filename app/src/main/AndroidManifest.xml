@@ -37,10 +37,6 @@
         <meta-data
                 android:name="DOMAIN_PACKAGE_NAME"
                 android:value="com.webiki.bucketlist" />
-
-        <activity
-                android:name=".activities.GoalWizard"
-                android:exported="false" />
         <activity
                 android:name=".activities.WelcomeForm"
                 android:exported="false"

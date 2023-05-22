@@ -1,5 +1,6 @@
 package com.webiki.bucketlist.activities
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +12,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.orm.SugarRecord
 import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.R
@@ -33,7 +37,6 @@ class AccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
-//        Firebase.database.setPersistenceEnabled(true) TODO de-comment for caching
 
         accountUserAvatar = findViewById(R.id.accountUserAvatar)
         accountUserName = findViewById(R.id.accountUserName)
@@ -45,23 +48,14 @@ class AccountActivity : AppCompatActivity() {
         auth = Firebase.auth
         currentUser = auth.currentUser!!
 
-        currentUser.let {
-            Glide
-                .with(this)
-                .load(it.photoUrl.toString().replace("s96-c", "s400-c"))
-                .into(accountUserAvatar)
-            accountUserName.text = it.displayName
-            accountUserEmail.text = it.email
-        }
+        Thread { loadUserData(accountUserAvatar, accountUserName, accountUserEmail) }
 
         val allGoalsInStringList = SugarRecord
             .listAll(Goal::class.java)
             .map { it.parseToString() }
             .toMutableList()
 
-//        if (intent.extras?.getBoolean("isNeedToSaveAllGoals", false) == true) {
-            saveAllGoalsToFirebase(allGoalsInStringList)
-//        }
+        saveAllGoalsToFirebase(allGoalsInStringList)
 
         accountButtonBackup.setOnClickListener {
             saveAllGoalsToFirebase(allGoalsInStringList)
@@ -72,6 +66,26 @@ class AccountActivity : AppCompatActivity() {
                     Snackbar.LENGTH_LONG
                 )
                 .show()
+        }
+
+        accountButtonResetProgress.setOnClickListener {
+            MainActivity.createModalWindow(
+                this,
+                getString(R.string.douYouWantToResetProgress),
+                getString(R.string.submitDelete),
+                getString(R.string.cancelButtonText),
+                {
+                    SugarRecord.deleteAll(Goal::class.java)
+                    Firebase
+                        .database
+                        .reference
+                        .child(getString(R.string.userFolderInDatabase))
+                        .child(auth.currentUser!!.uid)
+                        .child(getString(R.string.userGoalsInDatabase))
+                        .setValue(null)
+                },
+                {}
+            )
         }
 
         accountButtonLogOut.setOnClickListener {
@@ -99,15 +113,15 @@ class AccountActivity : AppCompatActivity() {
                 .map { pair -> pair.value }
                 .toSet()
 
-                val intersectionGoals = localGoals.intersect(cloudGoals)
-                val uniqueLocalGoals = localGoals.toMutableList()
-                uniqueLocalGoals.removeAll(intersectionGoals)
+            val intersectionGoals = localGoals.intersect(cloudGoals)
+            val uniqueLocalGoals = localGoals.toMutableList()
+            uniqueLocalGoals.removeAll(intersectionGoals)
 
-                val uniqueCloudGoals = cloudGoals.map { g -> g.toString() }.toMutableList()
-                uniqueCloudGoals.removeAll(intersectionGoals)
+            val uniqueCloudGoals = cloudGoals.map { g -> g.toString() }.toMutableList()
+            uniqueCloudGoals.removeAll(intersectionGoals)
 
-                for (goal in uniqueCloudGoals.map { goalString -> Goal.parseFromString(goalString) }) goal.save()
-                for (goal in uniqueLocalGoals) saveGoalToFirebase(goal)
+            for (goal in uniqueCloudGoals.map { goalString -> Goal.parseFromString(goalString) }) goal.save()
+            for (goal in uniqueLocalGoals) saveGoalToFirebase(goal)
         }
     }
 
@@ -122,5 +136,31 @@ class AccountActivity : AppCompatActivity() {
             )
             .push()
             .setValue(goal)
+    }
+
+    private fun loadUserData(avatar: ImageView, name: TextView, email: TextView) {
+        Firebase.storage.reference.child("ic_account_circle.xml").downloadUrl.addOnCompleteListener { task ->
+            Log.d("DEB", task.result.toString())
+
+            if (currentUser.displayName?.isEmpty() == true || currentUser.photoUrl == null) {
+                currentUser.updateProfile(userProfileChangeRequest {
+                    displayName =
+                        if (currentUser.displayName?.isEmpty()!!) "Гость" else currentUser.displayName
+                    photoUri = photoUri
+                        ?: Uri.parse(Firebase.storage.reference.child("ic_account_circle.xml").path)
+                }).addOnCompleteListener {
+                    if (it.isSuccessful) Log.d("DEB", "Success")
+                }
+            }
+
+            currentUser.let {
+                Glide
+                    .with(this)
+                    .load(it.photoUrl.toString().replace("s96-c", "s400-c"))
+                    .into(avatar)
+                name.text = it.displayName
+                email.text = it.email
+            }
+        }
     }
 }

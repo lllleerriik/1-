@@ -58,9 +58,6 @@
             android:value="com.webiki.bucketlist" />
 
         <activity
-            android:name="com.webiki.bucketlist.activities.GoalWizard"
-            android:exported="false" />
-        <activity
             android:name="com.webiki.bucketlist.activities.WelcomeForm"
             android:exported="false"
             android:theme="@style/Theme.BucketList.NoActionBar" />
@@ -110,6 +107,9 @@
                 android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.storage.ktx.FirebaseStorageKtxRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsKtxRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
@@ -117,6 +117,9 @@
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
@@ -247,6 +250,21 @@
         <uses-library
             android:name="androidx.window.sidecar"
             android:required="false" />
+
+        <activity
+            android:name="com.vk.api.sdk.ui.VKWebViewAuthActivity"
+            android:theme="@style/VK.Transparent" />
+        <activity
+            android:name="com.vk.api.sdk.ui.VKCaptchaActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.vk.api.sdk.ui.VKConfirmationActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.vk.api.sdk.internal.VKInitProvider"
+            android:authorities="com.webiki.bucketlist.VKInitProvider"
+            android:exported="false" />
 
         <receiver
             android:name="androidx.profileinstaller.ProfileInstallReceiver"

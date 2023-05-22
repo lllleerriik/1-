@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "585629607132",
+    "firebase_url": "https://bucket-list-eadc7-default-rtdb.firebaseio.com",
     "project_id": "bucket-list-eadc7",
     "storage_bucket": "bucket-list-eadc7.appspot.com"
   },
