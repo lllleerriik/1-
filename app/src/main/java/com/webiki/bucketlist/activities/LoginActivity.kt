@@ -26,9 +26,12 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.vk.api.sdk.VK
+import com.vk.api.sdk.VKApiConfig
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
+import com.vk.api.sdk.exceptions.VKAuthException
+import com.vk.api.sdk.utils.VKUtils
 import com.webiki.bucketlist.R
 import kotlin.random.Random
 
@@ -75,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
                 GOOGLE_REQUEST_ID
             )
         }
+
         vkLogInButton.setOnClickListener {
             MainActivity.createModalWindow(
                 this,
@@ -115,41 +119,40 @@ class LoginActivity : AppCompatActivity() {
                         val email = token.email!!
                         val password = token.userId.toString()
                         val instance = FirebaseAuth.getInstance()
-                        
+
                         Log.d("DEB", "${email} ${password}")
-                        
+
                         instance.fetchSignInMethodsForEmail(email)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     val isNewUser = task.result?.signInMethods?.isEmpty() ?: false
 
                                     if (isNewUser) {
-                                        instance.createUserWithEmailAndPassword(email, password)
+                                        instance
+                                            .createUserWithEmailAndPassword(email, password)
                                             .addOnCompleteListener {
-                                                if (it.isSuccessful)
+                                                if (it.isSuccessful) {
+                                                    currentUser = auth.currentUser
+                                                    finish()
+                                                    startActivity(Intent(applicationContext, AccountActivity::class.java))
                                                     Toast.makeText(
                                                         applicationContext,
                                                         getString(R.string.successLogin),
                                                         Toast.LENGTH_LONG
                                                     ).show()
+                                                }
                                             }
-                                    } else {
-                                        Log.d("DEB", "old user")
-                                        instance.signInWithEmailAndPassword(email, password)
-                                            .addOnCompleteListener { 
-                                                if (it.isSuccessful) 
-                                                    Log.d("DEB", "auth old user") 
-                                                else 
-                                                    Log.d("DEB", "not auth old user", it.exception)
-                                            }
+                                    } else instance.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                                        if (it.isSuccessful) {
+                                            currentUser = auth.currentUser
+                                            finish()
+                                            startActivity(Intent(applicationContext, AccountActivity::class.java))
+                                        }
                                     }
 
-                                    currentUser = auth.currentUser
-                                    finish()
-                                    startActivity(Intent(applicationContext, AccountActivity::class.java))
-                                } else Log.d("DEB", "task error")
+                                }
                             }
-
+                        
                         Toast.makeText(
                             applicationContext,
                             getString(R.string.successLogin),
@@ -157,8 +160,8 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                     }
 
-                    override fun onLoginFailed(errorCode: Int) {
-                        Log.d("DEB", "FAIL$errorCode")
+                    override fun onLoginFailed(authException: VKAuthException) {
+                        Log.d("DEB", "FAIL$authException")
                         Toast.makeText(
                             applicationContext,
                             getString(R.string.failedLogin),

@@ -57,23 +57,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\7dd496fb42f5eaf069302a9ca195b2fd\\transformed\\androidsdk-2.2.3\\res\\values-ru\\values-ru.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,122,175",
-                        "endColumns": "66,52,46",
-                        "endOffsets": "117,170,217"
-                    },
-                    "to": {
-                        "startLines": "130,131,132",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "11987,12054,12107",
-                        "endColumns": "66,52,46",
-                        "endOffsets": "12049,12102,12149"
-                    }
-                },
-                {
                     "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\befc6017638a645ec2195e509623fa98\\transformed\\play-services-basement-18.2.0\\res\\values-ru\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -88,6 +71,23 @@
                         "startOffsets": "5629",
                         "endColumns": "156",
                         "endOffsets": "5781"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\1f410fa30dc6c36b84ecd683b64aa362\\transformed\\android-sdk-core-4.0.0\\res\\values-ru\\values-ru.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,122,175,255",
+                        "endColumns": "66,52,79,46",
+                        "endOffsets": "117,170,250,297"
+                    },
+                    "to": {
+                        "startLines": "130,131,132,133",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "11987,12054,12107,12187",
+                        "endColumns": "66,52,79,46",
+                        "endOffsets": "12049,12102,12182,12229"
                     }
                 },
                 {

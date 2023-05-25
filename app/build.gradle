@@ -56,7 +56,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
-    implementation 'com.google.firebase:firebase-database-ktx'
-    implementation 'com.google.firebase:firebase-storage-ktx'
-    implementation 'com.vk:androidsdk:2.2.3'
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.1'
+    implementation 'com.google.firebase:firebase-database:20.2.1'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.0'
+    implementation 'com.vk:android-sdk-core:3.5.1'
+    implementation 'com.vk:android-sdk-api:3.5.1'
 }

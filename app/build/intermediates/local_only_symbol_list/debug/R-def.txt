@@ -177,7 +177,6 @@ string emptySequence
 string existingTarget
 string failedLogin
 string firebaseClientID
-string firebase_database_url
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -186,8 +185,10 @@ string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
+string guest
 string hasNotGoals
 string hasNotNetworkConnection
+string inDevProgress
 string incorrectGoal
 string isUserPassedInitialQuestionnaire
 string logInVariants

@@ -6,9 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -27,11 +25,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.vk.api.sdk.utils.VKUtils
+import com.vk.api.sdk.utils.VKUtils.getCertificateFingerprint
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
+import org.w3c.dom.Text
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -115,7 +118,18 @@ class MainActivity : AppCompatActivity() {
 
         currentUser = auth.currentUser
 
-        Thread { loadUserData(accountPreviewAvatar, accountPreviewName, accountPreviewEmail) }
+        if (currentUser != null) {
+            loadUserData(accountPreviewAvatar, accountPreviewName, accountPreviewEmail)
+        } else {
+            accountPreviewAvatar.setImageDrawable(
+                AppCompatResources.getDrawable(
+                    this,
+                    R.drawable.ic_account_circle
+                )
+            )
+            accountPreviewName.text = getString(R.string.name_surname)
+            accountPreviewEmail.text = getString(R.string.nav_email)
+        }
     }
 
     override fun onStart() {
@@ -124,7 +138,11 @@ class MainActivity : AppCompatActivity() {
 //        SugarRecord.deleteAll(Goal::class.java)
 //        storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
 
-        if (!storageHelper.getBooleanFromStorage(getString(R.string.isUserPassedInitialQuestionnaire), false))
+        if (!storageHelper.getBooleanFromStorage(
+                getString(R.string.isUserPassedInitialQuestionnaire),
+                false
+            )
+        )
             startActivity(Intent(this, WelcomeForm::class.java))
 
         accountPreviewLayout.setOnClickListener {
@@ -149,18 +167,18 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    /**
-     * Создаёт модальное окно по макету popup_window_view
-     *
-     * @param ctx Контекст создания окна
-     * @param messageText Текст главного текста окна
-     * @param confirmButtonText Текст на кнопке положительного ответа
-     * @param cancelButtonText Текст на кнопке отрицательного ответа
-     * @param confirmButtonHandler Обработчик положительного ответа
-     * @param cancelButtonHandler Обработчик отрицательного ответа
-     *
-     */
     companion object {
+        /**
+         * Создаёт модальное окно по макету popup_window_view
+         *
+         * @param ctx Контекст создания окна
+         * @param messageText Текст главного текста окна
+         * @param confirmButtonText Текст на кнопке положительного ответа
+         * @param cancelButtonText Текст на кнопке отрицательного ответа
+         * @param confirmButtonHandler Обработчик положительного ответа
+         * @param cancelButtonHandler Обработчик отрицательного ответа
+         *
+         */
         internal fun createModalWindow(
             ctx: Context,
             messageText: String,
@@ -199,29 +217,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadUserData(avatar: ImageView, name: TextView, email: TextView) {
-        Firebase.storage.reference.child("ic_account_circle.xml").downloadUrl.addOnCompleteListener { task ->
-            Log.d("DEB", task.result.toString())
+        Thread {
+            Firebase.storage.reference.child("ic_account_circle.xml").downloadUrl.addOnCompleteListener { task ->
+                if (currentUser?.displayName?.isEmpty() == true || currentUser?.photoUrl == null) {
+                    currentUser?.updateProfile(userProfileChangeRequest {
+                        displayName =
+                            if (currentUser?.displayName?.isEmpty()!!) "Гость" else currentUser?.displayName
 
-            if (currentUser?.displayName?.isEmpty() == true || currentUser?.photoUrl == null) {
-                currentUser?.updateProfile(userProfileChangeRequest {
-                    displayName =
-                        if (currentUser?.displayName?.isEmpty()!!) "Гость" else currentUser?.displayName
-                    photoUri = photoUri
-                        ?: Uri.parse(Firebase.storage.reference.child("ic_account_circle.xml").path)
-                })?.addOnCompleteListener {
-                    if (it.isSuccessful) Log.d("DEB", "Success")
+                    })
                 }
-            }
 
-            currentUser.let {
-                Glide
-                    .with(this)
-                    .load(it?.photoUrl.toString().replace("s96-c", "s400-c"))
+                currentUser.let {
+                    name.text = it?.displayName
+                    email.text = it?.email
+                }
+
+                if (currentUser?.displayName == getString(R.string.guest))
+                    avatar.setImageDrawable(getDrawable(R.drawable.ic_account_circle))
+                else Glide
+                    .with(applicationContext)
+                    .load(currentUser?.photoUrl.toString().replace("s96-c", "s400-c"))
                     .into(avatar)
-                name.text = it?.displayName
-                email.text = it?.email
             }
-        }
+        }.start()
     }
 
 

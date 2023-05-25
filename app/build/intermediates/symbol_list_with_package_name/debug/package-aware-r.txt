@@ -1362,6 +1362,7 @@ attr yearStyle
 attr yearTodayStyle
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
+bool com_vk_sdk_init_provider_enabled
 bool mtrl_btn_textappearance_all_caps
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
@@ -4058,7 +4059,6 @@ string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
 string firebaseClientID
-string firebase_database_url
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -4067,10 +4067,12 @@ string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
 string greetingNewUserText
+string guest
 string hasNotGoals
 string hasNotNetworkConnection
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
+string inDevProgress
 string incorrectGoal
 string isUserPassedInitialQuestionnaire
 string item_view_role_description
@@ -4224,6 +4226,7 @@ string userGoalsInDatabase
 string userGoalsSet
 string vk_captcha_hint
 string vk_confirm
+string vk_message_login_error
 string vk_retry
 string vpnAttention
 style AlertDialog_AppCompat

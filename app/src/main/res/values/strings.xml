@@ -33,14 +33,16 @@
     <string name="logInVariants">Вы можете зарегистрироваться или войти одним из предложенных вариантов:</string>
     <string name="logInWithGoogle">Войти через Google</string>
     <string name="loginWithVK">Войти через Вконтакте</string>
-    <string name="vpnAttention">Обратите внимание, что вход через ВКонтакте может не работать\\работать некоректно, если у Вас включен блокиовщик рекламы\\VPN</string>
+    <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
     <string name="skipWelcomeForm"><u>Пропустить входное анкетирование</u></string>
     <string name="resetProgress"><u><b>Сбросить прогресс</b></u></string>
     <string name="doBackup"><u><b>Выполнить резервное копирование</b></u></string>
     <string name="logOut">Выйти из аккаунта</string>
-    <string name="douYouWantToResetProgress">Вы уверены, что хотите сбросить прогресс?\nС телефона и из облачного хранилища будут стёрты все цели!</string>
-    <string name="successLogin">Авторизация прошла успешно!</string>
-    <string name="failedLogin">Что-то пошло не так!</string>
+    <string name="guest">Гость</string>
+    <string name="vpnAttention">Внимание!\n\nПри включенном VPN регистрация и вход через ВКонтакте может работать некорректно\\не работать</string>
+    <string name="douYouWantToResetProgress">Вы действительно хотите удалить все цели с телефона и из облачного хранилища?</string>
+    <string name="successLogin">Вход удался!</string>
+    <string name="failedLogin">Что-то пошло не так…</string>
     <string name="hasNotNetworkConnection">Отсутствует подключение к интернету!\n\nДля сохраннения новых целей выполните резервное копирование на экране Вашего аккаунта после подключения к сети</string>
     <!--endregion-->
 

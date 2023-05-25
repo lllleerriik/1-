@@ -10,6 +10,24 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+
+        <!-- For auth with vk client -->
+        <intent>
+            <action android:name="com.vkontakte.android.action.SDK_AUTH" />
+        </intent>
+
+        <!-- For available browsers request -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="http" />
+        </intent>
+    </queries>
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
@@ -58,6 +76,9 @@
             android:value="com.webiki.bucketlist" />
 
         <activity
+            android:name="com.webiki.bucketlist.activities.GoalWizard"
+            android:exported="false" />
+        <activity
             android:name="com.webiki.bucketlist.activities.WelcomeForm"
             android:exported="false"
             android:theme="@style/Theme.BucketList.NoActionBar" />
@@ -80,6 +101,29 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
+            android:name="com.vk.api.sdk.ui.VKWebViewAuthActivity"
+            android:theme="@style/VK.Transparent" />
+        <activity
+            android:name="com.vk.api.sdk.ui.VKCaptchaActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.vk.api.sdk.ui.VKConfirmationActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.vk.api.sdk.internal.VKInitProvider"
+            android:authorities="com.webiki.bucketlist.VKInitProvider"
+            android:enabled="@bool/com_vk_sdk_init_provider_enabled"
+            android:exported="false" />
+
+        <meta-data
+            android:name="VKSdkVersion"
+            android:value="3.5.1" />
+        <meta-data
+            android:name="VKSdkVersionCode"
+            android:value="31" />
+
+        <activity
             android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -98,6 +142,12 @@
             android:directBootAware="true"
             android:exported="false" >
             <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.database.ktx.FirebaseDatabaseKtxRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
@@ -113,16 +163,10 @@
                 android:name="com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsKtxRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.database.ktx.FirebaseDatabaseKtxRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
@@ -250,21 +294,6 @@
         <uses-library
             android:name="androidx.window.sidecar"
             android:required="false" />
-
-        <activity
-            android:name="com.vk.api.sdk.ui.VKWebViewAuthActivity"
-            android:theme="@style/VK.Transparent" />
-        <activity
-            android:name="com.vk.api.sdk.ui.VKCaptchaActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name="com.vk.api.sdk.ui.VKConfirmationActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <provider
-            android:name="com.vk.api.sdk.internal.VKInitProvider"
-            android:authorities="com.webiki.bucketlist.VKInitProvider"
-            android:exported="false" />
 
         <receiver
             android:name="androidx.profileinstaller.ProfileInstallReceiver"

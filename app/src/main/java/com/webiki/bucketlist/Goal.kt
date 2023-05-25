@@ -19,7 +19,7 @@ class Goal(
     private var createDate: Long,
     private var priority: GoalPriority,
     private var category: GoalCategory
-    ) : SugarRecord(), Comparable<Any> {
+) : SugarRecord(), Comparable<Any> {
     constructor()
             : this("", false, 0, GoalPriority.Middle, GoalCategory.Other)
     constructor(label: String, isCompleted: Boolean, priority: GoalPriority = GoalPriority.Middle, category: GoalCategory = GoalCategory.Other)
@@ -47,7 +47,6 @@ class Goal(
         val GOAL_PARTIES_SEPARATOR = "$)&"
         fun parseFromString(source: String): Goal {
             val goalParties = source.split(GOAL_PARTIES_SEPARATOR)
-            Log.d("DEB", goalParties.toString())
             return Goal(goalParties[0],
                 goalParties[1] == "true",
                 goalParties[2].toLong(),
@@ -67,7 +66,7 @@ class Goal(
     override fun compareTo(other: Any): Int {
         if (javaClass != other.javaClass) throw IllegalArgumentException("Не цель")
         other as Goal
-        return this.getCreateDate().compareTo(other.getCreateDate())
+        return if (this.label == other.label && this.isCompleted == other.isCompleted) 0 else -1
     }
 
     override fun equals(other: Any?): Boolean {
