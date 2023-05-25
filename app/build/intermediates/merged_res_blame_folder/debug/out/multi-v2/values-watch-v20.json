@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-55:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.webiki.bucketlist.app-mergeDebugResources-54:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\6e57f9aa40ef8f1eb0a3cdb41291bd05\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\8a319d896051f51fe3dacb794e616d5f\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\217717aee3beb2f620eb63aa7da93ec8\\transformed\\play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\79823\\.gradle\\caches\\transforms-3\\f13152d4be5c44b2e834d10b1b1b6f3e\\transformed\\play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
