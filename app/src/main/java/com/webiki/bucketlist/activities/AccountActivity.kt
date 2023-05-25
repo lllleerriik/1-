@@ -19,14 +19,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.orm.SugarRecord
-import com.vk.api.sdk.VK
-import com.vk.api.sdk.auth.VKAccessToken
-import com.vk.api.sdk.auth.VKAuthParams
-import com.vk.api.sdk.internal.ApiCommand
-import com.vk.api.sdk.requests.VKRequest
 import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.R
-
 
 class AccountActivity : AppCompatActivity() {
 
@@ -146,7 +140,8 @@ class AccountActivity : AppCompatActivity() {
                 .toMutableList()
 
             val intersectionGoals = localGoals.intersect(cloudGoals)
-            val uniqueGoals = mutableListOf<Goal>()
+            val uniqueGoals =
+                mutableListOf<Goal>()
 
             uniqueGoals.addAll(allGoals)
             uniqueGoals.removeAll(intersectionGoals)

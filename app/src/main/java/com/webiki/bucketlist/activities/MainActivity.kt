@@ -25,16 +25,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.vk.api.sdk.utils.VKUtils
-import com.vk.api.sdk.utils.VKUtils.getCertificateFingerprint
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
-import org.w3c.dom.Text
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -93,8 +88,8 @@ class MainActivity : AppCompatActivity() {
                 { finish() }
             )
         }
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+// Passing each menu ID as a set of Ids because each
+// menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_motivation, R.id.nav_settings
@@ -119,7 +114,8 @@ class MainActivity : AppCompatActivity() {
         currentUser = auth.currentUser
 
         if (currentUser != null) {
-            loadUserData(accountPreviewAvatar, accountPreviewName, accountPreviewEmail)
+            loadUserData(accountPreviewAvatar, accountPreviewName,
+                accountPreviewEmail)
         } else {
             accountPreviewAvatar.setImageDrawable(
                 AppCompatResources.getDrawable(
@@ -135,8 +131,8 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-//        SugarRecord.deleteAll(Goal::class.java)
-//        storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
+// SugarRecord.deleteAll(Goal::class.java)
+// storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), false) //PLUG FOR TESTING QUESTIONNAIRE
 
         if (!storageHelper.getBooleanFromStorage(
                 getString(R.string.isUserPassedInitialQuestionnaire),

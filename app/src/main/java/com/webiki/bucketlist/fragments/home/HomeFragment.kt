@@ -44,7 +44,6 @@ import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.enums.GoalProgress
 import java.util.Calendar
 
-
 class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _binding: FragmentHomeBinding? = null
@@ -513,17 +512,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             )
             .get()
             .addOnCompleteListener {
-                val cloudGoals = ((it.result.value
-                    ?: hashMapOf<String, String>()) as HashMap<*, *>)
-                    .map { pair -> Goal.parseFromString(pair.value.toString()) }
-                    .toMutableList()
-
-//                if (!cloudGoals
-//                        .map { goal -> "${goal.getLabel()} ${goal.getCompleted()}" }
-//                        .contains("${goal.getLabel()} ${goal.getCompleted()}")) {
                 saveGoalToFirebase(goal)
                 removeGoalFromFirebase(goal.withChangedCompletion())
-//                }
             }
     }
 

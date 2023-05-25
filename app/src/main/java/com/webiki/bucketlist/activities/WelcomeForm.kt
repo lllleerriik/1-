@@ -9,7 +9,6 @@ import android.view.animation.Animation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -20,10 +19,9 @@ import com.webiki.bucketlist.R
 import com.webiki.bucketlist.enums.GoalCategory
 import com.webiki.bucketlist.enums.GoalPriority
 import org.json.JSONArray
-import java.util.*
+import java.util.Scanner
 import kotlin.math.ceil
 
-@Suppress("UNCHECKED_CAST")
 class WelcomeForm : AppCompatActivity() {
     private lateinit var title: TextView
     private lateinit var answersLayout: LinearLayout
@@ -35,7 +33,8 @@ class WelcomeForm : AppCompatActivity() {
 
     private var titles: MutableList<String> = mutableListOf()
     private var answerVariants: MutableList<MutableList<String>> = mutableListOf(mutableListOf())
-    private var proposedGoals: MutableList<MutableList<MutableList<String>>> = mutableListOf(mutableListOf())
+    private var proposedGoals: MutableList<MutableList<MutableList<String>>> =
+        mutableListOf(mutableListOf())
     private var chosenGoals: MutableList<MutableList<Goal>> = mutableListOf()
     private lateinit var databaseReference: DatabaseReference
 
@@ -97,20 +96,22 @@ class WelcomeForm : AppCompatActivity() {
 
         for (i in 0 until JSONArray(jsonLine.toString()).length()) {
             val slideInformation = questions.getJSONObject(i)
-            val title   = slideInformation.getString(getString(R.string.questionsTitleKey)) as T
+            val title = slideInformation.getString(getString(R.string.questionsTitleKey)) as T
             val answers = slideInformation.getJSONArray(getString(R.string.questionsAnswersKey))
-            val goals   = slideInformation.getJSONObject(getString(R.string.questionsGoalsKey))
+            val goals = slideInformation.getJSONObject(getString(R.string.questionsGoalsKey))
 
             titles.add(title)
 
             if (answerVariants.size == i) answerVariants.add(mutableListOf())
             if (proposedGoals.size == i) proposedGoals.add(mutableListOf(mutableListOf()))
 
-            for (j in 0 until slideInformation.getJSONArray(getString(R.string.questionsAnswersKey)).length()) {
+            for (j in 0 until slideInformation.getJSONArray(getString(R.string.questionsAnswersKey))
+                .length()) {
                 answerVariants[i].add(j, answers[j] as T)
                 val goalsOnAnswer = goals.getJSONArray(j.toString())
 
-                if (proposedGoals[i].size == j) proposedGoals[i].add(mutableListOf())
+                if
+                        (proposedGoals[i].size == j) proposedGoals[i].add(mutableListOf())
 
                 for (k in 0 until goalsOnAnswer.length()) {
                     proposedGoals[i][j].add(k, goalsOnAnswer[k] as T)
@@ -149,7 +150,11 @@ class WelcomeForm : AppCompatActivity() {
                     val goalName = goalTitle.split(GOAL_NAME_SEPARATOR)[0]
                     val goalCategory = goalTitle.split(GOAL_NAME_SEPARATOR)[1]
 
-                    Goal(goalName, false, GoalPriority.Middle, enumValues<GoalCategory>().first{it.value == goalCategory})
+                    Goal(
+                        goalName,
+                        false,
+                        GoalPriority.Middle,
+                        enumValues<GoalCategory>().first { it.value == goalCategory })
                 }.toMutableList())
 
                 moveOnPage(pageNumber + 1, titles, answers)
@@ -173,9 +178,9 @@ class WelcomeForm : AppCompatActivity() {
         questions: MutableList<T>,
         answers: MutableList<MutableList<T>>
     ) {
-        if (pageNumber != questions.size){
+        if (pageNumber != questions.size) {
             switchQuestionData(pageNumber, questions, answers)
-            // here there is current (correct) page number
+// here there is current (correct) page number
             setOpacityToViews(true, TRANSITION_DELAY, title, answersLayout)
         } else closeWelcomeForm()
     }
@@ -184,11 +189,19 @@ class WelcomeForm : AppCompatActivity() {
         SugarRecord.deleteAll(Goal::class.java)
         chosenGoals.flatten().forEach { SugarRecord.save(it) }
 
-        if (storageHelper.addBooleanToStorage(getString(R.string.isUserPassedInitialQuestionnaire), true)) {
-            startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+        if (storageHelper.addBooleanToStorage(
+                getString(R.string.isUserPassedInitialQuestionnaire),
+                true
+            )
+        ) {
+            startActivity(
+                Intent(
+                    this,
+                    MainActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
             finish()
-        }
-        else
+        } else
             throw IllegalStateException(getString(R.string.stateWasNotSave))
     }
 

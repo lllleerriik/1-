@@ -15,16 +15,10 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BucketList"
             tools:targetApi="31">
-        <activity
-                android:name=".activities.AccountActivity"
-                android:exported="false" />
-        <activity
-                android:name=".activities.LoginActivity"
-                android:exported="false" />
-        <activity
-                android:name=".activities.GreetingActivity"
-                android:exported="false" />
 
+        <meta-data
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts" />
         <meta-data
                 android:name="DATABASE"
                 android:value="bucket_list.db" />
@@ -39,7 +33,13 @@
                 android:value="com.webiki.bucketlist" />
 
         <activity
-                android:name=".activities.GoalWizard"
+                android:name=".activities.AccountActivity"
+                android:exported="false" />
+        <activity
+                android:name=".activities.LoginActivity"
+                android:exported="false" />
+        <activity
+                android:name=".activities.GreetingActivity"
                 android:exported="false" />
         <activity
                 android:name=".activities.WelcomeForm"
@@ -54,14 +54,9 @@
                 android:theme="@style/splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-                android:name="preloaded_fonts"
-                android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

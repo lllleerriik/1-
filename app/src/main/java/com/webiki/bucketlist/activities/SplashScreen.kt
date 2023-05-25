@@ -2,18 +2,13 @@ package com.webiki.bucketlist.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import android.widget.TextView
 import com.webiki.bucketlist.R
 import org.json.JSONArray
 import java.util.Scanner
 import kotlin.random.Random
-
-@SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
     private val LOAD_DURATION = 4000L
 

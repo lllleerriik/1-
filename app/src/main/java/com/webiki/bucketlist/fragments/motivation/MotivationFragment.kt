@@ -3,7 +3,6 @@ package com.webiki.bucketlist.fragments.motivation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +17,13 @@ import org.json.JSONArray
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.util.Scanner
-import kotlin.reflect.typeOf
 
 class MotivationFragment : Fragment() {
 
     private var _binding: FragmentMotivationBinding? = null
 
     // This property is only valid between onCreateView and
-    // onDestroyView.
+// onDestroyView.
     private val binding get() = _binding!!
 
     private lateinit var motivationArticlesLayout: LinearLayout
@@ -61,11 +59,11 @@ class MotivationFragment : Fragment() {
      */
     private fun addArticlesToLayout(
         articlesList: MutableList<MutableList<String>>,
-        rootLayout: LinearLayout
+    rootLayout: LinearLayout
     ) {
         rootLayout.removeAllViews()
         articlesList.toList().forEach {
-//            Log.d("DEB", createArticleViewByList(it)::class.simpleName.toString())
+// Log.d("DEB", createArticleViewByList(it)::class.simpleName.toString())
             rootLayout.removeView(createArticleViewByList(it))
             rootLayout.addView(createArticleViewByList(it))
         }
@@ -89,7 +87,7 @@ class MotivationFragment : Fragment() {
         article.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(articleProperties[0])))
         }
-//        Log.d("DEB", resources.getIdentifier(articleProperties[1], "drawable", requireContext().packageName).toString())
+// Log.d("DEB", resources.getIdentifier(articleProperties[1], "drawable", requireContext().packageName).toString())
         articlePreview.setImageDrawable(
             getDrawable(
                 requireContext(),
