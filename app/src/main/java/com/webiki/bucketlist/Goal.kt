@@ -1,6 +1,5 @@
 package com.webiki.bucketlist
 
-import android.util.Log
 import com.orm.SugarRecord
 import com.webiki.bucketlist.enums.GoalCategory
 import com.webiki.bucketlist.enums.GoalPriority

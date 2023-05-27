@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -27,9 +28,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.orm.SugarRecord
+import com.webiki.bucketlist.Goal
 import com.webiki.bucketlist.ProjectSharedPreferencesHelper
 import com.webiki.bucketlist.R
 import com.webiki.bucketlist.databinding.ActivityMainBinding
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -48,21 +52,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+//        SugarRecord.deleteAll(Goal::class.java)
+//        moveTaskToBack(true)
+//        exitProcess(-1)
+
         val hasInternetConnection =
             (this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
                 .activeNetworkInfo?.isConnected ?: false
-
-        if (!hasInternetConnection && !isModalWindowWasShown) {
-            createModalWindow(
-                this,
-                getString(R.string.hasNotNetworkConnection),
-                "Хорошо",
-                "Отмена",
-                {},
-                {}
-            )
-            isModalWindowWasShown = true
-        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -106,6 +102,19 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         storageHelper = ProjectSharedPreferencesHelper(this)
+
+        if (!hasInternetConnection && !isModalWindowWasShown) {
+            createModalWindow(
+                this,
+                getString(R.string.hasNotNetworkConnection),
+                "Хорошо",
+                "Отмена",
+                {},
+                {}
+            )
+            storageHelper.addBooleanToStorage(getString(R.string.isNetworkRestoredKey), true)
+            isModalWindowWasShown = true
+        }
     }
 
     override fun onResume() {

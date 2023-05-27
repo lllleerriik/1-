@@ -128,7 +128,6 @@ id textView2
 id textView3
 id textView4
 id textView5
-id text_slideshow
 id toolbar
 id vkSignInButton
 id welcomeFormAnswers
@@ -147,7 +146,6 @@ layout basic_button
 layout content_main
 layout fragment_home
 layout fragment_motivation
-layout fragment_settings
 layout nav_header_main
 layout popup_goal_wizard_view
 layout popup_window_view
@@ -177,6 +175,7 @@ string emptySequence
 string existingTarget
 string failedLogin
 string firebaseClientID
+string firebase_database_url
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -190,6 +189,7 @@ string hasNotGoals
 string hasNotNetworkConnection
 string inDevProgress
 string incorrectGoal
+string isNetworkRestoredKey
 string isUserPassedInitialQuestionnaire
 string logInVariants
 string logInWithGoogle

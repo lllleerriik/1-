@@ -75,7 +75,7 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\79823\.gradle
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\Users\79823\.gradle\caches\transforms-3\04aabf8fcad9a7613dbb6e242451c79e\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\Users\79823\.gradle\caches\transforms-3\876ccbad22a16b44d9a28c24afb693b4\transformed\lifecycle-viewmodel-savedstate-2.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\79823\.gradle\caches\transforms-3\6bb605baf47add9c26cf9ce24a98a471\transformed\core-ktx-1.10.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\79823\.gradle\caches\transforms-3\561225ab2d9f18a21b58d293bcbb4346\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.2.0] C:\Users\79823\.gradle\caches\transforms-3\4344b4e881730698bf49385df647b554\transformed\drawerlayout-1.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\79823\.gradle\caches\transforms-3\d613216ea5c0f69ff16b10fc6f7d7468\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\79823\.gradle\caches\transforms-3\cea47ff97030f0881c2881a2e968df7a\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\79823\.gradle\caches\transforms-3\289fab95a18b7321be8c9af30d1091a3\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -516,8 +516,8 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\Users\7
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\Users\79823\.gradle\caches\transforms-3\876ccbad22a16b44d9a28c24afb693b4\transformed\lifecycle-viewmodel-savedstate-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\79823\.gradle\caches\transforms-3\6bb605baf47add9c26cf9ce24a98a471\transformed\core-ktx-1.10.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\79823\.gradle\caches\transforms-3\6bb605baf47add9c26cf9ce24a98a471\transformed\core-ktx-1.10.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\79823\.gradle\caches\transforms-3\561225ab2d9f18a21b58d293bcbb4346\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\79823\.gradle\caches\transforms-3\561225ab2d9f18a21b58d293bcbb4346\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.2.0] C:\Users\79823\.gradle\caches\transforms-3\4344b4e881730698bf49385df647b554\transformed\drawerlayout-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.2.0] C:\Users\79823\.gradle\caches\transforms-3\4344b4e881730698bf49385df647b554\transformed\drawerlayout-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\79823\.gradle\caches\transforms-3\d613216ea5c0f69ff16b10fc6f7d7468\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\79823\.gradle\caches\transforms-3\d613216ea5c0f69ff16b10fc6f7d7468\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\79823\.gradle\caches\transforms-3\cea47ff97030f0881c2881a2e968df7a\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41

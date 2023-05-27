@@ -3693,7 +3693,6 @@ id textView5
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
-id text_slideshow
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -3892,7 +3891,6 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_home
 layout fragment_motivation
-layout fragment_settings
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -4059,6 +4057,7 @@ string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
 string firebaseClientID
+string firebase_database_url
 string gcm_defaultSenderId
 string goalNameHint
 string goalPartsSeparator
@@ -4074,6 +4073,7 @@ string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string inDevProgress
 string incorrectGoal
+string isNetworkRestoredKey
 string isUserPassedInitialQuestionnaire
 string item_view_role_description
 string logInVariants

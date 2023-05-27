@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="default_web_client_id" translatable="false">585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://bucket-list-eadc7-default-rtdb.firebaseio.com</string>
     <string name="gcm_defaultSenderId" translatable="false">585629607132</string>
     <string name="google_api_key" translatable="false">AIzaSyBz1x8PwFsXKOHI2Wpespo9yjYb6WeR2oo</string>
     <string name="google_app_id" translatable="false">1:585629607132:android:484d510d71589825da4019</string>

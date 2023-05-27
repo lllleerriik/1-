@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "585629607132",
+    "firebase_url": "https://bucket-list-eadc7-default-rtdb.firebaseio.com",
     "project_id": "bucket-list-eadc7",
     "storage_bucket": "bucket-list-eadc7.appspot.com"
   },
@@ -19,6 +20,14 @@
           "android_info": {
             "package_name": "com.webiki.bucketlist",
             "certificate_hash": "7530577a3e1563a0f7b0e0fb1aec45c4de31a136"
+          }
+        },
+        {
+          "client_id": "585629607132-r1unql2rmsscqrshvjo84tpjjnrua8ds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webiki.bucketlist",
+            "certificate_hash": "acd70d2458b47409f9875af072d55ea32abf5943"
           }
         },
         {

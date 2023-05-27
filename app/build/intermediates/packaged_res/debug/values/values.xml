@@ -61,7 +61,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="nav_header_height">185dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <integer name="com_vk_sdk_AppId">51653292</integer>
     <string name="action_settings">Settings</string>
@@ -82,6 +82,7 @@
     <string name="existingTarget">Такая цель уже существует!</string>
     <string name="failedLogin">Что-то пошло не так…</string>
     <string name="firebaseClientID">585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://bucket-list-eadc7-default-rtdb.firebaseio.com</string>
     <string name="gcm_defaultSenderId" translatable="false">585629607132</string>
     <string name="goalNameHint">Напишите название</string>
     <string name="goalPartsSeparator">$_$</string>
@@ -95,6 +96,7 @@
     <string name="hasNotNetworkConnection">Отсутствует подключение к интернету!\n\nДля сохраннения новых целей выполните резервное копирование на экране Вашего аккаунта после подключения к сети</string>
     <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
     <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
+    <string name="isNetworkRestoredKey">isNetworkRestoredKey</string>
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
     <string name="logInVariants">Вы можете зарегистрироваться или войти одним из предложенных вариантов:</string>
     <string name="logInWithGoogle">Войти через Google</string>

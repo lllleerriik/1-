@@ -1,5 +1,6 @@
 package com.webiki.bucketlist.fragments.home
 
+import android.accessibilityservice.AccessibilityService.SoftKeyboardController
 import android.app.ActionBar.LayoutParams
 import android.app.Dialog
 import android.content.res.Configuration
@@ -42,7 +43,10 @@ import com.webiki.bucketlist.databinding.FragmentHomeBinding
 import com.webiki.bucketlist.enums.GoalCategory
 import com.webiki.bucketlist.enums.GoalPriority
 import com.webiki.bucketlist.enums.GoalProgress
+import com.webiki.bucketlist.activities.AccountActivity
+import kotlinx.coroutines.runBlocking
 import java.util.Calendar
+import kotlin.system.exitProcess
 
 class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -65,19 +69,89 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+//        SugarRecord.deleteAll(Goal::class.java)
+//        requireActivity().moveTaskToBack(true)
+//        exitProcess(-1)
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         fab = root.findViewById(R.id.homeFabButton)
-        goalsProgressSpinner = root.findViewById(R.id.goalsProgressSpinner)
         fab.setOnClickListener { handleFabClick(it) }
-        storageHelper = ProjectSharedPreferencesHelper(this.requireContext())
+
+        goalsProgressSpinner = root.findViewById(R.id.goalsProgressSpinner)
         goalsLayout = binding.goalsCategoriesLayout
+
+        storageHelper = ProjectSharedPreferencesHelper(requireActivity())
 
         databaseReference = Firebase.database.reference
         auth = Firebase.auth
         currentUser = auth.currentUser
 
+        goalsList = SugarRecord
+            .listAll(Goal::class.java)
+
+        goalsList.sortDescending()
+
+        goalsList = goalsList
+            .distinctBy { g -> g.getLabel() }
+            .sortedBy { g -> g.getCompleted() }
+            .groupBy { g -> g.getPriority() }
+            .toSortedMap(compareByDescending { it.value })
+            .flatMap { pair -> pair.value }
+            .toMutableList()
+
+        Log.d("DEB", "is have key " + storageHelper.getBooleanFromStorage(getString(R.string.isNetworkRestoredKey), false))
+
+        if (storageHelper.getBooleanFromStorage(getString(R.string.isNetworkRestoredKey), false)) {
+            doBackup(goalsList)
+        }
+
         return root
+    }
+
+    private fun doBackup(localGoals: MutableList<Goal>) {
+        val userGoalsDatabase = Firebase
+            .database
+            .reference
+            .child(
+                "${getString(R.string.userFolderInDatabase)}" +
+                        "/${currentUser?.uid}" +
+                        "/${getString(R.string.userGoalsInDatabase)}"
+            )
+
+        // берём цели с облака                                            +
+        // смотрим, каких нет в телефоне                                  +
+        // если есть с другой выполненностью, оставляем телефонную цель   +
+        // всё сохраняем в телефон                                        +
+        // стираем бд, копируем полностью с телефона                      +
+
+        userGoalsDatabase.get().addOnCompleteListener {
+            val cloudGoals = ((it.result.value
+                ?: hashMapOf<String, String>()) as HashMap<*, *>)
+                .map { pair -> Goal.parseFromString(pair.value.toString()) }
+                .toMutableList()
+
+            val uniqueCloudGoals = cloudGoals.filter { g -> !localGoals.contains(g) && !localGoals.contains(g.withChangedCompletion()) }
+            Log.d("DEB", uniqueCloudGoals.toString())
+
+            uniqueCloudGoals.forEach { g -> g.save() }
+
+            databaseReference
+                .child(
+                    "${getString(R.string.userFolderInDatabase)}" +
+                            "/${Firebase.auth.currentUser?.uid}" +
+                            "/${getString(R.string.userGoalsInDatabase)}"
+                ).setValue(null)
+
+            SugarRecord.listAll(Goal::class.java).forEach { g ->
+                saveGoalToFirebase(g)
+                Log.d("DEB", g.parseToString())
+            }
+
+            Log.d("DEB", "\n\n\n\n")
+            Log.d("DEB", SugarRecord.listAll(Goal::class.java).toString())
+        }
     }
 
     override fun onResume() {
@@ -378,7 +452,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val dialog = Dialog(view.context)
 
         dialog.setContentView(R.layout.popup_goal_wizard_view)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.let {
+            it.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            it.attributes?.width = ViewGroup.LayoutParams.MATCH_PARENT
+        }
 
         val dialogNameInput = dialog.window?.findViewById<EditText>(R.id.goalWizardName)!!
         val dialogButton =
@@ -391,7 +468,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 && dialogPriorityList.selectedItemPosition != 0
                 && dialogCategoryList.selectedItemPosition != 0
             ) {
-
                 val priority =
                     when ((dialogPriorityList.selectedView as MaterialTextView).text.toString()) {
                         view.context.resources.getStringArray(R.array.goalPriorities)[1] -> GoalPriority.Low
@@ -426,7 +502,12 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                     initializeGoalLayout(goalsLayout, goalsList)
                     onItemSelected(null, null, goalsProgressSpinner.selectedItemPosition, 0)
-                }
+                } else
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.existingTarget),
+                        Toast.LENGTH_LONG
+                    ).show()
             } else
                 Toast.makeText(
                     requireContext(),
@@ -458,7 +539,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             .push()
             .setValue(goal.parseToString())
             .addOnSuccessListener {
-                Log.d("DEB", "saved \t\t${goalName}")
             }
             .addOnFailureListener { }
     }
@@ -492,7 +572,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         .removeValue()
                         .addOnSuccessListener {
                             query.removeEventListener(this)
-                            Log.d("DEB", "removed \t${goal.getLabel()}")
                         }
                 return
             }

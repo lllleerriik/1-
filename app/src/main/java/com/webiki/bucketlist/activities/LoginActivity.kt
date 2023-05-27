@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 googleSignInClient.signInIntent,
                 GOOGLE_REQUEST_ID
             )
+            Log.d("DEB", "go to result")
         }
 
         vkLogInButton.setOnClickListener {
@@ -79,10 +80,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        Log.d("DEB", "activity returned")
+        
         when (requestCode) {
             GOOGLE_REQUEST_ID -> {
+                Log.d("DEB", "google")
                 try {
-                    val account = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    val account = GoogleSignIn
+                        .getSignedInAccountFromIntent(data)
                         .getResult(ApiException::class.java)!!
                     when {
                         account.idToken != null -> {
@@ -90,13 +95,16 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         else -> {
+                            Log.d("DEB", account.idToken?:"   ")
                         }
                     }
-                } catch (_: ApiException) {
+                } catch (e: ApiException) {
+                    Log.d("DEB", "google fail", e)
                 }
             }
 
             else -> {
+                Log.d("DEB", "vk")
                 val callback = object : VKAuthCallback {
                     override fun onLogin(token: VKAccessToken) {
 
@@ -126,12 +134,17 @@ class LoginActivity : AppCompatActivity() {
                                                     ).show()
                                                 }
                                             }
+                                            .addOnFailureListener { 
+                                                Log.d("DEB", "pizdec", it)
+                                            }
+                                        Log.d("DEB", "отправил запрос...")
                                     } else instance.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                                         if (it.isSuccessful) {
                                             currentUser = auth.currentUser
                                             finish()
                                             startActivity(Intent(applicationContext, AccountActivity::class.java))
                                         }
+                                        Log.d("DEB", "отправил запрос...")
                                     }
 
                                 }

@@ -13,10 +13,10 @@ com.webiki.bucketlist.app-android-sdk-core-3.5.1-11 C:\Users\79823\.gradle\cache
 com.webiki.bucketlist.app-navigation-ui-ktx-2.5.3-12 C:\Users\79823\.gradle\caches\transforms-3\3fd555eeab96ff5436f6b650f007bc72\transformed\navigation-ui-ktx-2.5.3\res
 com.webiki.bucketlist.app-transition-1.4.1-13 C:\Users\79823\.gradle\caches\transforms-3\40066a4ddf0cd8476d79d231c2be221b\transformed\transition-1.4.1\res
 com.webiki.bucketlist.app-emoji2-views-helper-1.2.0-14 C:\Users\79823\.gradle\caches\transforms-3\40b8227da3b00b403d0c70259a6d5173\transformed\emoji2-views-helper-1.2.0\res
-com.webiki.bucketlist.app-navigation-runtime-2.5.3-15 C:\Users\79823\.gradle\caches\transforms-3\4ab5b0a182047e1686da8fa701e1a9d8\transformed\navigation-runtime-2.5.3\res
-com.webiki.bucketlist.app-profileinstaller-1.3.0-16 C:\Users\79823\.gradle\caches\transforms-3\4e4c565bb485ddcaa96a0c58dfc7845e\transformed\profileinstaller-1.3.0\res
-com.webiki.bucketlist.app-lifecycle-livedata-core-ktx-2.6.1-17 C:\Users\79823\.gradle\caches\transforms-3\53c2f2ce59ab172ce82cb5df3fb6f08f\transformed\lifecycle-livedata-core-ktx-2.6.1\res
-com.webiki.bucketlist.app-drawerlayout-1.1.1-18 C:\Users\79823\.gradle\caches\transforms-3\561225ab2d9f18a21b58d293bcbb4346\transformed\drawerlayout-1.1.1\res
+com.webiki.bucketlist.app-drawerlayout-1.2.0-15 C:\Users\79823\.gradle\caches\transforms-3\4344b4e881730698bf49385df647b554\transformed\drawerlayout-1.2.0\res
+com.webiki.bucketlist.app-navigation-runtime-2.5.3-16 C:\Users\79823\.gradle\caches\transforms-3\4ab5b0a182047e1686da8fa701e1a9d8\transformed\navigation-runtime-2.5.3\res
+com.webiki.bucketlist.app-profileinstaller-1.3.0-17 C:\Users\79823\.gradle\caches\transforms-3\4e4c565bb485ddcaa96a0c58dfc7845e\transformed\profileinstaller-1.3.0\res
+com.webiki.bucketlist.app-lifecycle-livedata-core-ktx-2.6.1-18 C:\Users\79823\.gradle\caches\transforms-3\53c2f2ce59ab172ce82cb5df3fb6f08f\transformed\lifecycle-livedata-core-ktx-2.6.1\res
 com.webiki.bucketlist.app-core-1.10.1-19 C:\Users\79823\.gradle\caches\transforms-3\56aa57d49e347670054f505054cb10e8\transformed\core-1.10.1\res
 com.webiki.bucketlist.app-cardview-1.0.0-20 C:\Users\79823\.gradle\caches\transforms-3\56ecd782635b57719baf82c8a3f3071e\transformed\cardview-1.0.0\res
 com.webiki.bucketlist.app-material-1.9.0-21 C:\Users\79823\.gradle\caches\transforms-3\5a429035354cffcb1c1490190b5ae1ce\transformed\material-1.9.0\res

@@ -1,6 +1,7 @@
 package com.webiki.bucketlist.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -69,14 +70,7 @@ class AccountActivity : AppCompatActivity() {
             }
 
         accountButtonBackup.setOnClickListener {
-            saveAllGoalsToFirebase(allGoalsInStringList)
-            Snackbar
-                .make(
-                    findViewById(R.id.accountButtonBackup),
-                    "Резервное копирование выполнено",
-                    Snackbar.LENGTH_LONG
-                )
-                .show()
+            doBackup(allGoalsInStringList)
         }
 
         accountButtonResetProgress.setOnClickListener {
@@ -114,6 +108,45 @@ class AccountActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+
+    private fun doBackup(localGoals: MutableList<Goal>) {
+        val userGoalsDatabase = Firebase
+            .database
+            .reference
+            .child(
+                "${getString(R.string.userFolderInDatabase)}" +
+                        "/${currentUser?.uid}" +
+                        "/${getString(R.string.userGoalsInDatabase)}"
+            )
+
+        // берём цели с облака                                            +
+        // смотрим, каких нет в телефоне                                  +
+        // если есть с другой выполненностью, оставляем телефонную цель   +
+        // всё сохраняем в телефон                                        +
+        // стираем бд, копируем полностью с телефона                      +
+
+        userGoalsDatabase.get().addOnCompleteListener {
+            val cloudGoals = ((it.result.value
+                ?: hashMapOf<String, String>()) as HashMap<*, *>)
+                .map { pair -> Goal.parseFromString(pair.value.toString()) }
+                .toMutableList()
+
+            val uniqueCloudGoals = cloudGoals.filter { g -> !localGoals.contains(g) && !localGoals.contains(g.withChangedCompletion()) }
+            Log.d("DEB", uniqueCloudGoals.toString())
+
+            uniqueCloudGoals.forEach { g -> g.save() }
+
+            Firebase.database.reference
+                .child(
+                    "${getString(R.string.userFolderInDatabase)}" +
+                            "/${Firebase.auth.currentUser?.uid}" +
+                            "/${getString(R.string.userGoalsInDatabase)}"
+                ).setValue(null)
+
+            SugarRecord.listAll(Goal::class.java).forEach { g -> saveGoalToFirebase(g) }
+        }
     }
 
     private fun saveAllGoalsToFirebase(
