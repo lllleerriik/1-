@@ -3,6 +3,7 @@ package com.webiki.bucketlist.fragments.motivation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class MotivationFragment : Fragment() {
             getArticlesFromJson(requireContext().assets.open(getString(R.string.articlesFileName)))
 
         addArticlesToLayout(articlesList, motivationArticlesLayout)
+
     }
 
     /**
@@ -59,12 +61,10 @@ class MotivationFragment : Fragment() {
      */
     private fun addArticlesToLayout(
         articlesList: MutableList<MutableList<String>>,
-    rootLayout: LinearLayout
+        rootLayout: LinearLayout
     ) {
         rootLayout.removeAllViews()
         articlesList.toList().forEach {
-// Log.d("DEB", createArticleViewByList(it)::class.simpleName.toString())
-            rootLayout.removeView(createArticleViewByList(it))
             rootLayout.addView(createArticleViewByList(it))
         }
     }
@@ -87,7 +87,7 @@ class MotivationFragment : Fragment() {
         article.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(articleProperties[0])))
         }
-// Log.d("DEB", resources.getIdentifier(articleProperties[1], "drawable", requireContext().packageName).toString())
+
         articlePreview.setImageDrawable(
             getDrawable(
                 requireContext(),
@@ -107,7 +107,7 @@ class MotivationFragment : Fragment() {
      * Парсит список статей из JSON-файла
      *
      * @param open Поток ввода json
-     * @return Список статей в формате [сылка_на_сайт, имя_файла_превью, заголовок_статьи]
+     * @return Список статей в формате [ссылка_на_сайт, имя_файла_превью, заголовок_статьи]
      * @exception FileNotFoundException если введён поток с некорректным именем файла
      */
     private fun getArticlesFromJson(open: InputStream): MutableList<MutableList<String>> {
@@ -119,7 +119,7 @@ class MotivationFragment : Fragment() {
 
         val jsonArray = JSONArray(stringBuilder.toString())
 
-        return (0..5).map { array ->
+        return (0..22).map { array -> //FIXME hardcode articles\videos count
             (0..2).map { line ->
                 jsonArray.getJSONArray(array).getString(line)
             }.toMutableList()
