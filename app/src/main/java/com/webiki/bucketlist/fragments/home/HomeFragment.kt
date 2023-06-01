@@ -238,7 +238,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
      * Добавляет цели в макет (LinearLayout)
      *
      * @param layout Макет для списка целей
-     * @param goalsMap Список целей
+     * @param goalsList Список целей
      */
     private fun addGoalsToLayout(
         layout: LinearLayout,

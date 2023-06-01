@@ -20,7 +20,7 @@
     <string name="submitCloseApp">Выйти</string>
     <string name="cancelButtonText">Отмена</string>
     <string name="display">Выберите вариант отображения целей:</string>
-    <string name="clickForContinue"><u>Нажмите, чтоб приступить к анкетированию</u></string>
+    <string name="clickForContinue"><u>Нажмите, чтоб перейти к опросу</u></string>
     <string name="greetingNewUserText">Привет! Мы рады, что ты решил изменить свою жизнь! Наше приложение поможет тебе ставить цели, следить за привычками, отслеживать прогресс и сохранить мотивацию.\n\nНо перед этим пройди небольшой опрос, чтобы мы могли предложить тебе цели по твоим интересам.</string>
     <string name="addGoal">Добавьте цель</string>
     <string name="goalNameHint">Напишите название</string>
@@ -28,7 +28,6 @@
     <string name="logInVariants">Вы можете зарегистрироваться или войти одним из предложенных вариантов:</string>
     <string name="logInWithGoogle">Войти через Google</string>
     <string name="loginWithVK">Войти через Вконтакте</string>
-    <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
     <string name="skipWelcomeForm"><u>Пропустить входное анкетирование</u></string>
     <string name="resetProgress"><u><b>Сбросить прогресс</b></u></string>
     <string name="doBackup"><u><b>Выполнить резервное копирование</b></u></string>
@@ -38,6 +37,8 @@
     <string name="douYouWantToResetProgress">Вы действительно хотите удалить все цели с телефона и из облачного хранилища?</string>
     <string name="successLogin">Вход удался!</string>
     <string name="failedLogin">Что-то пошло не так…</string>
+    <string name="doYouWantSeeTutorial">Хотите посмотреть видеоролик, чтобы разобраться в работе приложения?</string>
+    <string name="iWant">Хочу!</string>
     <string name="hasNotNetworkConnection">Отсутствует подключение к интернету!\n\nДля сохраннения новых целей выполните резервное копирование на экране Вашего аккаунта после подключения к сети</string>
     <!--endregion-->
 
@@ -91,5 +92,6 @@
     <string name="userGoalsInDatabase">userGoals</string>
     <string name="userFolderInDatabase">users</string>
     <string name="isNetworkRestoredKey">isNetworkRestoredKey</string>
+    <string name="tutorialUri">https://youtu.be/T4vdD_1UC88</string>
     <!-- endregion    -->
 </resources>
