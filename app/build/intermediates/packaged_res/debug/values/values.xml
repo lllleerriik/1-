@@ -69,11 +69,12 @@
     <string name="articlesFileName">MotivationArticleLinks.json</string>
     <string name="cancelButtonText">Отмена</string>
     <string name="chosenFilterKey">CHOSEN_FILTER_KEY</string>
-    <string name="clickForContinue"><u>Нажмите, чтоб приступить к анкетированию</u></string>
+    <string name="clickForContinue"><u>Нажмите, чтоб перейти к опросу</u></string>
     <string name="collapsedCategoriesKey">COLLAPSED_CATEGORIES_KEY</string>
     <string name="default_web_client_id" translatable="false">585629607132-7i5m19u16d3gdp388eed0t82hha92sbp.apps.googleusercontent.com</string>
     <string name="display">Выберите вариант отображения целей:</string>
     <string name="doBackup"><u><b>Выполнить резервное копирование</b></u></string>
+    <string name="doYouWantSeeTutorial">Хотите посмотреть видеоролик, чтобы разобраться в работе приложения?</string>
     <string name="doYouWantToCloseApp">Вы уверены, что хотите выйти из приложения?</string>
     <string name="doYouWantToDeleteGoal"><b>Вы хотите удалить данную цель?</b></string>
     <string name="douYouWantToResetProgress">Вы действительно хотите удалить все цели с телефона и из облачного хранилища?</string>
@@ -93,7 +94,7 @@
     <string name="guest">Гость</string>
     <string name="hasNotGoals">Вы не поставили ни одной цели!</string>
     <string name="hasNotNetworkConnection">Отсутствует подключение к интернету!\n\nДля сохраннения новых целей выполните резервное копирование на экране Вашего аккаунта после подключения к сети</string>
-    <string name="inDevProgress">Возможность войти через Вконтакте в разработке...</string>
+    <string name="iWant">Хочу!</string>
     <string name="incorrectGoal">Введите название цели, её приоритет и категорию!</string>
     <string name="isNetworkRestoredKey">isNetworkRestoredKey</string>
     <string name="isUserPassedInitialQuestionnaire">isUserPassedInitialQuestionnaire</string>
@@ -116,6 +117,7 @@
     <string name="questionsTitleKey">title</string>
     <string name="resetProgress"><u><b>Сбросить прогресс</b></u></string>
     <string name="save_results">Сохранить результат</string>
+    <string name="shareAppBody">Вот крутое приложение, которое помогает ставить и отслеживать свои цели. Сам им пользуюсь, тебе тоже советую)\nhttp://bucketlist.webiki.tilda.ws/</string>
     <string name="sharedPreferencesName">BucketList-Webiki</string>
     <string name="skipWelcomeForm"><u>Пропустить входное анкетирование</u></string>
     <string name="stateWasNotSave">Результаты не были сохранены!</string>
@@ -124,6 +126,7 @@
     <string name="submitDelete">Удалить</string>
     <string name="successLogin">Вход удался!</string>
     <string name="tooSmallDelay">Слишком большая скорость скрытия элементов</string>
+    <string name="tutorialUri">https://youtu.be/T4vdD_1UC88</string>
     <string name="unexpectedResultCode">Неожиданный код ответа</string>
     <string name="userFolderInDatabase">users</string>
     <string name="userGoalsInDatabase">userGoals</string>

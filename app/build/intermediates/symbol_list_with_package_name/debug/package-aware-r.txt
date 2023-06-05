@@ -3021,6 +3021,7 @@ drawable abc_vector_test
 drawable add_icon
 drawable avd_hide_password
 drawable avd_show_password
+drawable baseline_share_24
 drawable basic_button
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3447,6 +3448,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageButton
 id immediateStop
 id included
 id indeterminate
@@ -3631,6 +3633,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id shareAppButton
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -4057,6 +4060,7 @@ string copy_toast_msg
 string default_web_client_id
 string display
 string doBackup
+string doYouWantSeeTutorial
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
 string douYouWantToResetProgress
@@ -4085,8 +4089,8 @@ string guest
 string hasNotGoals
 string hasNotNetworkConnection
 string hide_bottom_view_on_scroll_behavior
+string iWant
 string icon_content_description
-string inDevProgress
 string incorrectGoal
 string isNetworkRestoredKey
 string isUserPassedInitialQuestionnaire
@@ -4220,6 +4224,7 @@ string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
 string searchview_navigation_content_description
+string shareAppBody
 string sharedPreferencesName
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
@@ -4231,6 +4236,7 @@ string submitCreateGoal
 string submitDelete
 string successLogin
 string tooSmallDelay
+string tutorialUri
 string unexpectedResultCode
 string userFolderInDatabase
 string userGoalsInDatabase

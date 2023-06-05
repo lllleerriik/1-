@@ -50,6 +50,7 @@ drawable _9
 drawable _mpbwigka7w
 drawable _z0f9bi45vy
 drawable add_icon
+drawable baseline_share_24
 drawable basic_button
 drawable category_label_background
 drawable checked_checkbox
@@ -121,6 +122,7 @@ id goalsProgressSpinner
 id googleSignInButton
 id greetingLayout
 id homeFabButton
+id imageButton
 id mainWelcomeLayout
 id mobile_navigation
 id motivationArticlesLayout
@@ -130,6 +132,7 @@ id nav_host_fragment_content_main
 id nav_motivation
 id nav_settings
 id nav_view
+id shareAppButton
 id simpleCategoryImage
 id simpleCategoryLabel
 id simpleCategoryLayout
@@ -183,6 +186,7 @@ string collapsedCategoriesKey
 string default_web_client_id
 string display
 string doBackup
+string doYouWantSeeTutorial
 string doYouWantToCloseApp
 string doYouWantToDeleteGoal
 string douYouWantToResetProgress
@@ -202,7 +206,7 @@ string greetingNewUserText
 string guest
 string hasNotGoals
 string hasNotNetworkConnection
-string inDevProgress
+string iWant
 string incorrectGoal
 string isNetworkRestoredKey
 string isUserPassedInitialQuestionnaire
@@ -225,6 +229,7 @@ string questionsGoalsKey
 string questionsTitleKey
 string resetProgress
 string save_results
+string shareAppBody
 string sharedPreferencesName
 string skipWelcomeForm
 string stateWasNotSave
@@ -233,6 +238,7 @@ string submitCreateGoal
 string submitDelete
 string successLogin
 string tooSmallDelay
+string tutorialUri
 string unexpectedResultCode
 string userFolderInDatabase
 string userGoalsInDatabase

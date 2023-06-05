@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var accountPreviewAvatar: ImageView
     private lateinit var accountPreviewName: TextView
     private lateinit var accountPreviewEmail: TextView
+    private lateinit var shareAppButton: LinearLayout
 
     private lateinit var storageHelper: ProjectSharedPreferencesHelper
     private lateinit var auth: FirebaseAuth
@@ -51,10 +52,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        SugarRecord.deleteAll(Goal::class.java)
-//        moveTaskToBack(true)
-//        exitProcess(-1)
 
         val hasInternetConnection =
             (this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
@@ -84,8 +81,7 @@ class MainActivity : AppCompatActivity() {
                 { finish() }
             )
         }
-// Passing each menu ID as a set of Ids because each
-// menu should be considered as top level destinations.
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_motivation, R.id.nav_settings
@@ -98,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         accountPreviewAvatar = navView.getHeaderView(0).findViewById(R.id.accountPreviewAvatar)
         accountPreviewName = navView.getHeaderView(0).findViewById(R.id.accountPreviewName)
         accountPreviewEmail = navView.getHeaderView(0).findViewById(R.id.accountPreviewEmail)
+        shareAppButton = findViewById(R.id.shareAppButton)
 
         auth = Firebase.auth
 
@@ -119,6 +116,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        shareAppButton.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, getString(R.string.shareAppBody))
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
 
         currentUser = auth.currentUser
 

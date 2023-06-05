@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-55:\\layout\\activity_greeting.xml",
-        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-58:\\layout\\activity_greeting.xml"
+        "merged": "com.webiki.bucketlist.app-mergeDebugResources-55:/layout/app_bar_main.xml",
+        "source": "com.webiki.bucketlist.app-main-58:/layout/app_bar_main.xml"
     },
     {
-        "merged": "com.webiki.bucketlist.app-mergeDebugResources-55:/layout/simple_motivation_article.xml",
-        "source": "com.webiki.bucketlist.app-main-58:/layout/simple_motivation_article.xml"
+        "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-55:\\layout\\activity_greeting.xml",
+        "source": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-main-58:\\layout\\activity_greeting.xml"
     },
     {
         "merged": "C:\\Users\\79823\\.gradle\\daemon\\8.0\\com.webiki.bucketlist.app-mergeDebugResources-55:\\layout\\content_main.xml",

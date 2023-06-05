@@ -40,6 +40,7 @@
     <string name="doYouWantSeeTutorial">Хотите посмотреть видеоролик, чтобы разобраться в работе приложения?</string>
     <string name="iWant">Хочу!</string>
     <string name="hasNotNetworkConnection">Отсутствует подключение к интернету!\n\nДля сохраннения новых целей выполните резервное копирование на экране Вашего аккаунта после подключения к сети</string>
+    <string name="shareAppBody">Вот крутое приложение, которое помогает ставить и отслеживать свои цели. Сам им пользуюсь, тебе тоже советую)\nhttp://bucketlist.webiki.tilda.ws/</string>
     <!--endregion-->
 
     <!-- region ARRAYS-->

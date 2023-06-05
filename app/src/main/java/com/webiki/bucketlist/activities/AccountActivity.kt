@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -121,12 +120,6 @@ class AccountActivity : AppCompatActivity() {
                         "/${getString(R.string.userGoalsInDatabase)}"
             )
 
-        // берём цели с облака                                            +
-        // смотрим, каких нет в телефоне                                  +
-        // если есть с другой выполненностью, оставляем телефонную цель   +
-        // всё сохраняем в телефон                                        +
-        // стираем бд, копируем полностью с телефона                      +
-
         userGoalsDatabase.get().addOnCompleteListener {
             val cloudGoals = ((it.result.value
                 ?: hashMapOf<String, String>()) as HashMap<*, *>)
@@ -134,7 +127,6 @@ class AccountActivity : AppCompatActivity() {
                 .toMutableList()
 
             val uniqueCloudGoals = cloudGoals.filter { g -> !localGoals.contains(g) && !localGoals.contains(g.withChangedCompletion()) }
-            Log.d("DEB", uniqueCloudGoals.toString())
 
             uniqueCloudGoals.forEach { g -> g.save() }
 
@@ -146,6 +138,12 @@ class AccountActivity : AppCompatActivity() {
                 ).setValue(null)
 
             SugarRecord.listAll(Goal::class.java).forEach { g -> saveGoalToFirebase(g) }
+
+            if (it.isSuccessful) Toast.makeText(
+                this,
+                "Резервное копирование выполнено!",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

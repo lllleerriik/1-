@@ -9,14 +9,37 @@
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.BucketList.AppBarOverlay">
+            android:theme="@style/Theme.BucketList.AppBarOverlay"
+            android:gravity="right|center_vertical">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
-                app:popupTheme="@style/Theme.BucketList.PopupOverlay" />
+                app:popupTheme="@style/Theme.BucketList.PopupOverlay"
+                android:gravity="right|center_vertical">
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|end"
+                    android:gravity="center|center_vertical"
+                    android:paddingLeft="12dp"
+                    android:id="@+id/shareAppButton">
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:background="@drawable/baseline_share_24"
+                        android:id="@+id/imageButton"
+                        android:padding="24dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|center_vertical" />
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
